@@ -1,6 +1,6 @@
 # MEDIATA Platform
 
-**MEDIATA** is a federated clinical data harmonization platform developed as part of the [STRATIF-AI](https://cordis.europa.eu/project/id/101080875) European research project. It enables secure, distributed preprocessing, integration, and semantic alignment of sensitive patient datasets across multiple institutions — all without centralizing raw data.
+**MEDIATA** is a federated clinical data harmonization platform, initially developed as part of the [STRATIF-AI](https://cordis.europa.eu/project/id/101080875) European research project. It enables secure, distributed preprocessing, integration, and semantic alignment of sensitive patient datasets across multiple institutions — all without centralizing raw data.
 
 This repository serves as the **main entry point**, containing links to all core components:
 
