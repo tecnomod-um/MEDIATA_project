@@ -1,0 +1,9 @@
+[submodule "MEDIATA_orchestrator"]
+	path = MEDIATA_orchestrator
+	url = https://github.com/tecnomod-um/MEDIATA_orchestrator
+[submodule "MEDIATA_node"]
+	path = MEDIATA_node
+	url = https://github.com/tecnomod-um/MEDIATA_node
+[submodule "MEDIATA_frontend"]
+	path = MEDIATA_frontend
+	url = https://github.com/tecnomod-um/MEDIATA_frontend
