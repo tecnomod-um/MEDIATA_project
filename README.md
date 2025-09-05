@@ -12,10 +12,34 @@ This repository serves as the **main entry point**, containing links to all core
 
 ---
 
-## 🔧 Cloning the Full Project
+## Features
+
+ - Discovery: federated dataset catalogs (FAIR / DCAT compliant).
+ - Profiling & cleaning: descriptive stats, filters, data quality tools.
+ - Integration: column/value alignment against a shared schema.
+ - Semantic alignment: SNOMED CT term suggestions, HL7 FHIR export/mapping helpers.
+ - Security by design: Kerberos SSO, HTTPS/TLS; no raw patient data leaves nodes.
+
+---
+
+## Cloning the Project
 
 To clone this repository along with all submodules:
 
 ```bash
 git clone --recurse-submodules https://github.com/tecnomod-um/MEDIATA_project.git
 cd MEDIATA_project
+```
+If already cloned without submodules:
+```bash
+git submodule update --init --recursive
+```
+
+---
+
+## Sample use case
+
+See MEDIATA in action:
+<p align="center"> <video src="https://github.com/tecnomod-um/MEDIATA_project/releases/download/v0.1.0/demo_video.mp4" controls width="800"></video> </p>
+Here, steps are taken to briefly overview the data and then harmonize a column into a common schema between two datasets located each in a different insitution that use disparate standards (in this case, FIM and Barthel index). Then the Semantic Alignment tab is explored.
+
