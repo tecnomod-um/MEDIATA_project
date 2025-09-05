@@ -40,6 +40,17 @@ git submodule update --init --recursive
 ## Sample use case
 
 See MEDIATA in action:
-<p align="center"> <video src="https://github.com/tecnomod-um/MEDIATA_project/releases/download/v0.1.0/demo_video.mp4" controls width="800"></video> </p>
+https://github.com/tecnomod-um/MEDIATA_project/releases/download/v0.1.0/demo_video.mp4
 Here, steps are taken to briefly overview the data and then harmonize a column into a common schema between two datasets located each in a different insitution that use disparate standards (in this case, FIM and Barthel index). Then the Semantic Alignment tab is explored.
 
+---
+
+## License
+
+Each MEDIATA component is licensed separately:
+
+- [MEDIATA_orchestrator](https://github.com/tecnomod-um/MEDIATA_orchestrator/blob/main/LICENSE.md)
+- [MEDIATA_node](https://github.com/tecnomod-um/MEDIATA_node/blob/main/LICENSE.md)
+- [MEDIATA_frontend](https://github.com/tecnomod-um/MEDIATA_frontend/blob/main/LICENSE.md)
+
+This umbrella repository does not introduce additional terms.
