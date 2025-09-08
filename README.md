@@ -41,7 +41,7 @@ git submodule update --init --recursive
 
 See MEDIATA in action:
 
-https://github.com/user-attachments/assets/825d4827-f2a4-41ae-976f-cf645ec303db
+[test](https://github.com/user-attachments/assets/825d4827-f2a4-41ae-976f-cf645ec303db)
 
 https://github.com/user-attachments/assets/f238d242-d556-4e2d-b870-e5727085afb7
 
