@@ -6,7 +6,7 @@ This repository serves as the **main entry point**, containing links to all core
 
 | Component            | Description                                        |
 |----------------------|----------------------------------------------------|
-| [`MEDIATA_orchestrator`](https://github.com/tecnomod-um/MEDIATA_orchestrator) | Central backend service for coordination, authentication, and orchestration |
+| [`MEDIATA_orchestrator`](https://github.com/tecnomod-um/MEDIATA_orchestrator) | Central backend service dedicated to coordination, authentication, and orchestration |
 | [`MEDIATA_node`](https://github.com/tecnomod-um/MEDIATA_node)             | Lightweight node backend deployed at each clinical site                   |
 | [`MEDIATA_frontend`](https://github.com/tecnomod-um/MEDIATA_frontend)     | Web-based front-end client for secure, multi-node interaction            |
 
@@ -14,11 +14,13 @@ This repository serves as the **main entry point**, containing links to all core
 
 ## Features
 
- - Discovery: federated dataset catalogs (FAIR / DCAT compliant).
- - Profiling & cleaning: descriptive stats, filters, data quality tools.
- - Integration: column/value alignment against a shared schema.
- - Semantic alignment: SNOMED CT term suggestions, HL7 FHIR export/mapping helpers.
- - Security by design: Kerberos SSO, HTTPS/TLS; no raw patient data leaves nodes.
+ - Data cataloguing: DCAT descriptions are supported to describe available data.
+ - Discovery: federated on-site dataset analysis.
+ - Profiling & cleaning: descriptive stats to gauge data quality and cleaning tools.
+ - Integration: column/value alignment against a customizable shared schema.
+ - Semantic alignment: create and rdf file from the elements present in the dataset, with SNOMED CT term suggestions.
+ - HL7 FHIR (currently in development):  HL7 FHIR export/mapping by clustering.
+ - Security by design: Kerberos SSO, HTTPS/TLS; no raw patient data ever leaves the site.
 
 ---
 
@@ -40,6 +42,9 @@ git submodule update --init --recursive
 ## Sample use case
 
 See MEDIATA in action:
+
+<video width="630" height="300" src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600"></video>
+
 
 https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600
 
