@@ -43,36 +43,26 @@ git submodule update --init --recursive
 
 See MEDIATA in action:
 
-<figure>
-  <video width="630" height="300" controls>
-    <source src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <figcaption>Demo 2: Selecting columns in the UI.</figcaption>
-</figure>
-
-
-
-
-
-
-<video title="hello" description="Multiple sites exist" width="630" height="300" src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600"></video>
-
+Multiple sites are able to b interacted wth at once, each describing their datasets using the DCAT standard. 
 <video width="630" height="300" src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600"></video>
 
+Navigate through both single feature and aggregate statistics of multiple files from different sites at once.  
 <video width="630" height="300" src="https://github.com/user-attachments/assets/8e573036-15aa-41d3-b37a-42aec178dec8"></video>
 
+Discover the shape specific columns take...
 <video width="630" height="300" src="https://github.com/user-attachments/assets/1d3d771f-15ce-4650-b1f1-0594bfffd970"></video>
 
+... to then map them into a common schema, enacted at each site.
 <video width="630" height="300" src="https://github.com/user-attachments/assets/84ee2bb1-0014-48ab-b6b0-8d7b9b7df7ea"></video>
 
+Use the navigation functionallity to make this process iteratively.
 <video width="630" height="300" src="https://github.com/user-attachments/assets/36142aae-2989-40eb-8b5f-189b355b19bc"></video>
 
+Create rdf schemas from the features extracted from the datasets.
 <video width="630" height="300" src="https://github.com/user-attachments/assets/0c5101fc-2e91-438a-a821-a33f8b2420ad"></video>
 
+FHIR mapping support is in the works, currently in the clustering stage.
 <video width="630" height="300" src="https://github.com/user-attachments/assets/3985cffb-035c-4657-bea6-98322a696901"></video>
-
-Here, steps are taken to briefly overview the data and then harmonize a column into a common schema between two datasets located each in a different insitution that use disparate standards (in this case, FIM and Barthel index). Then the Semantic Alignment tab is explored.
 
 ---
 
