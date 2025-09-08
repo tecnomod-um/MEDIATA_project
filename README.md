@@ -40,7 +40,15 @@ git submodule update --init --recursive
 ## Sample use case
 
 See MEDIATA in action:
-https://github.com/tecnomod-um/MEDIATA_project/releases/download/v0.1.0/demo_video.mp4
+
+https://github.com/user-attachments/assets/6fe2459e-3df3-4fcf-be3f-fe868b356f6a
+https://github.com/user-attachments/assets/5ac87540-3314-46c5-9664-55b00c36eb0b
+https://github.com/user-attachments/assets/90d19b4c-53f5-43a6-81cc-e49392418344
+https://github.com/user-attachments/assets/81843be8-1e6b-4c5a-af54-cd225bae0d0b
+https://github.com/user-attachments/assets/67590a60-c0af-47fb-bc9a-569d967e9a47
+https://github.com/user-attachments/assets/6e94efd2-3e9f-408b-b2a6-cf4118a7c642
+https://github.com/user-attachments/assets/6b7b68a0-ff17-4a79-b67d-f0352be5ad62
+
 Here, steps are taken to briefly overview the data and then harmonize a column into a common schema between two datasets located each in a different insitution that use disparate standards (in this case, FIM and Barthel index). Then the Semantic Alignment tab is explored.
 
 ---
