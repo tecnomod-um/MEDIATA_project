@@ -43,22 +43,22 @@ git submodule update --init --recursive
 
 See MEDIATA in action:
 
+
+<video title="hello" description="Multiple sites exist" width="630" height="300" src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600"></video>
+
 <video width="630" height="300" src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600"></video>
 
+<video width="630" height="300" src="https://github.com/user-attachments/assets/8e573036-15aa-41d3-b37a-42aec178dec8"></video>
 
-https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600
+<video width="630" height="300" src="https://github.com/user-attachments/assets/1d3d771f-15ce-4650-b1f1-0594bfffd970"></video>
 
-https://github.com/user-attachments/assets/8e573036-15aa-41d3-b37a-42aec178dec8
+<video width="630" height="300" src="https://github.com/user-attachments/assets/84ee2bb1-0014-48ab-b6b0-8d7b9b7df7ea"></video>
 
-https://github.com/user-attachments/assets/1d3d771f-15ce-4650-b1f1-0594bfffd970
+<video width="630" height="300" src="https://github.com/user-attachments/assets/36142aae-2989-40eb-8b5f-189b355b19bc"></video>
 
-https://github.com/user-attachments/assets/84ee2bb1-0014-48ab-b6b0-8d7b9b7df7ea
+<video width="630" height="300" src="https://github.com/user-attachments/assets/0c5101fc-2e91-438a-a821-a33f8b2420ad"></video>
 
-https://github.com/user-attachments/assets/36142aae-2989-40eb-8b5f-189b355b19bc
-
-https://github.com/user-attachments/assets/0c5101fc-2e91-438a-a821-a33f8b2420ad
-
-https://github.com/user-attachments/assets/3985cffb-035c-4657-bea6-98322a696901
+<video width="630" height="300" src="https://github.com/user-attachments/assets/3985cffb-035c-4657-bea6-98322a696901"></video>
 
 Here, steps are taken to briefly overview the data and then harmonize a column into a common schema between two datasets located each in a different insitution that use disparate standards (in this case, FIM and Barthel index). Then the Semantic Alignment tab is explored.
 
