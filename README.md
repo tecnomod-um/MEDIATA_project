@@ -24,24 +24,7 @@ This repository serves as the **main entry point**, containing links to all core
 
 ---
 
-## Cloning the Project
-
-To clone this repository along with all submodules:
-
-```bash
-git clone --recurse-submodules https://github.com/tecnomod-um/MEDIATA_project.git
-cd MEDIATA_project
-```
-If already cloned without submodules:
-```bash
-git submodule update --init --recursive
-```
-
----
-
-## Sample use case
-
-See MEDIATA in action:
+## MEDIATA in action:
 
 Multiple sites can be accessed simultaneously, with each describing its datasets using the DCAT standard.
 <video width="630" height="300" src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600"></video>
@@ -63,6 +46,21 @@ Create RDF schemas from features extracted from the datasets.
 
 FHIR mapping support is under development, currently at the clustering stage.
 <video width="630" height="300" src="https://github.com/user-attachments/assets/3985cffb-035c-4657-bea6-98322a696901"></video>
+
+---
+
+## Cloning the Project
+
+To clone this repository along with all submodules:
+
+```bash
+git clone --recurse-submodules https://github.com/tecnomod-um/MEDIATA_project.git
+cd MEDIATA_project
+```
+If already cloned without submodules:
+```bash
+git submodule update --init --recursive
+```
 
 ---
 
