@@ -43,6 +43,18 @@ git submodule update --init --recursive
 
 See MEDIATA in action:
 
+<figure>
+  <video width="630" height="300" controls>
+    <source src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>Demo 2: Selecting columns in the UI.</figcaption>
+</figure>
+
+
+
+
+
 
 <video title="hello" description="Multiple sites exist" width="630" height="300" src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600"></video>
 
