@@ -3,13 +3,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/tecnomod-um/MEDIATA_project">
-    <img src="https://img.shields.io/github/last-commit/tecnomod-um/MEDIATA_project" alt="Last commit" />
-  </a>
-  <a href="https://github.com/tecnomod-um/MEDIATA_project/stargazers">
-    <img src="https://img.shields.io/github/stars/tecnomod-um/MEDIATA_project" alt="Stars" />
-  </a>
-  <img src="https://img.shields.io/badge/License-MIT-blue" alt="License: MIT" />
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/tecnomod-um/MEDIATA_project" />
+  <img alt="Stars" src="https://img.shields.io/github/stars/tecnomod-um/MEDIATA_project" />
+  <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue" />
 </p>
 
 **MEDIATA** is a federated clinical data harmonization platform, initially developed as part of the [STRATIF-AI](https://cordis.europa.eu/project/id/101080875) European research project. It enables secure, distributed preprocessing, integration, and semantic alignment of sensitive patient datasets across multiple institutions.
