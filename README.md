@@ -32,7 +32,7 @@ This repository serves as the **main entry point**, containing links to all core
 
 ---
 
-## MEDIATA in action:
+## MEDIATA in action
 
 Multiple sites can be accessed simultaneously, with each describing its datasets using the DCAT standard.
 <video width="630" height="300" src="https://github.com/user-attachments/assets/313dd37d-bfb6-4a73-917a-c9ed7be1a600"></video>
