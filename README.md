@@ -2,27 +2,37 @@
  <img width="50%" height="50%" alt="mediata_logo" src="https://github.com/user-attachments/assets/ed5d54ab-8f39-42c9-841d-fa052d8dcea5" />
 </p>
 
+<p align="center">
+  <a href="https://github.com/tecnomod-um/MEDIATA_project">
+    <img src="https://img.shields.io/github/last-commit/tecnomod-um/MEDIATA_project" alt="Last commit" />
+  </a>
+  <a href="https://github.com/tecnomod-um/MEDIATA_project/stargazers">
+    <img src="https://img.shields.io/github/stars/tecnomod-um/MEDIATA_project" alt="Stars" />
+  </a>
+  <img src="https://img.shields.io/badge/License-MIT-blue" alt="License: MIT" />
+</p>
+
 **MEDIATA** is a federated clinical data harmonization platform, initially developed as part of the [STRATIF-AI](https://cordis.europa.eu/project/id/101080875) European research project. It enables secure, distributed preprocessing, integration, and semantic alignment of sensitive patient datasets across multiple institutions.
 
 This repository serves as the **main entry point**, containing links to all core components:
 
-| Component            | Description                                        |
-|----------------------|----------------------------------------------------|
+| Component                                                                     | Description                                                                          |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | [`MEDIATA_orchestrator`](https://github.com/tecnomod-um/MEDIATA_orchestrator) | Central backend service dedicated to coordination, authentication, and orchestration |
-| [`MEDIATA_node`](https://github.com/tecnomod-um/MEDIATA_node)             | Lightweight node backend deployed at each clinical site                   |
-| [`MEDIATA_frontend`](https://github.com/tecnomod-um/MEDIATA_frontend)     | Web-based front-end client for secure, multi-node interaction            |
+| [`MEDIATA_node`](https://github.com/tecnomod-um/MEDIATA_node)                 | Lightweight node backend deployed at each clinical site                              |
+| [`MEDIATA_frontend`](https://github.com/tecnomod-um/MEDIATA_frontend)         | Web-based frontend client for secure, multi-node interaction                         |
 
 ---
 
 ## Features
 
- - Data cataloguing: DCAT descriptions are supported to describe available data.
- - Discovery: federated on-site dataset analysis.
- - Profiling & cleaning: descriptive stats to gauge data quality and cleaning tools.
- - Integration: column/value alignment against a customizable shared schema.
- - Semantic alignment: create and rdf file from the elements present in the dataset, with SNOMED CT term suggestions.
- - HL7 FHIR (currently in development):  HL7 FHIR export/mapping by clustering.
- - Security by design: Kerberos SSO, HTTPS/TLS; no raw patient data ever leaves the site.
+- Data cataloguing: DCAT descriptions are supported so available data can be described.
+- Discovery: federated, on-site dataset analysis.
+- Profiling & cleaning: descriptive stats to gauge data quality and cleaning tools.
+- Integration: column/value alignment against a customizable shared schema.
+- Semantic alignment: create an RDF file from elements in the datasets, with SNOMED CT term suggestions.
+- HL7 FHIR (currently in development): export/mapping via clustering.
+- Security by design: Kerberos SSO, HTTPS/TLS; no raw patient data ever leaves the site.
 
 ---
 
@@ -59,7 +69,9 @@ To clone this repository along with all submodules:
 git clone --recurse-submodules https://github.com/tecnomod-um/MEDIATA_project.git
 cd MEDIATA_project
 ```
+
 If already cloned without submodules:
+
 ```bash
 git submodule update --init --recursive
 ```
