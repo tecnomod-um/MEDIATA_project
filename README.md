@@ -74,6 +74,71 @@ git submodule update --init --recursive
 
 ---
 
+## Local Deployment
+
+To deploy MEDIATA locally using Docker, follow these steps:
+
+### Prerequisites
+
+1. **Install Docker** and ensure it is running:
+   - Install [Docker Desktop](https://www.docker.com/products/docker-desktop) for your operating system
+   - Start Docker Desktop and ensure it is running
+   - **For WSL 2 users**: Enable WSL 2 integration in Docker Desktop settings (Settings → Resources → WSL Integration)
+   - Verify Docker is available: `docker --version` and `docker compose version`
+
+2. **Clone this repository** with all submodules:
+   ```bash
+   git clone --recurse-submodules https://github.com/tecnomod-um/MEDIATA_project.git
+   cd MEDIATA_project
+   ```
+
+3. **Clone additional required repositories** inside the `MEDIATA_orchestrator` directory:
+   ```bash
+   cd MEDIATA_orchestrator
+   git clone https://github.com/tecnomod-um/mediata-rdf-builder.git
+   git clone https://github.com/alvumu/InteroperabilityFHIRAPI.git
+   cd ..
+   ```
+
+### Deployment Steps
+
+1. **Fix line endings** (if needed on Windows or when encountering CRLF issues):
+   ```bash
+   sed -i 's/\r$//' run.sh
+   ```
+
+2. **Run the deployment script**:
+   ```bash
+   ./run.sh
+   ```
+
+   The script will:
+   - Build and deploy the orchestrator with Docker Compose
+   - Start MongoDB, Elasticsearch, Snowstorm, RDF Builder, and FHIR API services
+   - Build and run the MEDIATA node
+   - Build and run the frontend
+
+3. **Access the services**:
+   - **Frontend**: http://localhost:3000
+   - **Orchestrator**: http://localhost:18088/taniwha
+   - **Node API**: http://localhost:18082/taniwha
+
+### Checking Status
+
+- View running services: `docker compose ps` (in the `MEDIATA_orchestrator` directory)
+- View orchestrator logs: `cd MEDIATA_orchestrator && docker compose logs -f orchestrator`
+- View node logs: `docker logs -f mediata-node`
+- View frontend logs: `docker logs -f mediata-frontend`
+
+### Stopping Services
+
+To stop all services, run:
+```bash
+./stop.sh
+```
+
+---
+
 ## License
 
 Each MEDIATA component is licensed separately:
