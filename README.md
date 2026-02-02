@@ -80,13 +80,19 @@ To deploy MEDIATA locally using Docker, follow these steps:
 
 ### Prerequisites
 
-1. **Clone this repository** with all submodules:
+1. **Install Docker** and ensure it is running:
+   - Install [Docker Desktop](https://www.docker.com/products/docker-desktop) for your operating system
+   - Start Docker Desktop and ensure it is running
+   - **For WSL 2 users**: Enable WSL 2 integration in Docker Desktop settings (Settings → Resources → WSL Integration)
+   - Verify Docker is available: `docker --version` and `docker compose version`
+
+2. **Clone this repository** with all submodules:
    ```bash
    git clone --recurse-submodules https://github.com/tecnomod-um/MEDIATA_project.git
    cd MEDIATA_project
    ```
 
-2. **Clone additional required repositories** inside the `MEDIATA_orchestrator` directory:
+3. **Clone additional required repositories** inside the `MEDIATA_orchestrator` directory:
    ```bash
    cd MEDIATA_orchestrator
    git clone https://github.com/tecnomod-um/mediata-rdf-builder.git
