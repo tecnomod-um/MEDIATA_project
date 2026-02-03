@@ -85,7 +85,17 @@ wait_for_orchestrator 300
 # ---------------- Node ----------------
 mkdir -p "${NODE_DATA_DIR}"
 [[ -d "$NODE_DIR" ]] || { echo "Missing folder: $NODE_DIR"; exit 1; }
-[[ -f "${NODE_DIR}/node-secrets.env" ]] || { echo "Missing: ${NODE_DIR}/node-secrets.env"; exit 1; }
+if [[ ! -f "${NODE_DIR}/node-secrets.env" ]]; then
+  if [[ -f "${NODE_DIR}/node-secrets.env.example" ]]; then
+    echo "No node-secrets.env found. Creating from node-secrets.env.example..."
+    cp "${NODE_DIR}/node-secrets.env.example" "${NODE_DIR}/node-secrets.env"
+    echo "✓ Created ${NODE_DIR}/node-secrets.env"
+    echo "IMPORTANT: Review ${NODE_DIR}/node-secrets.env and set real secret values before production."
+  else
+    echo "Missing: ${NODE_DIR}/node-secrets.env (and no ${NODE_DIR}/node-secrets.env.example to copy from)"
+    exit 1
+  fi
+fi
 
 fix_crlf "${NODE_DIR}/entrypoint.sh"
 
