@@ -102,12 +102,7 @@ To deploy MEDIATA locally using Docker, follow these steps:
 
 ### Deployment Steps
 
-1. **Fix line endings** (if needed on Windows or when encountering CRLF issues):
-   ```bash
-   sed -i 's/\r$//' run.sh
-   ```
-
-2. **Run the deployment script**:
+1. **Run the deployment script**:
    ```bash
    ./run.sh
    ```
@@ -118,7 +113,7 @@ To deploy MEDIATA locally using Docker, follow these steps:
    - Build and run the MEDIATA node
    - Build and run the frontend
 
-3. **Access the services**:
+2. **Access the services**:
    - **Frontend**: http://localhost:3000
    - **Orchestrator**: http://localhost:18088/taniwha
    - **Node API**: http://localhost:18082/taniwha
