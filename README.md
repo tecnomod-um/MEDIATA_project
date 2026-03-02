@@ -106,6 +106,7 @@ To deploy MEDIATA locally using Docker, follow these steps:
    ```bash
    ./run.sh
    ```
+   ( If needed, make the scripts executable (only needed once) using: chmod +x run.sh stop.sh)
 
    The script will:
    - Build and deploy the orchestrator with Docker Compose
@@ -113,7 +114,7 @@ To deploy MEDIATA locally using Docker, follow these steps:
    - Build and run the MEDIATA node
    - Build and run the frontend
 
-2. **Access the services**:
+3. **Access the services**:
    - **Frontend**: http://localhost:3000
    - **Orchestrator**: http://localhost:18088/taniwha
    - **Node API**: http://localhost:18082/taniwha
