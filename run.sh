@@ -142,8 +142,8 @@ echo "Building frontend with REACT_APP_BACKEND_URL=${BACKEND_URL}"
 
 docker build \
   --no-cache \
-  --build-arg REACT_APP_BACKEND_URL="${BACKEND_URL}" \
-  --build-arg PUBLIC_URL="/" \
+  --build-arg VITE_BACKEND_URL="${BACKEND_URL}" \
+  --build-arg VITE_BASE_PATH="/" \
   -t mediata-frontend \
   "${FE_DIR}"
 
