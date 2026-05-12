@@ -1,0 +1,11 @@
+subject_id,gender,years,admit_dt,dx,outcome_status,fim_eat_score,fim_toilet_score,barthel_feed,barthel_bath,barthel_mobility,discharge_dt,bmi,fim_total,barthel_total,notes
+B-1001,Male,63,10/02/2024,Hypertension,Yes,6,5,10,5,10,15/02/2024,27.5,11,25,
+B-1002,Female,57,11/02/2024,Diabetes,Yes,5,4,10,5,10,14/02/2024,31.2,9,25,follow-up pending
+B-1003,Male,71,12/02/2024,Pneumonia,No,3,2,5,0,5,13/02/2024,,5,10,
+B-1004,Female,44,12/02/2024,Hypertension,Yes,7,6,15,10,15,14/02/2024,22.8,13,40,
+B-1005,Female,66,13/02/2024,Hyperlipidemia,Yes,5,4,10,5,10,,29.0,9,25,
+B-1006,Male,52,14/02/2024,Diabetes,Yes,6,5,10,5,15,16/02/2024,26.1,11,30,
+B-1007,Male,70,15/02/2024,Heart failure,Partial,4,3,5,5,5,17/02/2024,24.9,7,15,needs rehab
+B-1008,Unknown,60,15/02/2024,Hypertension,Yes,6,5,10,5,10,18/02/2024,,11,25,
+B-1009,Female,39,16/02/2024,Asthma,Yes,7,6,15,10,15,18/02/2024,20.3,13,40,
+B-1010,Male,81,17/02/2024,Myocardial infarction,No,2,1,0,0,0,,28.6,3,0,

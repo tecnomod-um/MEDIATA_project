@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MEDIATA Evaluation Target Schema",
+  "type": "object",
+  "properties": {
+    "patient_id": {"type": ["string", "null"]},
+    "sex": {"type": ["string", "null"], "description": "Normalized sex or gender."},
+    "age": {"type": ["integer", "null"]},
+    "birth_year": {"type": ["integer", "null"]},
+    "admission_date": {"type": ["string", "null"], "description": "ISO date."},
+    "discharge_date": {"type": ["string", "null"], "description": "ISO date."},
+    "diagnosis_code": {"type": ["string", "null"]},
+    "diagnosis": {"type": ["string", "null"]},
+    "outcome": {"type": ["string", "null"]},
+    "discharge_status": {"type": ["string", "null"]},
+    "smoker": {"type": ["string", "null"]},
+    "systolic_bp": {"type": ["integer", "null"]},
+    "bmi": {"type": ["number", "null"]},
+    "height_cm": {"type": ["number", "null"]},
+    "weight_kg": {"type": ["number", "null"]},
+
+    "fim_eating": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
+    "fim_grooming": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
+    "fim_toileting": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
+    "fim_transfer": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
+    "fim_locomotion": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
+    "fim_total": {"type": ["integer", "null"]},
+
+    "barthel_feeding": {"type": ["integer", "null"], "enum": [0, 5, 10, 15, null]},
+    "barthel_bathing": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
+    "barthel_dressing": {"type": ["integer", "null"], "enum": [0, 5, 10, 15, null]},
+    "barthel_toiletuse": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
+    "barthel_bladder": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
+    "barthel_bowel": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
+    "barthel_transfers": {"type": ["integer", "null"], "enum": [0, 5, 10, 15, null]},
+    "barthel_mobility": {"type": ["integer", "null"], "enum": [0, 5, 10, 15, null]},
+    "barthel_stairs": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
+    "barthel_total": {"type": ["integer", "null"]}
+  },
+  "required": [],
+  "additionalProperties": false
+}

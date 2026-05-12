@@ -75,6 +75,24 @@ wait_for_node() {
   done
 }
 
+# ---------------- Evaluation PDFs ----------------
+if [[ ! -f "${ROOT_DIR}/evaluation/questionnaire.pdf" || ! -f "${ROOT_DIR}/evaluation/evaluation_tasks.pdf" ]]; then
+  if ! command -v docker >/dev/null 2>&1; then
+    echo "ERROR: Docker is required to run this project."
+    exit 1
+  fi
+
+  if ! docker image inspect python:3.11-slim >/dev/null 2>&1; then
+    docker pull --quiet python:3.11-slim >/dev/null 2>&1
+  fi
+
+  docker run --rm --pull=never \
+    -v "${ROOT_DIR}:/work" \
+    -w /work \
+    python:3.11-slim \
+    sh -lc "python -m pip -q install --no-cache-dir reportlab >/dev/null 2>&1 && python evaluation/scripts/generate_pdfs.py"
+fi
+
 # ---------------- Orchestrator ----------------
 [[ -d "$ORCH_DIR" ]] || { echo "Missing folder: $ORCH_DIR"; exit 1; }
 [[ -f "${ORCH_DIR}/build-and-deploy.sh" ]] || { echo "Missing: ${ORCH_DIR}/build-and-deploy.sh"; exit 1; }
@@ -126,6 +144,8 @@ docker run -d \
   taniwha-backend-node
 
 wait_for_node 120
+
+sh "${ROOT_DIR}/evaluation/scripts/load_sample_datasets.sh"
 
 echo "Node (host): http://localhost:${NODE_HOST_PORT}/taniwha"
 echo "Node registered as: http://localhost:${NODE_HOST_PORT}"

@@ -1,0 +1,4474 @@
+{
+  "specVersion": "2.0.0",
+  "ruleLanguage": "json-logic",
+  "targetSchema": null,
+  "sources": [
+    {
+      "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+      "nodeId": "6a02f0872c19827760fa7fc9",
+      "fileName": "fimbartheltodos_elements.csv"
+    },
+    {
+      "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+      "nodeId": "6a02f1e9548d69e31d4e3a64",
+      "fileName": "SCUBA_1_elements.csv"
+    },
+    {
+      "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+      "nodeId": "6a02f1e9548d69e31d4e3a64",
+      "fileName": "SCUBA_2_elements.csv"
+    },
+    {
+      "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+      "nodeId": "6a02f0f5ff92701a82360dac",
+      "fileName": "D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv"
+    }
+  ],
+  "datasetBindings": [
+    {
+      "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+      "nodeId": "6a02f0872c19827760fa7fc9",
+      "elementFileName": "fimbartheltodos_elements.csv",
+      "datasets": [
+        "fimbartheltodos.xlsx"
+      ]
+    },
+    {
+      "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+      "nodeId": "6a02f1e9548d69e31d4e3a64",
+      "elementFileName": "SCUBA_1_elements.csv",
+      "datasets": [
+        "SCUBA_1.csv"
+      ]
+    },
+    {
+      "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+      "nodeId": "6a02f1e9548d69e31d4e3a64",
+      "elementFileName": "SCUBA_2_elements.csv",
+      "datasets": [
+        "SCUBA_2.csv"
+      ]
+    },
+    {
+      "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+      "nodeId": "6a02f0f5ff92701a82360dac",
+      "elementFileName": "D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+      "datasets": [
+        "D4D Stroke data for STRATIF-AI 2025-03-12.csv"
+      ]
+    }
+  ],
+  "mappings": [
+    {
+      "id": "map-102-Feeding",
+      "targetField": "Feeding",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Eating"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "FeedBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "FeedBART1"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-102-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Eating"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Eating"
+                          }
+                        ]
+                      },
+                      2
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-102-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Eating"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Eating"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-102-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Eating"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Eating"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::FeedBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-103-Grooming",
+      "targetField": "Grooming",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "GroomBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "GroomBART1"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Grooming"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-103-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::GroomBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::GroomBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::GroomBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::GroomBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Grooming"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Grooming"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-103-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::GroomBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::GroomBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::GroomBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::GroomBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Grooming"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Grooming"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-103-2",
+          "logic": {
+            "and": [
+              {
+                ">=": [
+                  {
+                    "to_number": [
+                      {
+                        "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::GroomBART1"
+                      }
+                    ]
+                  },
+                  6
+                ]
+              },
+              {
+                "<=": [
+                  {
+                    "to_number": [
+                      {
+                        "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::GroomBART1"
+                      }
+                    ]
+                  },
+                  10
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "N/A"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-104-DressingUpper",
+      "targetField": "DressingUpper",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Dressing – Upper Body"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "DressBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "DressBART1"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-104-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Upper Body"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Upper Body"
+                          }
+                        ]
+                      },
+                      2
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-104-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Upper Body"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Upper Body"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-104-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Upper Body"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Upper Body"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-105-DressingLower",
+      "targetField": "DressingLower",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "DressBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "DressBART1"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Dressing – Lower Body"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-105-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Lower Body"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Lower Body"
+                          }
+                        ]
+                      },
+                      2
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-105-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Lower Body"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Lower Body"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-105-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::DressBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Lower Body"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Dressing – Lower Body"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-106-ToiletUseToileting",
+      "targetField": "ToiletUseToileting",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Toileting"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "ToiletBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "ToiletBART1"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-106-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Toileting"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Toileting"
+                          }
+                        ]
+                      },
+                      2
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-106-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Toileting"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Toileting"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-106-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Toileting"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Toileting"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-107-ToiletUseTransfer",
+      "targetField": "ToiletUseTransfer",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "ToiletBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "ToiletBART1"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Transfers: Toilet"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-107-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Toilet"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Toilet"
+                          }
+                        ]
+                      },
+                      2
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-107-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Toilet"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Toilet"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-107-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::ToiletBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Toilet"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Toilet"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-108-BladderControl",
+      "targetField": "BladderControl",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "BladderBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "BladderBART1"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Bladder Management"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-108-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bladder Management"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bladder Management"
+                          }
+                        ]
+                      },
+                      2
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-108-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bladder Management"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bladder Management"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-108-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BladderBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bladder Management"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bladder Management"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-109-BowelControl",
+      "targetField": "BowelControl",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "BowelBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "BowelBART1"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Bowel Management"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-109-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bowel Management"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bowel Management"
+                          }
+                        ]
+                      },
+                      2
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-109-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bowel Management"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bowel Management"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-109-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BowelBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bowel Management"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bowel Management"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-110-Transfers",
+      "targetField": "Transfers",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Transfers: Bed, Chair, Wheelchair"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "TransfBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "TransfBART1"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-110-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Bed, Chair, Wheelchair"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Bed, Chair, Wheelchair"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-110-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Bed, Chair, Wheelchair"
+                          }
+                        ]
+                      },
+                      2
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Bed, Chair, Wheelchair"
+                          }
+                        ]
+                      },
+                      2
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-110-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Bed, Chair, Wheelchair"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Bed, Chair, Wheelchair"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      14
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      14
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-110-3",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Bed, Chair, Wheelchair"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Transfers: Bed, Chair, Wheelchair"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      15
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      15
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      15
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TransfBART1"
+                          }
+                        ]
+                      },
+                      15
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "15"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-111-Bathing",
+      "targetField": "Bathing",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "BathingBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "BathingBART1"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Bathing"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-111-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BathingBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BathingBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BathingBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BathingBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bathing"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bathing"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-111-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BathingBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::BathingBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BathingBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::BathingBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bathing"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Bathing"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-112-Mobility",
+      "targetField": "Mobility",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Locomotion: Walking / Ambulation"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "MobBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "MobBART1"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-112-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Walking / Ambulation"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Walking / Ambulation"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-112-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Walking / Ambulation"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Walking / Ambulation"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-112-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Walking / Ambulation"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Walking / Ambulation"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      14
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      14
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-112-3",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      15
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      15
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      15
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::MobBART1"
+                          }
+                        ]
+                      },
+                      15
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Walking / Ambulation"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Walking / Ambulation"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "15"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-113-Stairs",
+      "targetField": "Stairs",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Locomotion: Stairs"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "StairsBART1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "StairsBART1"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-113-0",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Stairs"
+                          }
+                        ]
+                      },
+                      1
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Stairs"
+                          }
+                        ]
+                      },
+                      3
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      0
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "0"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-113-1",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Stairs"
+                          }
+                        ]
+                      },
+                      4
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Stairs"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      5
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      9
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "5"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-113-2",
+          "logic": {
+            "or": [
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Stairs"
+                          }
+                        ]
+                      },
+                      6
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Locomotion: Stairs"
+                          }
+                        ]
+                      },
+                      7
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              },
+              {
+                "and": [
+                  {
+                    ">=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "to_number": [
+                          {
+                            "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::StairsBART1"
+                          }
+                        ]
+                      },
+                      10
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-900-BarthelTotalAdm",
+      "targetField": "BarthelTotalAdm",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+          "column": "Barthel Adm"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "TOTBarthel1"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "TOTBarthel1"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "TOTALBARTHEL"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-900-0",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv::Barthel Adm"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+            "column": "Barthel Adm"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-900-1",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TOTBarthel1"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+            "column": "TOTBarthel1"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-900-2",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TOTBarthel1"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+            "column": "TOTBarthel1"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-900-3",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::TOTALBARTHEL"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+            "column": "TOTALBARTHEL"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-901-BarthelTotalDis",
+      "targetField": "BarthelTotalDis",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+          "column": "Barthel Dis"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "TOTBarthel2"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "TOTBarthel2"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "TOTALBARTHEL"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-901-0",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv::Barthel Dis"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+            "column": "Barthel Dis"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-901-1",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::TOTBarthel2"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+            "column": "TOTBarthel2"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-901-2",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::TOTBarthel2"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+            "column": "TOTBarthel2"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-901-3",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::TOTALBARTHEL"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+            "column": "TOTALBARTHEL"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-902-BarthelTotalChange",
+      "targetField": "BarthelTotalChange",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+          "column": "Barthel Change"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-902-0",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv::Barthel Change"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+            "column": "Barthel Change"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-903-Age",
+      "targetField": "Age",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+          "column": "Age in years"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "Age at injury"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "Age at injury"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "AGEINJURY"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-903-0",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv::Age in years"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+            "column": "Age in years"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-903-1",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::Age at injury"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+            "column": "Age at injury"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-903-2",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::Age at injury"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+            "column": "Age at injury"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-903-3",
+          "logic": {
+            "is_number": [
+              {
+                "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::AGEINJURY"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+            "column": "AGEINJURY"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-904-Sex",
+      "targetField": "Sex",
+      "mappingType": "standard",
+      "sourceConfigFile": "custom_mapping",
+      "inputs": [
+        {
+          "sourceId": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv",
+          "column": "Sex"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv",
+          "column": "Sex"
+        },
+        {
+          "sourceId": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv",
+          "column": "Sex"
+        },
+        {
+          "sourceId": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv",
+          "column": "Sex"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-904-0",
+          "logic": {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv::Sex"
+                  },
+                  "Male"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::Sex"
+                  },
+                  "M"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::Sex"
+                  },
+                  "M"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Sex"
+                  },
+                  "H"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "M"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        },
+        {
+          "id": "rule-904-1",
+          "logic": {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "6a02f0f5ff92701a82360dac::D4D_Stroke_data_for_STRATIF-AI_2025-03-12_elements.csv::Sex"
+                  },
+                  "Female"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "6a02f1e9548d69e31d4e3a64::SCUBA_1_elements.csv::Sex"
+                  },
+                  "F"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "6a02f1e9548d69e31d4e3a64::SCUBA_2_elements.csv::Sex"
+                  },
+                  "F"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "6a02f0872c19827760fa7fc9::fimbartheltodos_elements.csv::Sex"
+                  },
+                  "D"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "F"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": ""
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": ""
+      },
+      "removeSourceColumns": false
+    }
+  ]
+}
