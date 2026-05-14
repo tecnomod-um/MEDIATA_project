@@ -1,6 +1,6 @@
 # Usability Evaluation Questionnaire
 
-**Scope:** Discovery and Integration workflow  
+**Scope:** MEDIATA Discovery and Integration workflow  
 **Evaluation type:** Unsupervised remote evaluation  
 **Estimated time:** 30-45 minutes
 
@@ -8,26 +8,26 @@
 
 ## 1. Participant Instructions
 
-You have received a MEDIATA evaluation package containing the application release, prepared datasets, a shared target schema, and this questionnaire.
+You have received a MEDIATA evaluation package containing the application release, sample datasets, a target schema, a sample mapping specification, and this questionnaire.
 
-Please complete the workflow independently. The goal is not to test your personal performance, but to evaluate whether the platform is clear, usable, and useful for exploring and integrating heterogeneous clinical datasets.
+Please complete the workflow independently. The goal is to evaluate MEDIATA as a tool for discovering datasets and managing integration mappings. You are not being evaluated on your clinical interpretation of the sample data.
 
 Use the tutorial/help material included in the release before starting the tasks.
 
 ---
 
-## 2. Evaluation Scenario
+## 2. Evaluation Focus
 
-You are working in a multi-site clinical research project. Several datasets have been provided by different sources. The datasets describe related clinical information, but their structure is not identical. Column names, value formats, and coding conventions may differ.
+The tasks evaluate whether MEDIATA helps users:
 
-Your task is to use MEDIATA to:
-
-- Locate and inspect the available datasets.
-- Understand their structure and basic data quality.
-- Compare similar fields across datasets.
-- Use the provided target schema.
-- Map source dataset fields to the target schema.
-- Review the resulting integrated structure.
+- find available datasets,
+- inspect previews, columns, values, and data-quality signals,
+- find the Integration workflow,
+- load a target schema,
+- upload and resolve an existing mapping specification,
+- review and edit mappings,
+- run or preview harmonization,
+- save or export work.
 
 ---
 
@@ -38,7 +38,7 @@ Your task is to use MEDIATA to:
 | Participant code or initials | |
 | Role | ☐ Clinician ☐ Researcher ☐ Data scientist ☐ Software developer ☐ Student ☐ Other: |
 | Previous experience with clinical data | ☐ None ☐ Basic ☐ Intermediate ☐ Advanced |
-| Previous experience with data integration or harmonization | ☐ None ☐ Basic ☐ Intermediate ☐ Advanced |
+| Previous experience with data integration or harmonization tools | ☐ None ☐ Basic ☐ Intermediate ☐ Advanced |
 | Previous experience using web-based data tools | ☐ None ☐ Basic ☐ Intermediate ☐ Advanced |
 | Have you used MEDIATA before? | ☐ Yes ☐ No |
 | Date of evaluation | |
@@ -51,141 +51,137 @@ Your task is to use MEDIATA to:
 
 Please complete the following tasks using the provided MEDIATA release. After each task, mark the result and add comments if needed.
 
-### Task 1 - Access the Release
-
-Open the MEDIATA release and log in using the credentials provided with the package.
+### Task 1 - Find the Discovery Area
 
 | Result | Select one |
 |---|---|
-| I completed this task | ☐ Yes ☐ Partially ☐ No |
+| I found the Discovery area without external help | ☐ Yes ☐ Partially ☐ No |
+| The purpose of the Discovery area was clear | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 2 - Review the Tutorial
-
-Find and review the tutorial/help material included in the release.
+### Task 2 - Confirm Available Datasets
 
 | Result | Select one |
 |---|---|
-| I found the tutorial/help material | ☐ Yes ☐ Partially ☐ No |
-| The tutorial helped me understand the workflow | ☐ Yes ☐ Partially ☐ No |
+| I found the list of available sample datasets | ☐ Yes ☐ Partially ☐ No |
+| Dataset names were readable | ☐ Yes ☐ Partially ☐ No |
+| I understood how to open a dataset | ☐ Yes ☐ Partially ☐ No |
+| Dataset count observed | |
 | Comments | |
 
-### Task 3 - Open Discovery
-
-Open the Discovery module and identify the datasets included in the release.
+### Task 3 - Open a Dataset Preview
 
 | Result | Select one |
 |---|---|
-| I found the available datasets | ☐ Yes ☐ Partially ☐ No |
-| I understood which datasets were available | ☐ Yes ☐ Partially ☐ No |
+| I opened a dataset preview or table view | ☐ Yes ☐ Partially ☐ No |
+| Columns and values were readable | ☐ Yes ☐ Partially ☐ No |
+| Table controls such as scrolling, paging, or resizing were clear | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 4 - Inspect Dataset Metadata
-
-Select each dataset and inspect its available metadata, such as name, source, description, variables, and number of records.
+### Task 4 - Inspect Column Information
 
 | Result | Select one |
 |---|---|
-| I was able to inspect dataset metadata | ☐ Yes ☐ Partially ☐ No |
-| The metadata was understandable | ☐ Yes ☐ Partially ☐ No |
+| I found column names or generated element information | ☐ Yes ☐ Partially ☐ No |
+| I found examples, summaries, data types, or similar details | ☐ Yes ☐ Partially ☐ No |
+| The information was enough to support mapping decisions | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 5 - Explore Dataset Structure
-
-Inspect the columns or variables in each dataset. Identify fields that appear to describe the same concept across datasets.
-
-Examples may include patient identifier, age, sex, diagnosis, admission date, clinical measurement, or outcome.
+### Task 5 - Search or Filter
 
 | Result | Select one |
 |---|---|
-| I could inspect dataset columns or variables | ☐ Yes ☐ Partially ☐ No |
-| I could compare similar fields across datasets | ☐ Yes ☐ Partially ☐ No |
+| I used search, filter, or table controls | ☐ Yes ☐ Partially ☐ No |
+| The result helped me find a relevant column or value | ☐ Yes ☐ Partially ☐ No |
+| Term or control used | |
 | Comments | |
 
-### Task 6 - Review Data Summaries
-
-Use the Discovery module to review the available summaries or profiling information.
-
-Pay attention to missing values, value distributions, unexpected values, and possible data quality issues.
+### Task 6 - Spot Data Quality Signals
 
 | Result | Select one |
 |---|---|
-| I found the data summaries | ☐ Yes ☐ Partially ☐ No |
-| The summaries helped me understand the data | ☐ Yes ☐ Partially ☐ No |
-| I noticed possible data quality issues | ☐ Yes ☐ No |
+| I noticed at least one data quality issue or uncertainty | ☐ Yes ☐ Partially ☐ No |
+| MEDIATA helped make the issue visible | ☐ Yes ☐ Partially ☐ No |
+| Issue or uncertainty noticed | |
 | Comments | |
 
-### Task 7 - Use Filters or Search Controls
-
-Use the available controls to filter, search, or inspect a subset of the data.
+### Task 7 - Find the Integration Area
 
 | Result | Select one |
 |---|---|
-| I was able to filter, search, or inspect subsets | ☐ Yes ☐ Partially ☐ No |
-| The controls were easy to understand | ☐ Yes ☐ Partially ☐ No |
+| I found the Integration or Harmonization area | ☐ Yes ☐ Partially ☐ No |
+| The entry point was clear | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 8 - Open Integration
+### Task 8 - Load the Target Schema
 
-Open the Integration module and identify the provided target schema.
+Use `evaluation/sample_schemas/sample_schema.json`.
 
 | Result | Select one |
 |---|---|
-| I found the Integration module | ☐ Yes ☐ Partially ☐ No |
-| I could identify the target schema | ☐ Yes ☐ Partially ☐ No |
+| I loaded the target schema | ☐ Yes ☐ Partially ☐ No |
+| Target fields were visible | ☐ Yes ☐ Partially ☐ No |
+| The schema upload or selection workflow was clear | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 9 - Map Dataset Fields to the Target Schema
+### Task 9 - Load the Sample Mapping Specification
 
-Using the provided target schema, map the relevant source fields from each dataset to the corresponding target fields.
-
-Use the actual dataset and schema fields provided in the release.
+Use `evaluation/sample_mappings/sample_spec.json`.
 
 | Result | Select one |
 |---|---|
-| I was able to create field mappings | ☐ Yes ☐ Partially ☐ No |
-| I understood how source fields related to target fields | ☐ Yes ☐ Partially ☐ No |
+| I uploaded the sample mapping specification | ☐ Yes ☐ Partially ☐ No |
+| If file resolution was needed, I understood how to resolve it | ☐ Yes ☐ Partially ☐ No ☐ Not needed |
+| The loaded mapping appeared in the interface | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 10 - Map Values Where Needed
-
-If the datasets use different values for the same concept, map them to the common target values.
-
-Examples:
-
-| Source value | Target value |
-|---|---|
-| M, Male, Hombre | Male |
-| F, Female, Mujer | Female |
-| Yes, Y, 1, Si | Yes |
-| No, N, 0 | No |
-
-Use the actual values provided in the release.
+### Task 10 - Review Loaded Mappings
 
 | Result | Select one |
 |---|---|
-| I was able to create value mappings | ☐ Yes ☐ Partially ☐ No ☐ Not applicable |
-| The value mapping process was clear | ☐ Yes ☐ Partially ☐ No ☐ Not applicable |
+| I could browse the loaded mappings | ☐ Yes ☐ Partially ☐ No |
+| I could expand or inspect mapping details | ☐ Yes ☐ Partially ☐ No |
+| I understood which source columns were connected to target fields | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 11 - Review the Integrated Structure
+### Task 11 - Review a Value Mapping
 
-Review the integrated structure or preview generated by MEDIATA.
+Review the `sex` mapping.
 
 | Result | Select one |
 |---|---|
-| I could review the integrated result | ☐ Yes ☐ Partially ☐ No |
-| The result matched the target schema | ☐ Yes ☐ Partially ☐ No |
+| I found the `sex` mapping | ☐ Yes ☐ Partially ☐ No |
+| I understood how source values were normalized | ☐ Yes ☐ Partially ☐ No |
+| I trusted the mapping result | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 12 - Save or Export the Work
-
-If the release supports saving or exporting the integration work, perform that action.
+### Task 12 - Edit or Add a Mapping
 
 | Result | Select one |
 |---|---|
-| I could save or export the integration work | ☐ Yes ☐ Partially ☐ No ☐ Not available |
-| The save/export action was clear | ☐ Yes ☐ Partially ☐ No ☐ Not available |
+| I edited or added one mapping | ☐ Yes ☐ Partially ☐ No |
+| The edit controls were clear | ☐ Yes ☐ Partially ☐ No |
+| The interface gave useful feedback after the change | ☐ Yes ☐ Partially ☐ No |
+| Change made | |
+| Comments | |
+
+### Task 13 - Run or Preview Harmonization
+
+| Result | Select one |
+|---|---|
+| I ran harmonization or generated a preview | ☐ Yes ☐ Partially ☐ No ☐ Not available |
+| The action was easy to find | ☐ Yes ☐ Partially ☐ No ☐ Not available |
+| Progress or loading feedback was clear | ☐ Yes ☐ Partially ☐ No ☐ Not available |
+| The output or preview was understandable | ☐ Yes ☐ Partially ☐ No ☐ Not available |
+| Comments | |
+
+### Task 14 - Save or Export
+
+| Result | Select one |
+|---|---|
+| I saved or exported the mapping/result | ☐ Yes ☐ Partially ☐ No ☐ Not available |
+| I could find the saved or exported file | ☐ Yes ☐ Partially ☐ No ☐ Not available |
+| I would know what to send to a collaborator | ☐ Yes ☐ Partially ☐ No ☐ Not available |
 | Comments | |
 
 ---
@@ -202,18 +198,20 @@ N/A = Not completed or not available
 
 | Task | 1 | 2 | 3 | 4 | 5 | N/A |
 |---|---:|---:|---:|---:|---:|---:|
-| Access the release | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Review the tutorial | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Find available datasets | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Inspect dataset metadata | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Explore dataset structure | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Review data summaries | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Use filters or search controls | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Find the target schema | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Map fields to the target schema | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Map values to common values | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Review the integrated structure | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Save or export the work | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Find Discovery | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Confirm datasets | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Open preview | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Inspect columns | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Search or filter | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Spot data quality signals | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Find Integration | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Load schema | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Load mapping spec | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Review mappings | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Review value mapping | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Edit or add mapping | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Run or preview harmonization | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| Save or export | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ---
 
@@ -231,11 +229,11 @@ Please answer using this scale:
 
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
-| 1 | I think I would use MEDIATA for clinical data exploration and integration tasks. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 1 | I think I would use MEDIATA for dataset discovery and integration tasks. | ☐ | ☐ | ☐ | ☐ | ☐ |
 | 2 | The platform was unnecessarily complex. | ☐ | ☐ | ☐ | ☐ | ☐ |
 | 3 | The platform was easy to use. | ☐ | ☐ | ☐ | ☐ | ☐ |
 | 4 | I would need help from a technical person to use this release effectively. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 5 | The main parts of the workflow worked well together. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 5 | Discovery and Integration worked well together. | ☐ | ☐ | ☐ | ☐ | ☐ |
 | 6 | There was too much inconsistency between different parts of the platform. | ☐ | ☐ | ☐ | ☐ | ☐ |
 | 7 | I think most users with similar experience could learn this workflow quickly. | ☐ | ☐ | ☐ | ☐ | ☐ |
 | 8 | The platform felt cumbersome to use. | ☐ | ☐ | ☐ | ☐ | ☐ |
@@ -247,63 +245,65 @@ Please answer using this scale:
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
 | 11 | The tutorial/help material was easy to find. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 12 | The tutorial explained the workflow clearly enough. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 13 | I understood what I was expected to do without supervision. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 14 | The provided datasets and schema were sufficient to understand the task. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 15 | The evaluation instructions were clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 16 | I usually knew what the next step was. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 12 | The tutorial explained how to use Discovery. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 13 | The tutorial explained how to use Integration. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 14 | The tutorial explained schema upload or selection. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 15 | The tutorial explained mapping-spec upload and file resolution. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 16 | The tutorial explained how to edit mappings. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 17 | I understood what I was expected to do without supervision. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ### C. Discovery Module
 
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
-| 17 | The Discovery module made it easy to find available datasets. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 18 | Dataset names, sources, and descriptions were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 19 | I could understand the structure of each dataset. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 20 | The platform helped me compare datasets from different sources. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 21 | The data summaries were useful. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 22 | Missing values and possible data quality issues were easy to identify. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 23 | Filters, searches, or table controls were easy to use. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 24 | The Discovery module gave me enough information before moving to field mapping. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 18 | The Discovery module made it easy to find available datasets. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 19 | Dataset names and file lists were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 20 | Dataset previews were readable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 21 | Column information was easy to find. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 22 | Search, filter, or table controls were easy to use. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 23 | MEDIATA helped me notice missing values or data-quality signals. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 24 | Discovery gave me enough information before moving to Integration. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ### D. Integration Module
 
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
 | 25 | The Integration module was easy to locate. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 26 | The target schema was easy to understand. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 27 | It was clear how to map dataset fields to target schema fields. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 28 | The interface helped me identify equivalent fields across datasets. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 29 | It was clear how to handle fields that did not have an exact match. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 30 | It was clear how to map values to common values when needed. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 31 | The platform gave useful feedback after creating or changing a mapping. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 32 | The integrated result was easy to review. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 33 | The workflow from dataset exploration to field mapping felt coherent. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 34 | The Integration module would reduce manual effort compared with spreadsheet-based work. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 26 | The target schema was easy to load. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 27 | Target fields were easy to understand. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 28 | The sample mapping specification was easy to upload. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 29 | File-resolution steps, if any, were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 30 | Loaded mappings were easy to browse. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 31 | It was clear how source columns connected to target fields. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 32 | Categorical value mappings were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 33 | It was clear how to edit or add a mapping. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 34 | The platform gave useful feedback after creating or changing a mapping. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 35 | Running or previewing harmonization was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 36 | The output or preview was easy to review. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 37 | Save or export actions were easy to find. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
-### E. Interface, Feedback, and Errors
+### E. Trust, Feedback, and Errors
 
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
-| 35 | Buttons and labels were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 36 | The interface layout was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 37 | Important actions were easy to find. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 38 | The platform clearly showed when it was loading or processing. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 39 | Error messages, if any appeared, were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 38 | I could tell which mappings were complete and which needed review. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 39 | Unmapped or uncertain fields were visible. | ☐ | ☐ | ☐ | ☐ | ☐ |
 | 40 | I could recover from mistakes without external help. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 41 | Tables, forms, and mapping views were readable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 42 | The terminology used in the platform was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 41 | The platform clearly showed when it was loading or processing. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 42 | Error messages, if any appeared, were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 43 | Buttons and labels were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 44 | Tables, forms, and mapping views were readable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 45 | The terminology used in the platform was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ### F. Overall Usefulness
 
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
-| 43 | MEDIATA is useful for exploring heterogeneous clinical datasets. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 44 | MEDIATA is useful for integrating datasets into a shared schema. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 45 | MEDIATA would be useful in multi-site research projects. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 46 | MEDIATA improves over disconnected tools such as spreadsheets and local scripts. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 47 | I would recommend MEDIATA for similar data integration tasks. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 48 | Overall, I am satisfied with this MEDIATA release. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 46 | MEDIATA is useful for discovering available datasets. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 47 | MEDIATA is useful for managing integration mappings. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 48 | MEDIATA would reduce manual effort compared with spreadsheet-based integration. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 49 | I would recommend MEDIATA for similar integration workflows. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 50 | Overall, I am satisfied with this MEDIATA release. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ---
 
@@ -313,15 +313,15 @@ Please answer using this scale:
 
 2. What was the most confusing part of the workflow?
 
-3. Was the tutorial sufficient for completing the evaluation independently? If not, what was missing?
+3. Was the tutorial sufficient for learning the tool workflow? If not, what was missing?
 
-4. Were the provided datasets and target schema realistic enough for evaluating the platform?
+4. Which tool action was hardest to find?
 
-5. Which part of the Discovery module should be improved first?
+5. Which mapping or value-mapping interaction was hardest to understand?
 
-6. Which part of the Integration module should be improved first?
+6. Did the mapping-spec upload and resolution flow make sense?
 
-7. Were any dataset fields or schema mappings unclear?
+7. Did MEDIATA provide enough feedback to trust the mapping or harmonization result? Why or why not?
 
 8. Did you encounter any error, unexpected behavior, or unclear message?
 
@@ -333,7 +333,7 @@ Please answer using this scale:
 
 ## 8. Submission Confirmation
 
-By submitting this questionnaire, I confirm that I completed the evaluation independently using the provided MEDIATA release, datasets, and target schema.
+By submitting this questionnaire, I confirm that I completed the evaluation independently using the provided MEDIATA release, datasets, target schema, and sample mapping specification.
 
 | Field | Answer |
 |---|---|

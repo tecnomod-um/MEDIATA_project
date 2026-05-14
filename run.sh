@@ -12,6 +12,7 @@ FE_HOST_PORT="${FE_HOST_PORT:-3000}"
 
 ORCH_BASE_URL="http://localhost:${ORCH_HOST_PORT}/taniwha"
 NODE_DATA_DIR="${ROOT_DIR}/node-data"
+TRUSTED_NODE_CONFIG="${ORCH_DIR}/trusted-servers.config"
 
 fix_crlf() {
   local f="$1"
@@ -96,6 +97,11 @@ fi
 # ---------------- Orchestrator ----------------
 [[ -d "$ORCH_DIR" ]] || { echo "Missing folder: $ORCH_DIR"; exit 1; }
 [[ -f "${ORCH_DIR}/build-and-deploy.sh" ]] || { echo "Missing: ${ORCH_DIR}/build-and-deploy.sh"; exit 1; }
+
+cat > "${TRUSTED_NODE_CONFIG}" <<EOF
+# public HTTP node URL | upstream URL from orchestrator container | optional shared secret
+http://localhost:${NODE_HOST_PORT}|http://host.docker.internal:${NODE_HOST_PORT}|
+EOF
 
 ( cd "$ORCH_DIR" && run_bash_script "./build-and-deploy.sh" )
 wait_for_orchestrator 300

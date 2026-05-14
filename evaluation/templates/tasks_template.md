@@ -7,146 +7,208 @@
 
 ## 1. Before Starting
 
-You have received a prepared MEDIATA release with sample datasets and a target schema.
+You have received a prepared MEDIATA release with sample CSV datasets, a target schema, and a sample mapping specification.
 
-Please complete the evaluation independently. The goal is to evaluate the usability of the platform, not your personal performance.
+Please complete the evaluation independently. The goal is to evaluate MEDIATA as a tool, not your knowledge of the sample datasets.
 
 Before starting:
 
 - Open the MEDIATA release.
 - Log in using the provided credentials.
 - Open the tutorial/help page.
-- Review the sections related to Discovery and Integration.
-- Open the questionnaire PDF and keep it available while completing the tasks.
+- Keep the questionnaire PDF available while completing the tasks.
 
 ---
 
-## 2. Evaluation Scenario
+## 2. Evaluation Focus
 
-You are working in a multi-site clinical research project.
+MEDIATA is intended to support two related activities:
 
-Several datasets have been provided by different sources. These datasets describe related clinical information, but they do not follow exactly the same structure. Column names, value formats, missing values, and coding conventions may differ between datasets.
+- **Discovery:** finding available datasets and understanding their columns, values, and basic quality before integration.
+- **Integration:** loading or creating a mapping specification, connecting source columns to a target schema, reviewing value mappings, running the harmonization workflow, and saving or exporting the result.
 
-Your goal is to use MEDIATA to inspect the available datasets and integrate them into the provided target schema.
+The tasks below are designed to test whether the tool makes those activities understandable and efficient. The sample datasets are only test material.
 
 ---
 
 ## 3. Discovery Tasks
 
-Use the Discovery module to inspect the datasets included in the release.
+### Task 1 - Find the Discovery Area
 
-### Task 1 - Find the Available Datasets
+Open the Discovery area of the application.
 
-Open the Discovery module and identify which datasets are available.
+**Purpose:** Evaluate whether users can locate the part of the tool used to inspect available data.
 
-You should be able to answer:
+Record whether you could find the Discovery area without external help.
 
-- How many datasets are available?
-- What are their names?
-- Do they appear to come from different sources or structures?
+### Task 2 - Confirm Available Datasets
 
-### Task 2 - Inspect Dataset Metadata
+Find the list of available sample datasets.
 
-For each dataset, inspect the available metadata.
+**Purpose:** Evaluate whether MEDIATA clearly shows what files are available for inspection.
 
-Pay attention to:
+Record:
 
-- dataset name
-- source or node
-- description, if available
-- number of rows or records
-- number of columns or variables
+- how many datasets you see,
+- whether their names are readable,
+- whether it is clear how to open one.
 
-### Task 3 - Inspect Dataset Structure
+### Task 3 - Open a Dataset Preview
 
-Review the columns or variables in each dataset.
+Open any sample dataset and inspect its preview or table view.
 
-Try to identify fields that may represent the same concept across different datasets.
+**Purpose:** Evaluate whether the preview helps users understand the shape of a file before mapping it.
 
-Examples may include:
+Record:
 
-- patient identifier
-- age
-- sex
-- diagnosis
-- date
-- clinical measurement
-- outcome
+- whether the table loaded,
+- whether columns and values were readable,
+- whether horizontal scrolling, paging, or table controls were clear.
 
-### Task 4 - Review Data Summaries
+### Task 4 - Inspect Column Information
 
-Use the available summaries or profiling information to understand the datasets.
+Inspect the column list, metadata, or generated element information for at least two datasets.
 
-Pay attention to:
+**Purpose:** Evaluate whether users can see the column names and basic column details needed for integration.
 
-- missing values
-- unexpected values
-- value distributions
-- duplicate or repeated values
-- inconsistent formats
-- fields that may need transformation before integration
+Record whether you could find column names, data types, examples, or summaries.
 
-### Task 5 - Use Filters or Search Controls
+### Task 5 - Search or Filter
 
-Use the available controls to filter, search, or inspect a subset of the data.
+Use a search, filter, or table-control feature to find a column or value.
 
-Try to check whether the interface helps you understand specific parts of the datasets.
+Suggested terms to try: `sex`, `gender`, `date`, `fim`, `barthel`, or `diagnosis`.
+
+**Purpose:** Evaluate whether users can quickly locate relevant fields without manually scanning every column.
+
+Record which term you searched for and whether the result was useful.
+
+### Task 6 - Spot Data Quality Signals
+
+Use previews or summaries to look for missing values, inconsistent values, or columns that may need transformation.
+
+**Purpose:** Evaluate whether MEDIATA helps users notice issues before they start mapping.
+
+Record at least one issue or uncertainty you noticed. You do not need to solve it.
 
 ---
 
 ## 4. Integration Tasks
 
-Use the Integration module to map the sample datasets to the provided target schema.
+### Task 7 - Find the Integration Area
 
-### Task 6 - Open the Target Schema
+Open the Integration or Harmonization area.
 
-Open the Integration module and identify the target schema included in the evaluation package.
+**Purpose:** Evaluate whether users can locate the part of the tool used to map and harmonize datasets.
 
-You should be able to understand:
+Record whether the entry point was clear.
 
-- which target fields are expected
-- which fields are required, if this is indicated
-- which source dataset fields may correspond to each target field
+### Task 8 - Load the Target Schema
 
-### Task 7 - Map Dataset Fields
+Upload or select the provided target schema file.
 
-Map the relevant fields from each source dataset to the corresponding target schema fields.
+**Purpose:** Evaluate whether users can provide the schema that defines the expected integrated structure.
 
-Use the actual dataset and schema fields provided in the release.
+Use:
 
-When mapping fields, consider whether different source columns may represent the same concept using different names.
+- `evaluation/sample_schemas/sample_schema.json`
 
-### Task 8 - Map Values Where Needed
+Suggested UI steps:
 
-If different datasets use different values for the same concept, map them to the common values expected by the target schema.
+- In Integration, find the schema upload or schema selection control.
+- Choose the target schema JSON file.
+- Confirm that the schema panel or target-field list updates.
+- If the app shows a parse or validation message, read it before continuing.
 
-Examples:
+Record whether the schema loaded and whether the target fields were visible.
 
-| Source value | Target value |
-|---|---|
-| M, Male, Hombre | Male |
-| F, Female, Mujer | Female |
-| Yes, Y, 1, Si | Yes |
-| No, N, 0 | No |
+### Task 9 - Load the Sample Mapping Specification
 
-Use the actual values provided in the sample datasets.
+Upload the provided sample mapping specification.
 
-### Task 9 - Review the Integrated Structure
+**Purpose:** Evaluate whether users can load an existing integration draft rather than starting from zero.
 
-Review the resulting integrated structure or preview generated by MEDIATA.
+Use:
 
-Check whether:
+- `evaluation/sample_mappings/sample_spec.json`
 
-- source fields were mapped to the expected target fields
-- value mappings were applied correctly
-- the result follows the target schema
-- anything appears missing, incorrect, or unclear
+Suggested UI steps:
 
-### Task 10 - Save or Export the Work
+- In Integration, find the mapping-spec upload/import control.
+- Choose `sample_spec.json`.
+- If MEDIATA opens a resolution dialog, review each referenced source file.
+- For each unresolved source, select the local node that contains the sample datasets.
+- Match each referenced element file to the corresponding local element file, for example `sample_dataset_1_elements.csv` to the local file with the same name.
+- Check any compatibility warning shown by the dialog.
+- Confirm the resolution and wait for the mappings to load.
 
-If the release supports saving or exporting the integration work, perform that action.
+Record whether the upload and any required resolution steps were understandable.
 
-If this action is not available in the release, mark it as not available in the questionnaire.
+### Task 10 - Review Loaded Mappings
+
+Review the loaded mappings in the Integration area.
+
+**Purpose:** Evaluate whether users can understand an existing mapping specification after upload.
+
+Look for mappings such as:
+
+- `patient_id`
+- `sex`
+- `age`
+- `admission_date`
+- `diagnosis_code`
+- `fim_eating`
+- `barthel_total`
+
+Record whether mappings are easy to browse, expand, and inspect.
+
+### Task 11 - Review a Value Mapping
+
+Open the mapping for `sex` and inspect how source values are normalized.
+
+**Purpose:** Evaluate whether categorical value mapping is understandable.
+
+Check whether values such as `M`, `F`, `Male`, `Female`, `1`, and `0` are visible in a way that makes sense.
+
+Record whether you trust the mapping and whether anything is unclear.
+
+### Task 12 - Edit or Add a Mapping
+
+Make one small change to a mapping, or add one simple mapping if editing is clearer than changing an existing one.
+
+Suggested options:
+
+- add or inspect `smoker`,
+- add or inspect `bmi`,
+- review a FIM or Barthel score field.
+
+**Purpose:** Evaluate whether users can safely modify the mapping specification.
+
+Record what you changed and whether the interface gave useful feedback.
+
+### Task 13 - Run or Preview Harmonization
+
+Run the harmonization/integration workflow, or generate a preview if the release supports preview before running.
+
+**Purpose:** Evaluate whether users can move from mapping configuration to an integrated output.
+
+Record:
+
+- whether the action was easy to find,
+- whether loading/progress feedback was clear,
+- whether the output or preview was understandable.
+
+### Task 14 - Save or Export
+
+Save or export the mapping specification or harmonized result.
+
+**Purpose:** Evaluate whether users can preserve work and share it with collaborators.
+
+Record:
+
+- whether save/export was available,
+- whether the resulting file was easy to find,
+- whether you would know what to send to another user.
 
 ---
 
