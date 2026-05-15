@@ -14,7 +14,7 @@ Please complete the evaluation independently. The goal is to evaluate MEDIATA as
 Before starting:
 
 - Open the MEDIATA release.
-- Log in using the provided credentials.
+- Log in with username `admin` and password `admin`.
 - Open the tutorial/help page.
 - Keep the questionnaire PDF available while completing the tasks.
 
@@ -46,6 +46,12 @@ Record whether you could find the Discovery area without external help.
 Find the list of available sample datasets.
 
 **Purpose:** Evaluate whether MEDIATA clearly shows what files are available for inspection.
+
+Suggested UI steps:
+
+- In Discovery, enable or select **all files** so every available sample dataset is shown.
+- If the UI provides file checkboxes or a multi-file selector, press and hold briefly when selecting files if a normal click only opens a single file.
+- Confirm that all four sample datasets are visible before continuing.
 
 Record:
 
@@ -116,6 +122,7 @@ Use:
 Suggested UI steps:
 
 - In Integration, find the schema upload or schema selection control.
+- If the file picker is filtered, switch it to show all files so `.json` files are visible.
 - Choose the target schema JSON file.
 - Confirm that the schema panel or target-field list updates.
 - If the app shows a parse or validation message, read it before continuing.
@@ -135,6 +142,7 @@ Use:
 Suggested UI steps:
 
 - In Integration, find the mapping-spec upload/import control.
+- If the file picker is filtered, switch it to show all files so `.json` files are visible.
 - Choose `sample_spec.json`.
 - If MEDIATA opens a resolution dialog, review each referenced source file.
 - For each unresolved source, select the local node that contains the sample datasets.

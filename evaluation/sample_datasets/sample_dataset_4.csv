@@ -1,11 +1,61 @@
 assessment_date,assessment_time,fim_transfer,fim_locomotion,barthel_dressing,barthel_stairs,barthel_transfer,barthel_toilet,therapist,adverse_event,notes
-2024-02-11,09:15,5,5,10,5,10,10,LT,No,initial rehab
-2024-02-12,10:00,5,4,10,5,10,5,MC,,needs supervision
-2024-02-12,08:40,2,1,0,0,0,0,LT,Yes,acute decline
-2024-02-13,11:20,6,6,10,10,15,10,HS,No,independent
-2024-02-14,09:50,4,4,5,5,5,5,MC,No,uses walker
-2024-02-15,10:30,5,5,10,10,10,10,HS,No,stable
-2024-02-16,08:55,3,3,5,0,5,5,LT,,needs assistance
-2024-02-16,10:10,5,5,10,5,10,10,HS,No,mobility ok
-2024-02-17,09:05,6,6,15,10,15,10,MC,No,independent
-2024-02-18,,1,1,0,0,0,0,LT,Yes,critical
+2024-02-10,08:00,2,4,5,0,15,5,LT,No,uses walker
+2024-02-11,09:07,3,5,10,5,0,10,MC,Yes,stable
+2024-02-12,10:14,4,6,15,10,5,0,HS,,needs supervision
+2024-02-13,11:21,5,7,0,0,10,5,AP,No,mobility ok
+2024-02-14,12:28,6,1,5,5,15,10,JR,Yes,independent
+2024-02-15,13:35,7,2,10,10,0,0,SV,,acute decline
+2024-02-16,14:42,1,3,15,0,5,5,RK,No,critical
+2024-02-17,15:49,2,4,0,5,10,10,ND,Yes,
+2024-02-18,16:56,3,5,5,10,15,0,LT,,follow-up pending
+2024-02-19,08:03,4,6,10,0,0,5,MC,No,needs rehab
+2024-02-20,09:10,5,7,15,5,5,10,HS,Yes,uses walker
+2024-02-21,10:17,6,1,0,10,10,0,AP,,stable
+2024-02-22,11:24,7,2,5,0,15,5,JR,No,needs supervision
+2024-02-23,12:31,1,3,10,5,0,10,SV,Yes,mobility ok
+2024-02-24,13:38,2,4,15,10,5,0,RK,,independent
+2024-02-25,14:45,3,5,0,0,10,5,ND,No,acute decline
+2024-02-26,15:52,4,6,5,5,15,10,LT,Yes,critical
+2024-02-27,16:59,5,7,10,10,0,0,MC,,
+2024-02-28,08:06,6,1,15,0,5,5,HS,No,follow-up pending
+2024-02-29,09:13,7,2,0,5,10,10,AP,Yes,needs rehab
+2024-03-01,10:20,1,3,5,10,15,0,JR,,uses walker
+2024-03-02,11:27,2,4,10,0,0,5,SV,No,stable
+2024-03-03,12:34,3,5,15,5,5,10,RK,Yes,needs supervision
+2024-03-04,13:41,4,6,0,10,10,0,ND,,mobility ok
+2024-03-05,14:48,5,7,5,0,15,5,LT,No,independent
+2024-03-06,15:55,6,1,10,5,0,10,MC,Yes,acute decline
+2024-03-07,16:02,7,2,15,10,5,0,HS,,critical
+2024-03-08,08:09,1,3,0,0,10,5,AP,No,
+2024-02-10,09:16,2,4,5,5,15,10,JR,Yes,follow-up pending
+2024-02-11,10:23,3,5,10,10,0,0,SV,,needs rehab
+2024-02-12,11:30,4,6,15,0,5,5,RK,No,uses walker
+2024-02-13,12:37,5,7,0,5,10,10,ND,Yes,stable
+2024-02-14,13:44,6,1,5,10,15,0,LT,,needs supervision
+2024-02-15,14:51,7,2,10,0,0,5,MC,No,mobility ok
+2024-02-16,15:58,1,3,15,5,5,10,HS,Yes,independent
+2024-02-17,16:05,2,4,0,10,10,0,AP,,acute decline
+2024-02-18,08:12,3,5,5,0,15,5,JR,No,critical
+2024-02-19,09:19,4,6,10,5,0,10,SV,Yes,
+2024-02-20,10:26,5,7,15,10,5,0,RK,,follow-up pending
+2024-02-21,11:33,6,1,0,0,10,5,ND,No,needs rehab
+2024-02-22,12:40,7,2,5,5,15,10,LT,Yes,uses walker
+2024-02-23,13:47,1,3,10,10,0,0,MC,,stable
+2024-02-24,14:54,2,4,15,0,5,5,HS,No,needs supervision
+2024-02-25,15:01,3,5,0,5,10,10,AP,Yes,mobility ok
+2024-02-26,16:08,4,6,5,10,15,0,JR,,independent
+2024-02-27,08:15,5,7,10,0,0,5,SV,No,acute decline
+2024-02-28,09:22,6,1,15,5,5,10,RK,Yes,critical
+2024-02-29,10:29,7,2,0,10,10,0,ND,,
+2024-03-01,11:36,1,3,5,0,15,5,LT,No,follow-up pending
+2024-03-02,12:43,2,4,10,5,0,10,MC,Yes,needs rehab
+2024-03-03,13:50,3,5,15,10,5,0,HS,,uses walker
+2024-03-04,14:57,4,6,0,0,10,5,AP,No,stable
+2024-03-05,15:04,5,7,5,5,15,10,JR,Yes,needs supervision
+2024-03-06,16:11,6,1,10,10,0,0,SV,,mobility ok
+2024-03-07,08:18,7,2,15,0,5,5,RK,No,independent
+2024-03-08,09:25,1,3,0,5,10,10,ND,Yes,acute decline
+2024-02-10,10:32,2,4,5,10,15,0,LT,,critical
+2024-02-11,11:39,3,5,10,0,0,5,MC,No,
+2024-02-12,12:46,4,6,15,5,5,10,HS,Yes,follow-up pending
+2024-02-13,13:53,5,7,0,10,10,0,AP,,needs rehab
