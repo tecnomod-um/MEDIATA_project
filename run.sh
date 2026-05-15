@@ -155,7 +155,7 @@ sh "${ROOT_DIR}/evaluation/scripts/load_sample_datasets.sh"
 
 echo "Node (host): http://localhost:${NODE_HOST_PORT}/taniwha"
 echo "Node registered as: http://localhost:${NODE_HOST_PORT}"
-docker exec -it mediata-orchestrator sh -lc \
+docker exec mediata-orchestrator sh -lc \
   "curl -fsS http://host.docker.internal:${NODE_HOST_PORT}/taniwha/node/health"
 
 # ---------------- Frontend ----------------
