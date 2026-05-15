@@ -1,11 +1,11 @@
-record_id,patient_ref,assessment_date,assessment_time,fim_transfer,fim_locomotion,barthel_dressing,barthel_stairs,barthel_transfer,barthel_toilet,therapist,adverse_event,notes
-R001,A001,2024-02-11,09:15,5,5,10,5,10,10,LT,No,initial rehab
-R002,A002,2024-02-12,10:00,5,4,10,5,10,5,MC,,needs supervision
-R003,A003,2024-02-12,08:40,2,1,0,0,0,0,LT,Yes,acute decline
-R004,A004,2024-02-13,11:20,6,6,10,10,15,10,HS,No,independent
-R005,A005,2024-02-14,09:50,4,4,5,5,5,5,MC,No,uses walker
-R006,A006,2024-02-15,10:30,5,5,10,10,10,10,HS,No,stable
-R007,A007,2024-02-16,08:55,3,3,5,0,5,5,LT,,needs assistance
-R008,A008,2024-02-16,10:10,5,5,10,5,10,10,HS,No,mobility ok
-R009,A009,2024-02-17,09:05,6,6,15,10,15,10,MC,No,independent
-R010,A010,2024-02-18,,1,1,0,0,0,0,LT,Yes,critical
+assessment_date,assessment_time,fim_transfer,fim_locomotion,barthel_dressing,barthel_stairs,barthel_transfer,barthel_toilet,therapist,adverse_event,notes
+2024-02-11,09:15,5,5,10,5,10,10,LT,No,initial rehab
+2024-02-12,10:00,5,4,10,5,10,5,MC,,needs supervision
+2024-02-12,08:40,2,1,0,0,0,0,LT,Yes,acute decline
+2024-02-13,11:20,6,6,10,10,15,10,HS,No,independent
+2024-02-14,09:50,4,4,5,5,5,5,MC,No,uses walker
+2024-02-15,10:30,5,5,10,10,10,10,HS,No,stable
+2024-02-16,08:55,3,3,5,0,5,5,LT,,needs assistance
+2024-02-16,10:10,5,5,10,5,10,10,HS,No,mobility ok
+2024-02-17,09:05,6,6,15,10,15,10,MC,No,independent
+2024-02-18,,1,1,0,0,0,0,LT,Yes,critical

@@ -6,7 +6,6 @@
     "title": "MEDIATA Evaluation Target Schema",
     "type": "object",
     "properties": {
-      "patient_id": {"type": ["string", "null"]},
       "sex": {"type": ["string", "null"], "description": "Normalized sex or gender."},
       "age": {"type": ["integer", "null"]},
       "birth_year": {"type": ["integer", "null"]},
@@ -90,46 +89,6 @@
     }
   ],
   "mappings": [
-    {
-      "id": "map-patient-id",
-      "targetField": "patient_id",
-      "mappingType": "standard",
-      "sourceConfigFile": "sample_mapping",
-      "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "patient_id"},
-        {"sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "subject_id"},
-        {"sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "id"},
-        {"sourceId": "sample-local-node::sample_dataset_4_elements.csv", "column": "patient_ref"}
-      ],
-      "rules": [
-        {
-          "id": "rule-patient-id-1",
-          "logic": {"==": [{"var": "sample-local-node::sample_dataset_1_elements.csv::patient_id"}, "A001"]},
-          "then": {"kind": "constant", "value": "A001"},
-          "metadata": {"terminology": "", "description": "Example identifier value from sample dataset 1."}
-        },
-        {
-          "id": "rule-patient-id-2",
-          "logic": {"==": [{"var": "sample-local-node::sample_dataset_2_elements.csv::subject_id"}, "B-1001"]},
-          "then": {"kind": "constant", "value": "B-1001"},
-          "metadata": {"terminology": "", "description": "Example identifier value from sample dataset 2."}
-        },
-        {
-          "id": "rule-patient-id-3",
-          "logic": {"==": [{"var": "sample-local-node::sample_dataset_3_elements.csv::id"}, "C01"]},
-          "then": {"kind": "constant", "value": "C01"},
-          "metadata": {"terminology": "", "description": "Example identifier value from sample dataset 3."}
-        },
-        {
-          "id": "rule-patient-id-4",
-          "logic": {"==": [{"var": "sample-local-node::sample_dataset_4_elements.csv::patient_ref"}, "A001"]},
-          "then": {"kind": "constant", "value": "A001"},
-          "metadata": {"terminology": "", "description": "Example patient reference from sample dataset 4."}
-        }
-      ],
-      "metadata": {"terminology": "", "description": "Example multi-source identifier mapping."},
-      "removeSourceColumns": false
-    },
     {
       "id": "map-sex",
       "targetField": "sex",
