@@ -28,15 +28,23 @@ done
 mkdir -p "${TARGET_DIR}"
 
 copied=0
+updated=0
 for file in "${SAMPLE_DIR}"/*; do
   if [ -f "${file}" ]; then
     base=$(basename "${file}")
+    case "${base}" in
+      *.csv|*.tsv|*.xlsx) ;;
+      *) continue ;;
+    esac
     dest="${TARGET_DIR}/${base}"
-    if [ ! -f "${dest}" ]; then
+    if [ -f "${dest}" ]; then
+      cp "${file}" "${dest}"
+      updated=$((updated + 1))
+    else
       cp "${file}" "${dest}"
       copied=$((copied + 1))
     fi
   fi
 done
 
-echo "Sample datasets copied to ${TARGET_DIR} (${copied} new files)."
+echo "Sample datasets copied to ${TARGET_DIR} (${copied} new files, ${updated} refreshed files)."

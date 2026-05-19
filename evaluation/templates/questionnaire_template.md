@@ -8,9 +8,9 @@
 
 ## 1. Participant Instructions
 
-You have received a MEDIATA evaluation package containing the application release, sample datasets, a target schema, a sample mapping specification, and this questionnaire.
+You have received a MEDIATA evaluation package containing the application release, sample datasets, a target schema, a sample mapping specification, this questionnaire, and the task sheet.
 
-Please complete the workflow independently. The goal is to evaluate MEDIATA as a tool for discovering datasets and managing integration mappings. You are not being evaluated on your clinical interpretation of the sample data.
+Please complete the workflow independently. The goal is to evaluate MEDIATA as a tool for discovering datasets, generating integration metadata, creating and reviewing mappings, processing datasets, and checking the output. You are not being evaluated on clinical interpretation of the sample data.
 
 Use the tutorial/help material included in the release before starting the tasks.
 
@@ -20,14 +20,20 @@ Use the tutorial/help material included in the release before starting the tasks
 
 The tasks evaluate whether MEDIATA helps users:
 
-- find available datasets,
-- inspect previews, columns, values, and data-quality signals,
-- find the Integration workflow,
+- log in and reach the local Node,
+- find the FAIR Data Point metadata URL,
+- select one or more files, including multi-selection by `Ctrl`/`Shift` click or long press,
+- inspect previews, columns, values, feature types, filters, and aggregate metrics,
+- select loaded files and show, hide, or restore specific features in Discovery,
+- generate element metadata for Integration,
+- load several element files in Integration,
+- create a simple manual categorical mapping,
 - load a target schema,
+- generate and review suggested mappings,
 - upload and resolve an existing mapping specification,
-- review and edit mappings,
-- run or preview harmonization,
-- save or export work.
+- edit mappings and value mappings,
+- process each selected source dataset,
+- save/export work and reopen produced files in Discovery.
 
 ---
 
@@ -49,71 +55,115 @@ The tasks evaluate whether MEDIATA helps users:
 
 ## 4. Task Checklist
 
-Please complete the following tasks using the provided MEDIATA release. After each task, mark the result and add comments if needed.
+Please complete the tasks from the task sheet. After each task, mark the result and add comments if needed.
 
-### Task 1 - Find the Discovery Area
-
-| Result | Select one |
-|---|---|
-| I found the Discovery area without external help | ☐ Yes ☐ Partially ☐ No |
-| The purpose of the Discovery area was clear | ☐ Yes ☐ Partially ☐ No |
-| Comments | |
-
-### Task 2 - Confirm Available Datasets
+### Task 0 - Open the Local Node and FAIR Data Point
 
 | Result | Select one |
 |---|---|
-| I found the list of available sample datasets | ☐ Yes ☐ Partially ☐ No |
-| Dataset names were readable | ☐ Yes ☐ Partially ☐ No |
-| I understood how to open a dataset | ☐ Yes ☐ Partially ☐ No |
-| Dataset count observed | |
+| I logged in with the local credentials `admin` / `admin` | ☐ Yes ☐ Partially ☐ No |
+| I selected the `default` project | ☐ Yes ☐ Partially ☐ No |
+| I opened the `MEDIATA` Node | ☐ Yes ☐ Partially ☐ No |
+| I opened the Node metadata panel | ☐ Yes ☐ Partially ☐ No |
+| I found the FAIR Data Point button or badge | ☐ Yes ☐ Partially ☐ No |
+| I copied the FAIR Data Point URL and opened it in another tab | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 3 - Open a Dataset Preview
+### Task 1 - Open Discovery and Load Sample Datasets
 
 | Result | Select one |
 |---|---|
-| I opened a dataset preview or table view | ☐ Yes ☐ Partially ☐ No |
-| Columns and values were readable | ☐ Yes ☐ Partially ☐ No |
-| Table controls such as scrolling, paging, or resizing were clear | ☐ Yes ☐ Partially ☐ No |
+| I found the Discovery tab | ☐ Yes ☐ Partially ☐ No |
+| I opened `sample_dataset_1.csv` first | ☐ Yes ☐ Partially ☐ No |
+| I opened all four sample datasets together | ☐ Yes ☐ Partially ☐ No |
+| Multi-file selection was clear | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 4 - Inspect Column Information
+### Task 2 - Select Files and Hide One Feature
 
 | Result | Select one |
 |---|---|
-| I found column names or generated element information | ☐ Yes ☐ Partially ☐ No |
-| I found examples, summaries, data types, or similar details | ☐ Yes ☐ Partially ☐ No |
-| The information was enough to support mapping decisions | ☐ Yes ☐ Partially ☐ No |
+| I enabled all loaded files in Discovery | ☐ Yes ☐ Partially ☐ No |
+| I found `fim_total` using the feature toggles | ☐ Yes ☐ Partially ☐ No |
+| I hid `fim_total` from the current view | ☐ Yes ☐ Partially ☐ No |
+| I showed `fim_total` again before continuing | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 5 - Search or Filter
+### Task 3 - Inspect Columns and Value Summaries
 
 | Result | Select one |
 |---|---|
-| I used search, filter, or table controls | ☐ Yes ☐ Partially ☐ No |
-| The result helped me find a relevant column or value | ☐ Yes ☐ Partially ☐ No |
-| Term or control used | |
+| I found a sex or gender column | ☐ Yes ☐ Partially ☐ No |
+| I found at least one FIM, Barthel, eating, bathing, or toileting field | ☐ Yes ☐ Partially ☐ No |
+| Column names and data types were understandable | ☐ Yes ☐ Partially ☐ No |
+| Value summaries, counts, charts, or missing-value indicators were useful | ☐ Yes ☐ Partially ☐ No |
+| The feature type switch was understandable, if used | ☐ Yes ☐ Partially ☐ No ☐ Not used |
 | Comments | |
 
-### Task 6 - Spot Data Quality Signals
+### Task 4 - Filter One Dataset
 
 | Result | Select one |
 |---|---|
-| I noticed at least one data quality issue or uncertainty | ☐ Yes ☐ Partially ☐ No |
-| MEDIATA helped make the issue visible | ☐ Yes ☐ Partially ☐ No |
-| Issue or uncertainty noticed | |
+| I showed only `sample_dataset_1.csv` | ☐ Yes ☐ Partially ☐ No |
+| I created filters for sex/gender and FIM total or the closest available fields | ☐ Yes ☐ Partially ☐ No |
+| The charts or tables changed after filtering | ☐ Yes ☐ Partially ☐ No |
+| I reset the filters | ☐ Yes ☐ Partially ☐ No |
+| I enabled all sample files again | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 7 - Find the Integration Area
+### Task 5 - Review Aggregate Metrics
 
 | Result | Select one |
 |---|---|
-| I found the Integration or Harmonization area | ☐ Yes ☐ Partially ☐ No |
-| The entry point was clear | ☐ Yes ☐ Partially ☐ No |
+| I switched to aggregate metrics | ☐ Yes ☐ Partially ☐ No |
+| I viewed covariance | ☐ Yes ☐ Partially ☐ No |
+| I changed to Pearson correlation | ☐ Yes ☐ Partially ☐ No |
+| I changed to Spearman correlation | ☐ Yes ☐ Partially ☐ No |
+| I resized the aggregate panels | ☐ Yes ☐ Partially ☐ No |
+| I understood at least one omitted-feature explanation | ☐ Yes ☐ Partially ☐ No ☐ No omitted features shown |
 | Comments | |
 
-### Task 8 - Load the Target Schema
+### Task 6 - Detect and Clean a Planted Outlier
+
+| Result | Select one |
+|---|---|
+| I found the planted `systolic_bp = 999` outlier | ☐ Yes ☐ Partially ☐ No |
+| The outlier switch or chart made the issue visible | ☐ Yes ☐ Partially ☐ No |
+| I found the Data cleaning panel from the File Explorer | ☐ Yes ☐ Partially ☐ No |
+| I configured `Remove rows with pattern` for `systolic_bp` | ☐ Yes ☐ Partially ☐ No |
+| I confirmed that the cleaned output no longer contained `999` | ☐ Yes ☐ Partially ☐ No |
+| Comments | |
+
+### Task 7 - Generate Element Metadata for Integration
+
+| Result | Select one |
+|---|---|
+| I generated/uploaded element metadata for the sample datasets | ☐ Yes ☐ Partially ☐ No |
+| I understood that Integration uses element metadata files | ☐ Yes ☐ Partially ☐ No |
+| I could identify where the generated element files appeared | ☐ Yes ☐ Partially ☐ No |
+| Comments | |
+
+### Task 8 - Open Integration and Load Element Files
+
+| Result | Select one |
+|---|---|
+| I found the Integration tab | ☐ Yes ☐ Partially ☐ No |
+| I selected the generated element files for all four sample datasets | ☐ Yes ☐ Partially ☐ No |
+| Multi-file selection in Integration was clear | ☐ Yes ☐ Partially ☐ No |
+| The feature list, selected feature area, controls, and result panel were understandable | ☐ Yes ☐ Partially ☐ No |
+| Comments | |
+
+### Task 9 - Create a Simple Manual Sex/Gender Mapping
+
+| Result | Select one |
+|---|---|
+| I selected the relevant source sex/gender columns | ☐ Yes ☐ Partially ☐ No |
+| I created a target mapping such as `sex` | ☐ Yes ☐ Partially ☐ No |
+| I added normalized output values such as Female/Male/Unknown | ☐ Yes ☐ Partially ☐ No |
+| I assigned source categories to output values | ☐ Yes ☐ Partially ☐ No |
+| Comments | |
+
+### Task 10 - Load the Target Schema and Rename Bathing
 
 Use `evaluation/sample_schemas/sample_schema.json`.
 
@@ -121,67 +171,65 @@ Use `evaluation/sample_schemas/sample_schema.json`.
 |---|---|
 | I loaded the target schema | ☐ Yes ☐ Partially ☐ No |
 | Target fields were visible | ☐ Yes ☐ Partially ☐ No |
-| The schema upload or selection workflow was clear | ☐ Yes ☐ Partially ☐ No |
+| I found or reviewed the bathing-related mapping | ☐ Yes ☐ Partially ☐ No |
+| I renamed the bathing mapping to `bathing_status` using the in-app editor | ☐ Yes ☐ Partially ☐ No |
+| The renamed mapping appeared in the result panel | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 9 - Load the Sample Mapping Specification
+### Task 11 - Run Suggested Mappings
+
+| Result | Select one |
+|---|---|
+| I ran `Suggest mappings` | ☐ Yes ☐ Partially ☐ No |
+| I inspected suggested column groups | ☐ Yes ☐ Partially ☐ No |
+| I inspected value assignments or numeric ranges inside at least three mappings | ☐ Yes ☐ Partially ☐ No |
+| Suggested mappings grouped similar concepts sensibly | ☐ Yes ☐ Partially ☐ No |
+| Suggested mappings avoided clearly wrong category collapses | ☐ Yes ☐ Partially ☐ No |
+| I corrected one questionable mapping, if needed | ☐ Yes ☐ Partially ☐ No ☐ Not needed |
+| Comments | |
+
+### Task 12 - Upload the Sample Mapping Specification
 
 Use `evaluation/sample_mappings/sample_spec.json`.
 
 | Result | Select one |
 |---|---|
 | I uploaded the sample mapping specification | ☐ Yes ☐ Partially ☐ No |
-| If file resolution was needed, I understood how to resolve it | ☐ Yes ☐ Partially ☐ No ☐ Not needed |
-| The loaded mapping appeared in the interface | ☐ Yes ☐ Partially ☐ No |
+| I understood file resolution, if required | ☐ Yes ☐ Partially ☐ No ☐ Not required |
+| The loaded mappings appeared in the result panel | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 10 - Review Loaded Mappings
+### Task 13 - Edit One Existing Mapping
 
 | Result | Select one |
 |---|---|
-| I could browse the loaded mappings | ☐ Yes ☐ Partially ☐ No |
-| I could expand or inspect mapping details | ☐ Yes ☐ Partially ☐ No |
-| I understood which source columns were connected to target fields | ☐ Yes ☐ Partially ☐ No |
-| Comments | |
-
-### Task 11 - Review a Value Mapping
-
-Review the `sex` mapping.
-
-| Result | Select one |
-|---|---|
-| I found the `sex` mapping | ☐ Yes ☐ Partially ☐ No |
-| I understood how source values were normalized | ☐ Yes ☐ Partially ☐ No |
-| I trusted the mapping result | ☐ Yes ☐ Partially ☐ No |
-| Comments | |
-
-### Task 12 - Edit or Add a Mapping
-
-| Result | Select one |
-|---|---|
-| I edited or added one mapping | ☐ Yes ☐ Partially ☐ No |
+| I inspected or edited one existing mapping | ☐ Yes ☐ Partially ☐ No |
 | The edit controls were clear | ☐ Yes ☐ Partially ☐ No |
 | The interface gave useful feedback after the change | ☐ Yes ☐ Partially ☐ No |
 | Change made | |
 | Comments | |
 
-### Task 13 - Run or Preview Harmonization
+### Task 14 - Process the Datasets
 
 | Result | Select one |
 |---|---|
-| I ran harmonization or generated a preview | ☐ Yes ☐ Partially ☐ No ☐ Not available |
-| The action was easy to find | ☐ Yes ☐ Partially ☐ No ☐ Not available |
-| Progress or loading feedback was clear | ☐ Yes ☐ Partially ☐ No ☐ Not available |
-| The output or preview was understandable | ☐ Yes ☐ Partially ☐ No ☐ Not available |
+| I found the `Process datasets` action | ☐ Yes ☐ Partially ☐ No |
+| I selected each source dataset that should be processed | ☐ Yes ☐ Partially ☐ No |
+| Progress or loading feedback was clear | ☐ Yes ☐ Partially ☐ No |
+| The output or completion feedback was understandable | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
-### Task 14 - Save or Export
+### Task 15 - Save, Export, and Reopen the Results in Discovery
 
 | Result | Select one |
 |---|---|
-| I saved or exported the mapping/result | ☐ Yes ☐ Partially ☐ No ☐ Not available |
-| I could find the saved or exported file | ☐ Yes ☐ Partially ☐ No ☐ Not available |
-| I would know what to send to a collaborator | ☐ Yes ☐ Partially ☐ No ☐ Not available |
+| I saved or downloaded the mapping specification | ☐ Yes ☐ Partially ☐ No |
+| I found the produced `parsed_` files | ☐ Yes ☐ Partially ☐ No |
+| I could rename output files if needed | ☐ Yes ☐ Partially ☐ No ☐ Not needed |
+| I reopened produced files in Discovery | ☐ Yes ☐ Partially ☐ No |
+| I enabled the relevant produced files for review | ☐ Yes ☐ Partially ☐ No |
+| I used feature search/toggles to focus on specific output columns | ☐ Yes ☐ Partially ☐ No |
+| The produced file shape, columns, and value summaries were understandable | ☐ Yes ☐ Partially ☐ No |
 | Comments | |
 
 ---
@@ -198,20 +246,22 @@ N/A = Not completed or not available
 
 | Task | 1 | 2 | 3 | 4 | 5 | N/A |
 |---|---:|---:|---:|---:|---:|---:|
-| Find Discovery | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Confirm datasets | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Open preview | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Inspect columns | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Search or filter | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Spot data quality signals | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Find Integration | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Load schema | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Load mapping spec | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Review mappings | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Review value mapping | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Edit or add mapping | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Run or preview harmonization | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Save or export | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 0. Local Node and FAIR Data Point | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 1. Open Discovery and load sample datasets | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 2. Select files and hide one feature | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 3. Inspect columns and value summaries | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 4. Filter one dataset | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 5. Review aggregate metrics | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 6. Detect and clean a planted outlier | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 7. Generate element metadata | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 8. Load element files in Integration | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 9. Manual sex/gender mapping | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 10. Load schema and rename bathing | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 11. Run and review suggested mappings | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 12. Upload sample mapping specification | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 13. Edit one mapping | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 14. Process datasets | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 15. Save/export and reopen results | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ---
 
@@ -245,65 +295,73 @@ Please answer using this scale:
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
 | 11 | The tutorial/help material was easy to find. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 12 | The tutorial explained how to use Discovery. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 13 | The tutorial explained how to use Integration. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 14 | The tutorial explained schema upload or selection. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 15 | The tutorial explained mapping-spec upload and file resolution. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 16 | The tutorial explained how to edit mappings. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 17 | I understood what I was expected to do without supervision. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 12 | The tutorial explained the local login, default project, and default Node. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 13 | The tutorial explained file selection and multi-file selection. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 14 | The tutorial explained how to select files and hide or restore features in Discovery. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 15 | The tutorial explained aggregate metrics and omitted features. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 16 | The tutorial explained how generated element files are used in Integration. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 17 | The tutorial explained manual mappings and suggested mappings. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 18 | The tutorial explained processing datasets and checking parsed output. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 19 | I understood what I was expected to do without supervision. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ### C. Discovery Module
 
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
-| 18 | The Discovery module made it easy to find available datasets. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 19 | Dataset names and file lists were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 20 | Dataset previews were readable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 21 | Column information was easy to find. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 22 | Search, filter, or table controls were easy to use. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 23 | MEDIATA helped me notice missing values or data-quality signals. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 24 | Discovery gave me enough information before moving to Integration. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 20 | The Discovery module made it easy to find available datasets. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 21 | Dataset names and file lists were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 22 | Opening one file and then several files was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 23 | It was clear which files were currently enabled in the view. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 24 | It was clear how to show or hide features. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 25 | Column information was easy to find. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 26 | Value summaries and charts were readable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 27 | Filters were easy to create and reset. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 28 | Aggregate metrics were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 29 | MEDIATA helped me notice the planted outlier. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 30 | Discovery gave me enough information before moving to Integration. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ### D. Integration Module
 
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
-| 25 | The Integration module was easy to locate. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 26 | The target schema was easy to load. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 27 | Target fields were easy to understand. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 28 | The sample mapping specification was easy to upload. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 29 | File-resolution steps, if any, were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 30 | Loaded mappings were easy to browse. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 31 | It was clear how source columns connected to target fields. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 32 | Categorical value mappings were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 33 | It was clear how to edit or add a mapping. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 34 | The platform gave useful feedback after creating or changing a mapping. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 35 | Running or previewing harmonization was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 36 | The output or preview was easy to review. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 37 | Save or export actions were easy to find. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 31 | The Integration module was easy to locate. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 32 | Loading multiple element files was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 33 | The feature list made it clear which source columns were available. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 34 | The target schema was easy to load. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 35 | Target fields were easy to inspect. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 36 | Manual categorical mapping was understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 37 | Numeric or range-based value mappings were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 38 | Suggested mappings were useful as a starting point. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 39 | Suggested mapping values or ranges were easy to review. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 40 | It was clear how to correct a suggested mapping. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 41 | The sample mapping specification was easy to upload. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 42 | File-resolution steps, if any, were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 43 | Running the processing workflow was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 44 | It was clear that each source file needed to be selected for processing. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 45 | Save or export actions were easy to find. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ### E. Trust, Feedback, and Errors
 
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
-| 38 | I could tell which mappings were complete and which needed review. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 39 | Unmapped or uncertain fields were visible. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 40 | I could recover from mistakes without external help. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 41 | The platform clearly showed when it was loading or processing. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 42 | Error messages, if any appeared, were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 43 | Buttons and labels were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 44 | Tables, forms, and mapping views were readable. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 45 | The terminology used in the platform was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 46 | I could tell which mappings were complete and which needed review. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 47 | Unmapped or uncertain fields were visible. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 48 | I could recover from mistakes without external help. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 49 | The platform clearly showed when it was loading or processing. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 50 | Error messages, if any appeared, were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 51 | Buttons and labels were understandable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 52 | Tables, forms, and mapping views were readable. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 53 | The terminology used in the platform was clear. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ### F. Overall Usefulness
 
 | No. | Statement | 1 | 2 | 3 | 4 | 5 |
 |---:|---|---:|---:|---:|---:|---:|
-| 46 | MEDIATA is useful for discovering available datasets. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 47 | MEDIATA is useful for managing integration mappings. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 48 | MEDIATA would reduce manual effort compared with spreadsheet-based integration. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 49 | I would recommend MEDIATA for similar integration workflows. | ☐ | ☐ | ☐ | ☐ | ☐ |
-| 50 | Overall, I am satisfied with this MEDIATA release. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 54 | MEDIATA is useful for discovering available datasets. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 55 | MEDIATA is useful for managing integration mappings. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 56 | MEDIATA would reduce manual effort compared with spreadsheet-based integration. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 57 | I would recommend MEDIATA for similar integration workflows. | ☐ | ☐ | ☐ | ☐ | ☐ |
+| 58 | Overall, I am satisfied with this MEDIATA release. | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 ---
 
@@ -317,17 +375,27 @@ Please answer using this scale:
 
 4. Which tool action was hardest to find?
 
-5. Which mapping or value-mapping interaction was hardest to understand?
+5. Did multi-file selection work as expected in Discovery, Integration, and processing?
 
-6. Did the mapping-spec upload and resolution flow make sense?
+6. Did the Discovery file/feature visibility controls make sense?
 
-7. Did MEDIATA provide enough feedback to trust the mapping or harmonization result? Why or why not?
+7. Was the planted outlier cleaning task concrete enough to complete independently?
 
-8. Did you encounter any error, unexpected behavior, or unclear message?
+8. Did the generated element metadata workflow make sense?
 
-9. What functionality would you expect in a future release?
+9. Which mapping or value-mapping interaction was hardest to understand?
 
-10. Any additional comments or suggestions?
+10. Did suggested mappings provide a useful starting point? Which suggestions looked wrong or questionable?
+
+11. Did the mapping-spec upload and file-resolution flow make sense?
+
+12. Did MEDIATA provide enough feedback to trust the processed output? Why or why not?
+
+13. Did you encounter any error, unexpected behavior, or unclear message?
+
+14. What functionality would you expect in a future release?
+
+15. Any additional comments or suggestions?
 
 ---
 
