@@ -76,6 +76,129 @@ wait_for_node() {
   done
 }
 
+json_field() {
+  local json="$1"
+  local field="$2"
+  JSON_PAYLOAD="${json}" python3 - "$field" <<'PY'
+import json
+import os
+import sys
+
+field = sys.argv[1]
+payload = os.environ.get("JSON_PAYLOAD", "")
+
+try:
+    data = json.loads(payload)
+except json.JSONDecodeError:
+    sys.exit(1)
+
+value = data.get(field, "")
+if isinstance(value, str):
+    sys.stdout.write(value)
+PY
+}
+
+json_first_array_field() {
+  local json="$1"
+  local field="$2"
+  JSON_PAYLOAD="${json}" python3 - "$field" <<'PY'
+import json
+import os
+import sys
+
+field = sys.argv[1]
+payload = os.environ.get("JSON_PAYLOAD", "")
+
+try:
+    data = json.loads(payload)
+except json.JSONDecodeError:
+    sys.exit(1)
+
+if isinstance(data, list) and data:
+    value = data[0].get(field, "")
+    if isinstance(value, str):
+        sys.stdout.write(value)
+PY
+}
+
+sync_sample_fair_metadata() {
+  local username="${LOCAL_ADMIN_USER:-admin}"
+  local password="${LOCAL_ADMIN_PASSWORD:-admin}"
+  local registration_timeout_s="${NODE_REGISTRATION_TIMEOUT_S:-60}"
+  local registration_sleep_s="${NODE_REGISTRATION_SLEEP_S:-2}"
+  local registration_deadline=$(( $(date +%s) + registration_timeout_s ))
+
+  echo "Refreshing FAIR metadata for loaded sample datasets..."
+
+  local login_response
+  login_response="$(curl -sS -f \
+    -H 'Content-Type: application/json' \
+    -d "{\"username\":\"${username}\",\"password\":\"${password}\"}" \
+    "${ORCH_BASE_URL}/api/user/login")"
+
+  local central_jwt kerberos_tgt node_id node_info_response service_ticket node_jwt sync_response
+  central_jwt="$(json_field "${login_response}" "token")"
+  kerberos_tgt="$(json_field "${login_response}" "tgt")"
+  [[ -n "${central_jwt}" && -n "${kerberos_tgt}" ]] || {
+    echo "ERROR: Could not obtain local admin session for FAIR metadata sync."
+    exit 1
+  }
+
+  while [[ -z "${node_id:-}" ]]; do
+    if (( $(date +%s) > registration_deadline )); then
+      echo "ERROR: Could not resolve local node id for FAIR metadata sync."
+      exit 1
+    fi
+
+    node_id="$(
+      curl -sS -f \
+        -H "Authorization: Bearer ${central_jwt}" \
+        "${ORCH_BASE_URL}/nodes/connect/list" \
+      | { response="$(cat)"; json_first_array_field "${response}" "nodeId"; }
+    )"
+
+    if [[ -z "${node_id}" ]]; then
+      sleep "${registration_sleep_s}"
+    fi
+  done
+
+  node_info_response="$(curl -sS -f \
+    -H "Authorization: Bearer ${central_jwt}" \
+    -H "Kerberos-TGT: ${kerberos_tgt}" \
+    "${ORCH_BASE_URL}/nodes/connect/info/${node_id}")"
+  service_ticket="$(json_field "${node_info_response}" "token")"
+  [[ -n "${service_ticket}" ]] || {
+    echo "ERROR: Could not obtain Kerberos service ticket for FAIR metadata sync."
+    exit 1
+  }
+
+  node_jwt="$(
+    curl -sS -f \
+      -H "Authorization: Bearer ${central_jwt}" \
+      -H 'Content-Type: application/json' \
+      -d "{\"kerberosToken\":\"${service_ticket}\"}" \
+      "http://localhost:${NODE_HOST_PORT}/taniwha/node/validate" \
+    | { response="$(cat)"; json_field "${response}" "jwtNodeToken"; }
+  )"
+  [[ -n "${node_jwt}" && "${node_jwt}" != "Unauthorized" ]] || {
+    echo "ERROR: Could not obtain node-scoped JWT for FAIR metadata sync."
+    exit 1
+  }
+
+  sync_response="$(curl -sS -f \
+    -X POST \
+    -H "Authorization: Bearer ${node_jwt}" \
+    "http://localhost:${NODE_HOST_PORT}/taniwha/api/fairdatapoint/sync")"
+
+  if [[ "${sync_response}" != *'"status":"COMPLETED"'* ]]; then
+    echo "ERROR: FAIR metadata sync did not complete successfully."
+    echo "${sync_response}"
+    exit 1
+  fi
+
+  echo "FAIR metadata refreshed."
+}
+
 # ---------------- Evaluation PDFs ----------------
 if [[ ! -f "${ROOT_DIR}/evaluation/questionnaire.pdf" || ! -f "${ROOT_DIR}/evaluation/evaluation_tasks.pdf" ]]; then
   if ! command -v docker >/dev/null 2>&1; then
@@ -152,6 +275,7 @@ docker run -d \
 wait_for_node 120
 
 sh "${ROOT_DIR}/evaluation/scripts/load_sample_datasets.sh"
+sync_sample_fair_metadata
 
 echo "Node (host): http://localhost:${NODE_HOST_PORT}/taniwha"
 echo "Node registered as: http://localhost:${NODE_HOST_PORT}"
