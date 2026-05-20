@@ -127,6 +127,9 @@ sync_sample_fair_metadata() {
   local registration_timeout_s="${NODE_REGISTRATION_TIMEOUT_S:-60}"
   local registration_sleep_s="${NODE_REGISTRATION_SLEEP_S:-2}"
   local registration_deadline=$(( $(date +%s) + registration_timeout_s ))
+  local sync_timeout_s="${NODE_SYNC_TIMEOUT_S:-90}"
+  local sync_sleep_s="${NODE_SYNC_SLEEP_S:-3}"
+  local sync_deadline=$(( $(date +%s) + sync_timeout_s ))
 
   echo "Refreshing FAIR metadata for loaded sample datasets..."
 
@@ -162,39 +165,48 @@ sync_sample_fair_metadata() {
     fi
   done
 
-  node_info_response="$(curl -sS -f \
-    -H "Authorization: Bearer ${central_jwt}" \
-    -H "Kerberos-TGT: ${kerberos_tgt}" \
-    "${ORCH_BASE_URL}/nodes/connect/info/${node_id}")"
-  service_ticket="$(json_field "${node_info_response}" "token")"
-  [[ -n "${service_ticket}" ]] || {
-    echo "ERROR: Could not obtain Kerberos service ticket for FAIR metadata sync."
-    exit 1
-  }
+  while true; do
+    if (( $(date +%s) > sync_deadline )); then
+      echo "ERROR: FAIR metadata sync did not become ready within ${sync_timeout_s}s."
+      exit 1
+    fi
 
-  node_jwt="$(
-    curl -sS -f \
+    node_info_response="$(curl -sS \
       -H "Authorization: Bearer ${central_jwt}" \
-      -H 'Content-Type: application/json' \
-      -d "{\"kerberosToken\":\"${service_ticket}\"}" \
-      "http://localhost:${NODE_HOST_PORT}/taniwha/node/validate" \
-    | { response="$(cat)"; json_field "${response}" "jwtNodeToken"; }
-  )"
-  [[ -n "${node_jwt}" && "${node_jwt}" != "Unauthorized" ]] || {
-    echo "ERROR: Could not obtain node-scoped JWT for FAIR metadata sync."
-    exit 1
-  }
+      -H "Kerberos-TGT: ${kerberos_tgt}" \
+      "${ORCH_BASE_URL}/nodes/connect/info/${node_id}" 2>/dev/null || true)"
+    service_ticket="$(json_field "${node_info_response}" "token" || true)"
 
-  sync_response="$(curl -sS -f \
-    -X POST \
-    -H "Authorization: Bearer ${node_jwt}" \
-    "http://localhost:${NODE_HOST_PORT}/taniwha/api/fairdatapoint/sync")"
+    if [[ -z "${service_ticket}" ]]; then
+      sleep "${sync_sleep_s}"
+      continue
+    fi
 
-  if [[ "${sync_response}" != *'"status":"COMPLETED"'* ]]; then
-    echo "ERROR: FAIR metadata sync did not complete successfully."
-    echo "${sync_response}"
-    exit 1
-  fi
+    node_jwt="$(
+      curl -sS \
+        -H "Authorization: Bearer ${central_jwt}" \
+        -H 'Content-Type: application/json' \
+        -d "{\"kerberosToken\":\"${service_ticket}\"}" \
+        "http://localhost:${NODE_HOST_PORT}/taniwha/node/validate" 2>/dev/null \
+      | { response="$(cat)"; json_field "${response}" "jwtNodeToken" || true; }
+    )"
+
+    if [[ -z "${node_jwt}" || "${node_jwt}" == "Unauthorized" ]]; then
+      sleep "${sync_sleep_s}"
+      continue
+    fi
+
+    sync_response="$(curl -sS \
+      -X POST \
+      -H "Authorization: Bearer ${node_jwt}" \
+      "http://localhost:${NODE_HOST_PORT}/taniwha/api/fairdatapoint/sync" 2>/dev/null || true)"
+
+    if [[ "${sync_response}" == *'"status":"COMPLETED"'* ]]; then
+      break
+    fi
+
+    sleep "${sync_sleep_s}"
+  done
 
   echo "FAIR metadata refreshed."
 }
