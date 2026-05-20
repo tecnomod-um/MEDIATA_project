@@ -179,6 +179,17 @@ class FillableQuestionnairePdf:
         self.y = self.draw_wrapped(text, LEFT + 14, self.y, CONTENT_WIDTH - 14, FONT, BODY_SIZE, LINE)
         self.y -= 3
 
+    def numbered_item(self, marker: str, text: str) -> None:
+        marker = clean_inline(marker)
+        marker_width = self.c.stringWidth(marker, FONT, BODY_SIZE)
+        indent = marker_width + 8
+        height = estimate_text_height(text, CONTENT_WIDTH - indent, BODY_SIZE, LINE)
+        self.ensure_space(height + 3)
+        self.c.setFont(FONT, BODY_SIZE)
+        self.c.drawString(LEFT, self.y, marker)
+        self.y = self.draw_wrapped(text, LEFT + indent, self.y, CONTENT_WIDTH - indent, FONT, BODY_SIZE, LINE)
+        self.y -= 3
+
     def title(self, text: str) -> None:
         self.ensure_space(95)
 
@@ -713,6 +724,12 @@ def build_pdf(markdown_path: Path, output_path: Path, fillable: bool) -> None:
         if re.match(r"^\s*[-*]\s+", line):
             flush_paragraph()
             pdf.bullet(re.sub(r"^\s*[-*]\s+", "", stripped))
+            continue
+
+        numbered_match = re.match(r"^(\d+\.)\s+(.*)$", stripped)
+        if numbered_match:
+            flush_paragraph()
+            pdf.numbered_item(numbered_match.group(1), numbered_match.group(2))
             continue
 
         paragraph_buffer.append(stripped)
