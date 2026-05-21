@@ -1,61 +1,61 @@
-gender,years,admit_dt,dx,outcome_status,fim_eat_score,fim_toilet_score,barthel_feed,barthel_bath,barthel_mobility,discharge_dt,bmi,fim_total,barthel_total,notes
-Male,37,10/02/2024,Hypertension,Yes,2,5,0,5,10,,,7,15,
-Female,44,11/02/2024,Diabetes,Partial,3,6,5,10,15,13/02/2024,21.3,9,30,follow-up pending
-Unknown,51,12/02/2024,Pneumonia,No,4,7,10,0,0,15/02/2024,22.6,11,10,needs rehab
-Male,58,13/02/2024,Hyperlipidemia,Partial,5,1,15,5,5,17/02/2024,23.9,6,25,uses walker
-Female,65,14/02/2024,Heart failure,Partial,6,2,0,10,10,19/02/2024,99.9,8,20,stable
-Unknown,72,15/02/2024,Asthma,Yes,7,3,5,0,15,16/02/2024,26.5,10,20,needs supervision
-Male,79,16/02/2024,Myocardial infarction,No,2,4,10,5,0,18/02/2024,27.8,6,15,mobility ok
-Female,38,17/02/2024,Hypertension,Yes,3,5,15,10,5,20/02/2024,29.1,8,30,independent
-Unknown,45,18/02/2024,Diabetes,Partial,4,6,0,0,10,22/02/2024,30.4,10,10,acute decline
-Male,52,19/02/2024,Pneumonia,No,5,7,5,5,15,24/02/2024,31.7,12,25,critical
-Female,59,20/02/2024,Hyperlipidemia,Partial,6,1,10,10,0,21/02/2024,33.0,7,20,
-Unknown,66,21/02/2024,Heart failure,Partial,7,2,15,0,5,23/02/2024,,9,20,follow-up pending
-Male,73,22/02/2024,Asthma,Yes,2,3,0,5,10,,35.6,5,15,needs rehab
-Female,80,23/02/2024,Myocardial infarction,No,3,4,5,10,15,27/02/2024,36.9,7,30,uses walker
-Unknown,39,24/02/2024,Hypertension,Yes,4,5,10,0,0,29/02/2024,21.2,9,10,stable
-Male,46,25/02/2024,Diabetes,Partial,5,6,15,5,5,26/02/2024,22.5,11,25,needs supervision
-Female,53,26/02/2024,Pneumonia,No,6,7,0,10,10,28/02/2024,23.8,13,20,mobility ok
-Unknown,60,27/02/2024,Hyperlipidemia,Partial,7,1,5,0,15,01/03/2024,25.1,8,20,independent
-Male,67,28/02/2024,Heart failure,Partial,2,2,10,5,0,03/03/2024,26.4,4,15,acute decline
-Female,74,29/02/2024,Asthma,Yes,3,3,15,10,5,05/03/2024,27.7,6,30,critical
-Unknown,81,01/03/2024,Myocardial infarction,No,4,4,0,0,10,02/03/2024,29.0,8,10,
-Male,40,02/03/2024,Hypertension,Yes,5,5,5,5,15,04/03/2024,30.3,10,25,follow-up pending
-Female,47,03/03/2024,Diabetes,Partial,6,6,10,10,0,06/03/2024,,12,20,needs rehab
-Unknown,54,04/03/2024,Pneumonia,No,7,7,15,0,5,08/03/2024,32.9,14,20,uses walker
-Male,61,05/03/2024,Hyperlipidemia,Partial,2,1,0,5,10,,34.2,3,15,stable
-Female,68,06/03/2024,Heart failure,Partial,3,2,5,10,15,07/03/2024,35.5,5,30,needs supervision
-Unknown,75,07/03/2024,Asthma,Yes,4,3,10,0,0,09/03/2024,36.8,7,10,mobility ok
-Male,82,08/03/2024,Myocardial infarction,No,5,4,15,5,5,11/03/2024,21.1,9,25,independent
-Female,41,10/02/2024,Hypertension,Yes,6,5,0,10,10,14/02/2024,22.4,11,20,acute decline
-Unknown,48,11/02/2024,Diabetes,Partial,7,6,5,0,15,16/02/2024,23.7,13,20,critical
-Male,55,12/02/2024,Pneumonia,No,2,7,10,5,0,13/02/2024,25.0,9,15,
-Female,62,13/02/2024,Hyperlipidemia,Partial,3,1,15,10,5,15/02/2024,26.3,4,30,follow-up pending
-Unknown,69,14/02/2024,Heart failure,Partial,4,2,0,0,10,17/02/2024,27.6,6,10,needs rehab
-Male,76,15/02/2024,Asthma,Yes,5,3,5,5,15,19/02/2024,,8,25,uses walker
-Female,83,16/02/2024,Myocardial infarction,No,6,4,10,10,0,21/02/2024,30.2,10,20,stable
-Unknown,42,17/02/2024,Hypertension,Yes,7,5,15,0,5,18/02/2024,31.5,12,20,needs supervision
-Male,49,18/02/2024,Diabetes,Partial,2,6,0,5,10,,32.8,8,15,mobility ok
-Female,56,19/02/2024,Pneumonia,No,3,7,5,10,15,22/02/2024,34.1,10,30,independent
-Unknown,63,20/02/2024,Hyperlipidemia,Partial,4,1,10,0,0,24/02/2024,35.4,5,10,acute decline
-Male,70,21/02/2024,Heart failure,Partial,5,2,15,5,5,26/02/2024,36.7,7,25,critical
-Female,77,22/02/2024,Asthma,Yes,6,3,0,10,10,23/02/2024,21.0,9,20,
-Unknown,84,23/02/2024,Myocardial infarction,No,7,4,5,0,15,25/02/2024,22.3,11,20,follow-up pending
-Male,43,24/02/2024,Hypertension,Yes,2,5,10,5,0,27/02/2024,23.6,7,15,needs rehab
-Female,50,25/02/2024,Diabetes,Partial,3,6,15,10,5,29/02/2024,24.9,9,30,uses walker
-Unknown,57,26/02/2024,Pneumonia,No,4,7,0,0,10,02/03/2024,,11,10,stable
-Male,64,27/02/2024,Hyperlipidemia,Partial,5,1,5,5,15,28/02/2024,27.5,6,25,needs supervision
-Female,71,28/02/2024,Heart failure,Partial,6,2,10,10,0,01/03/2024,28.8,8,20,mobility ok
-Unknown,78,29/02/2024,Asthma,Yes,7,3,15,0,5,03/03/2024,30.1,10,20,independent
-Male,37,01/03/2024,Myocardial infarction,No,2,4,0,5,10,,31.4,6,15,acute decline
-Female,44,02/03/2024,Hypertension,Yes,3,5,5,10,15,07/03/2024,32.7,8,30,critical
-Unknown,51,03/03/2024,Diabetes,Partial,4,6,10,0,0,04/03/2024,34.0,10,10,
-Male,58,04/03/2024,Pneumonia,No,5,7,15,5,5,06/03/2024,35.3,12,25,follow-up pending
-Female,65,05/03/2024,Hyperlipidemia,Partial,6,1,0,10,10,08/03/2024,36.6,7,20,needs rehab
-Unknown,72,06/03/2024,Heart failure,Partial,7,2,5,0,15,10/03/2024,20.9,9,20,uses walker
-Male,79,07/03/2024,Asthma,Yes,2,3,10,5,0,12/03/2024,22.2,5,15,stable
-Female,38,08/03/2024,Myocardial infarction,No,3,4,15,10,5,09/03/2024,,7,30,needs supervision
-Unknown,45,10/02/2024,Hypertension,Yes,4,5,0,0,10,12/02/2024,24.8,9,10,mobility ok
-Male,52,11/02/2024,Diabetes,Partial,5,6,5,5,15,14/02/2024,26.1,11,25,independent
-Female,59,12/02/2024,Pneumonia,No,6,7,10,10,0,16/02/2024,27.4,13,20,acute decline
-Unknown,66,13/02/2024,Hyperlipidemia,Partial,7,1,15,0,5,18/02/2024,28.7,8,20,critical
+patient_sex,years,admit_dt,diagnosis,outcome,fim_eat_score,fim_toilet_score,barthel_feed,barthel_bath,barthel_mobility,discharge_dt,bmi,fim_total,barthel_total,smoking_history,notes
+Male,37,10/02/2024,Hypertension,Improved,2,5,0,5,10,,,7,15,Never,
+Female,44,11/02/2024,Diabetes,Partial,3,6,5,10,15,13/02/2024,21.3,9,30,Former,follow-up pending
+Unknown,51,12/02/2024,Pneumonia,No improvement,4,7,10,0,0,15/02/2024,22.6,11,10,Current,needs rehab
+Male,58,13/02/2024,Hyperlipidemia,Partial,5,1,15,5,5,17/02/2024,23.9,6,25,Unknown,uses walker
+Female,65,14/02/2024,Heart failure,Partial,6,2,0,10,10,19/02/2024,99.9,8,20,Never,stable
+Unknown,72,15/02/2024,Asthma,Improved,7,3,5,0,15,16/02/2024,26.5,10,20,Former,needs supervision
+Male,79,16/02/2024,Myocardial infarction,No improvement,2,4,10,5,0,18/02/2024,27.8,6,15,Current,mobility ok
+Female,38,17/02/2024,Hypertension,Improved,3,5,15,10,5,20/02/2024,29.1,8,30,Unknown,independent
+Unknown,45,18/02/2024,Diabetes,Partial,4,6,0,0,10,22/02/2024,30.4,10,10,Never,acute decline
+Male,52,19/02/2024,Pneumonia,No improvement,5,7,5,5,15,24/02/2024,31.7,12,25,Former,critical
+Female,59,20/02/2024,Hyperlipidemia,Partial,6,1,10,10,0,21/02/2024,33.0,7,20,Current,
+Unknown,66,21/02/2024,Heart failure,Partial,7,2,15,0,5,23/02/2024,,9,20,Unknown,follow-up pending
+Male,73,22/02/2024,Asthma,Improved,2,3,0,5,10,,35.6,5,15,Never,needs rehab
+Female,80,23/02/2024,Myocardial infarction,No improvement,3,4,5,10,15,27/02/2024,36.9,7,30,Former,uses walker
+Unknown,39,24/02/2024,Hypertension,Improved,4,5,10,0,0,29/02/2024,21.2,9,10,Current,stable
+Male,46,25/02/2024,Diabetes,Partial,5,6,15,5,5,26/02/2024,22.5,11,25,Unknown,needs supervision
+Female,53,26/02/2024,Pneumonia,No improvement,6,7,0,10,10,28/02/2024,23.8,13,20,Never,mobility ok
+Unknown,60,27/02/2024,Hyperlipidemia,Partial,7,1,5,0,15,01/03/2024,25.1,8,20,Former,independent
+Male,67,28/02/2024,Heart failure,Partial,2,2,10,5,0,03/03/2024,26.4,4,15,Current,acute decline
+Female,74,29/02/2024,Asthma,Improved,3,3,15,10,5,05/03/2024,27.7,6,30,Unknown,critical
+Unknown,81,01/03/2024,Myocardial infarction,No improvement,4,4,0,0,10,02/03/2024,29.0,8,10,Never,
+Male,40,02/03/2024,Hypertension,Improved,5,5,5,5,15,04/03/2024,30.3,10,25,Former,follow-up pending
+Female,47,03/03/2024,Diabetes,Partial,6,6,10,10,0,06/03/2024,,12,20,Current,needs rehab
+Unknown,54,04/03/2024,Pneumonia,No improvement,7,7,15,0,5,08/03/2024,32.9,14,20,Unknown,uses walker
+Male,61,05/03/2024,Hyperlipidemia,Partial,2,1,0,5,10,,34.2,3,15,Never,stable
+Female,68,06/03/2024,Heart failure,Partial,3,2,5,10,15,07/03/2024,35.5,5,30,Former,needs supervision
+Unknown,75,07/03/2024,Asthma,Improved,4,3,10,0,0,09/03/2024,36.8,7,10,Current,mobility ok
+Male,82,08/03/2024,Myocardial infarction,No improvement,5,4,15,5,5,11/03/2024,21.1,9,25,Unknown,independent
+Female,41,10/02/2024,Hypertension,Improved,6,5,0,10,10,14/02/2024,22.4,11,20,Never,acute decline
+Unknown,48,11/02/2024,Diabetes,Partial,7,6,5,0,15,16/02/2024,23.7,13,20,Former,critical
+Male,55,12/02/2024,Pneumonia,No improvement,2,7,10,5,0,13/02/2024,25.0,9,15,Current,
+Female,62,13/02/2024,Hyperlipidemia,Partial,3,1,15,10,5,15/02/2024,26.3,4,30,Unknown,follow-up pending
+Unknown,69,14/02/2024,Heart failure,Partial,4,2,0,0,10,17/02/2024,27.6,6,10,Never,needs rehab
+Male,76,15/02/2024,Asthma,Improved,5,3,5,5,15,19/02/2024,,8,25,Former,uses walker
+Female,83,16/02/2024,Myocardial infarction,No improvement,6,4,10,10,0,21/02/2024,30.2,10,20,Current,stable
+Unknown,42,17/02/2024,Hypertension,Improved,7,5,15,0,5,18/02/2024,31.5,12,20,Unknown,needs supervision
+Male,49,18/02/2024,Diabetes,Partial,2,6,0,5,10,,32.8,8,15,Never,mobility ok
+Female,56,19/02/2024,Pneumonia,No improvement,3,7,5,10,15,22/02/2024,34.1,10,30,Former,independent
+Unknown,63,20/02/2024,Hyperlipidemia,Partial,4,1,10,0,0,24/02/2024,35.4,5,10,Current,acute decline
+Male,70,21/02/2024,Heart failure,Partial,5,2,15,5,5,26/02/2024,36.7,7,25,Unknown,critical
+Female,77,22/02/2024,Asthma,Improved,6,3,0,10,10,23/02/2024,21.0,9,20,Never,
+Unknown,84,23/02/2024,Myocardial infarction,No improvement,7,4,5,0,15,25/02/2024,22.3,11,20,Former,follow-up pending
+Male,43,24/02/2024,Hypertension,Improved,2,5,10,5,0,27/02/2024,23.6,7,15,Current,needs rehab
+Female,50,25/02/2024,Diabetes,Partial,3,6,15,10,5,29/02/2024,24.9,9,30,Unknown,uses walker
+Unknown,57,26/02/2024,Pneumonia,No improvement,4,7,0,0,10,02/03/2024,,11,10,Never,stable
+Male,64,27/02/2024,Hyperlipidemia,Partial,5,1,5,5,15,28/02/2024,27.5,6,25,Former,needs supervision
+Female,71,28/02/2024,Heart failure,Partial,6,2,10,10,0,01/03/2024,28.8,8,20,Current,mobility ok
+Unknown,78,29/02/2024,Asthma,Improved,7,3,15,0,5,03/03/2024,30.1,10,20,Unknown,independent
+Male,37,01/03/2024,Myocardial infarction,No improvement,2,4,0,5,10,,31.4,6,15,Never,acute decline
+Female,44,02/03/2024,Hypertension,Improved,3,5,5,10,15,07/03/2024,32.7,8,30,Former,critical
+Unknown,51,03/03/2024,Diabetes,Partial,4,6,10,0,0,04/03/2024,34.0,10,10,Current,
+Male,58,04/03/2024,Pneumonia,No improvement,5,7,15,5,5,06/03/2024,35.3,12,25,Unknown,follow-up pending
+Female,65,05/03/2024,Hyperlipidemia,Partial,6,1,0,10,10,08/03/2024,36.6,7,20,Never,needs rehab
+Unknown,72,06/03/2024,Heart failure,Partial,7,2,5,0,15,10/03/2024,20.9,9,20,Former,uses walker
+Male,79,07/03/2024,Asthma,Improved,2,3,10,5,0,12/03/2024,22.2,5,15,Current,stable
+Female,38,08/03/2024,Myocardial infarction,No improvement,3,4,15,10,5,09/03/2024,,7,30,Unknown,needs supervision
+Unknown,45,10/02/2024,Hypertension,Improved,4,5,0,0,10,12/02/2024,24.8,9,10,Never,mobility ok
+Male,52,11/02/2024,Diabetes,Partial,5,6,5,5,15,14/02/2024,26.1,11,25,Former,independent
+Female,59,12/02/2024,Pneumonia,No improvement,6,7,10,10,0,16/02/2024,27.4,13,20,Current,acute decline
+Unknown,66,13/02/2024,Hyperlipidemia,Partial,7,1,15,0,5,18/02/2024,28.7,8,20,Unknown,critical
