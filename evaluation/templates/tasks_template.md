@@ -63,17 +63,15 @@ Use multi-selection when needed: `Ctrl`-click or `Shift`-click on desktop, or lo
 
 Record whether file selection, multi-selection, and opening files were clear.
 
-### Task 2 - Select Files and Hide One Feature
+### Task 2 - Select Files and Toggle `fim_total`
 
-**Purpose:** Check whether users understand that loaded files, selected files, and visible features are controlled separately.
+**Purpose:** Check whether users understand file selection and feature visibility controls.
 
-1. Use the Discovery file selector to enable all loaded sample datasets.
-2. In the feature toggles, search for `fim_total`.
-3. Hide `fim_total` from the current view.
-4. Confirm that it disappears from the tables/charts.
-5. Show `fim_total` again before continuing.
+1. Enable all loaded sample datasets in the Discovery file selector.
+2. Search for `fim_total` in the feature toggles.
+3. Hide `fim_total`, confirm it disappears from the tables/charts, then show it again.
 
-Record whether it was clear how to select files, search for a feature, hide it, and show it again.
+Record whether selecting files and toggling `fim_total` was clear.
 
 ### Task 3 - Inspect Columns and Value Summaries
 
