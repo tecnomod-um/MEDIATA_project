@@ -43,6 +43,7 @@ TABLE_BOTTOM_GAP = 12
 SCALE_ITEM_GAP = 8
 
 LOGO_URL = "https://github.com/user-attachments/assets/ed5d54ab-8f39-42c9-841d-fa052d8dcea5"
+LINK_COLOR = colors.HexColor("#0b63b6")
 
 
 class FillableQuestionnairePdf:
@@ -53,6 +54,8 @@ class FillableQuestionnairePdf:
         self.page_no = 1
         self.field_no = 1
         self.fillable = fillable
+        self.title_top_padding = 0
+        self.title_bottom_gap = 28
         self.c._doc.needAppearances = True
 
     def field_name(self, prefix: str) -> str:
@@ -127,6 +130,138 @@ class FillableQuestionnairePdf:
 
         return y
 
+    def draw_wrapped_rich(
+        self,
+        text: str,
+        x: float,
+        y: float,
+        width: float,
+        font: str = FONT,
+        size: float = BODY_SIZE,
+        leading: float = LINE,
+    ) -> float:
+        segments = parse_markdown_link_segments(text)
+
+        if not any(url for _, url in segments):
+            return self.draw_wrapped(text, x, y, width, font, size, leading)
+
+        self.c.setFont(font, size)
+        space_width = self.c.stringWidth(" ", font, size)
+        lines: List[List[tuple[str, str | None, int | None, bool]]] = []
+        current_line: List[tuple[str, str | None, int | None, bool]] = []
+
+        def line_width(tokens: List[tuple[str, str | None, int | None, bool]]) -> float:
+            total = 0.0
+            for index, (word, _, _, leading_space) in enumerate(tokens):
+                if index and leading_space:
+                    total += space_width
+                total += self.c.stringWidth(word, font, size)
+            return total
+
+        pending_space = False
+
+        for segment_index, (segment_text, url) in enumerate(segments):
+            link_id = segment_index if url else None
+            parts = segment_text.split("\n")
+
+            for part_index, part in enumerate(parts):
+                if part_index > 0:
+                    if current_line:
+                        lines.append(current_line)
+                        current_line = []
+                    else:
+                        lines.append([])
+                    pending_space = False
+
+                previous_end = 0
+                matched = False
+
+                for match in re.finditer(r"\S+", part):
+                    matched = True
+                    word = match.group(0)
+                    leading_space = pending_space or bool(part[previous_end:match.start()].strip() == "" and part[previous_end:match.start()])
+                    token = (word, url, link_id, leading_space)
+                    candidate = current_line + [token]
+
+                    if current_line and line_width(candidate) > width:
+                        lines.append(current_line)
+                        current_line = [(word, url, link_id, False)]
+                    else:
+                        current_line = candidate
+
+                    pending_space = False
+                    previous_end = match.end()
+
+                if matched:
+                    pending_space = bool(part[previous_end:].strip() == "" and part[previous_end:])
+                elif part:
+                    pending_space = pending_space or bool(part.strip() == "")
+
+        if current_line or not lines:
+            lines.append(current_line)
+
+        for line_tokens in lines:
+            cursor_x = x
+
+            if not line_tokens:
+                y -= leading
+                continue
+
+            active_link_url = None
+            active_link_id = None
+            active_link_start = None
+            active_link_end = None
+
+            def close_link() -> None:
+                nonlocal active_link_url, active_link_id, active_link_start, active_link_end
+
+                if active_link_url and active_link_start is not None and active_link_end is not None:
+                    underline_y = y - 1.2
+                    self.c.setLineWidth(0.6)
+                    self.c.setStrokeColor(LINK_COLOR)
+                    self.c.line(active_link_start, underline_y, active_link_end, underline_y)
+                    self.c.linkURL(
+                        active_link_url,
+                        (active_link_start, y - 2, active_link_end, y + size),
+                        relative=not has_uri_scheme(active_link_url),
+                    )
+                    self.c.setStrokeColor(colors.black)
+
+                active_link_url = None
+                active_link_id = None
+                active_link_start = None
+                active_link_end = None
+
+            for index, (word, url, link_id, leading_space) in enumerate(line_tokens):
+                prefix = " " if index and leading_space else ""
+                prefix_width = self.c.stringWidth(prefix, font, size)
+                word_x = cursor_x + prefix_width
+                word_width = self.c.stringWidth(word, font, size)
+
+                if active_link_url and (url != active_link_url or link_id != active_link_id):
+                    close_link()
+
+                if url:
+                    self.c.setFillColor(LINK_COLOR)
+                    if not active_link_url:
+                        active_link_url = url
+                        active_link_id = link_id
+                        active_link_start = word_x
+                    active_link_end = word_x + word_width
+                else:
+                    self.c.setFillColor(colors.black)
+
+                self.c.drawString(cursor_x, y, f"{prefix}{word}")
+
+                cursor_x += prefix_width + word_width
+
+            close_link()
+            y -= leading
+
+        self.c.setFillColor(colors.black)
+        self.c.setStrokeColor(colors.black)
+        return y
+
     def paragraph(self, text: str, bottom_gap: float = PARAGRAPH_BOTTOM_GAP) -> None:
         scale_items = parse_scale_items(text)
 
@@ -136,7 +271,7 @@ class FillableQuestionnairePdf:
 
         height = estimate_text_height(text, CONTENT_WIDTH, BODY_SIZE, LINE)
         self.ensure_space(height + max(bottom_gap, 0))
-        self.y = self.draw_wrapped(text, LEFT, self.y, CONTENT_WIDTH, FONT, BODY_SIZE, LINE)
+        self.y = self.draw_wrapped_rich(text, LEFT, self.y, CONTENT_WIDTH, FONT, BODY_SIZE, LINE)
         self.y -= bottom_gap
 
     def scale_legend(self, items: List[str]) -> None:
@@ -176,7 +311,7 @@ class FillableQuestionnairePdf:
         self.ensure_space(height + 3)
         self.c.setFont(FONT, BODY_SIZE)
         self.c.drawString(LEFT, self.y, "-")
-        self.y = self.draw_wrapped(text, LEFT + 14, self.y, CONTENT_WIDTH - 14, FONT, BODY_SIZE, LINE)
+        self.y = self.draw_wrapped_rich(text, LEFT + 14, self.y, CONTENT_WIDTH - 14, FONT, BODY_SIZE, LINE)
         self.y -= 3
 
     def numbered_item(self, marker: str, text: str) -> None:
@@ -187,11 +322,12 @@ class FillableQuestionnairePdf:
         self.ensure_space(height + 3)
         self.c.setFont(FONT, BODY_SIZE)
         self.c.drawString(LEFT, self.y, marker)
-        self.y = self.draw_wrapped(text, LEFT + indent, self.y, CONTENT_WIDTH - indent, FONT, BODY_SIZE, LINE)
+        self.y = self.draw_wrapped_rich(text, LEFT + indent, self.y, CONTENT_WIDTH - indent, FONT, BODY_SIZE, LINE)
         self.y -= 3
 
     def title(self, text: str) -> None:
-        self.ensure_space(95)
+        self.ensure_space(95 + self.title_top_padding)
+        self.y -= self.title_top_padding
 
         logo_reader = load_logo(LOGO_URL)
 
@@ -215,7 +351,7 @@ class FillableQuestionnairePdf:
         clean_text = clean_inline(text)
         text_width = self.c.stringWidth(clean_text, FONT_BOLD, TITLE_SIZE)
         self.c.drawString((PAGE_WIDTH - text_width) / 2, self.y, clean_text)
-        self.y -= 28
+        self.y -= self.title_bottom_gap
 
     def h1(self, text: str) -> None:
         self.ensure_space(70)
@@ -225,10 +361,11 @@ class FillableQuestionnairePdf:
         self.y -= 18
 
     def h2(self, text: str) -> None:
-        self.ensure_space(58)
+        self.ensure_space(62)
+        self.y -= 7
         self.c.setFont(FONT_BOLD, H2_SIZE)
         self.c.drawString(LEFT, self.y, clean_inline(text))
-        self.y -= 13
+        self.y -= 10
 
     def draw_text_field(
         self,
@@ -423,12 +560,40 @@ def load_logo(url: str) -> ImageReader | None:
         return None
 
 
-def clean_inline(text: str) -> str:
+def strip_basic_markdown(text: str) -> str:
     text = text.strip()
     text = re.sub(r"`([^`]+)`", r"\1", text)
     text = re.sub(r"\*\*([^*]+)\*\*", r"\1", text)
     text = re.sub(r"\*([^*]+)\*", r"\1", text)
     return text
+
+
+def clean_inline(text: str) -> str:
+    text = strip_basic_markdown(text)
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r"\1", text)
+    return text
+
+
+def parse_markdown_link_segments(text: str) -> List[tuple[str, str | None]]:
+    text = strip_basic_markdown(text)
+    pattern = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+    segments: List[tuple[str, str | None]] = []
+    cursor = 0
+
+    for match in pattern.finditer(text):
+        if match.start() > cursor:
+            segments.append((text[cursor:match.start()], None))
+        segments.append((match.group(1), match.group(2)))
+        cursor = match.end()
+
+    if cursor < len(text):
+        segments.append((text[cursor:], None))
+
+    return segments
+
+
+def has_uri_scheme(url: str) -> bool:
+    return bool(re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", url))
 
 
 def parse_scale_items(text: str) -> List[str]:

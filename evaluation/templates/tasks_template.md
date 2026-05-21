@@ -13,7 +13,7 @@ The goal is to evaluate the tool workflow. You are not being evaluated on clinic
 
 Before starting:
 
-- Launch the local deployment using the `readme.md` from the umbrella repository (`github.com/tecnomod-um/MEDIATA_project`), section `local deployment`.
+- Launch the local deployment following the [`readme.md` local deployment section](https://github.com/tecnomod-um/MEDIATA_project?tab=readme-ov-file#local-deployment) from the [umbrella repository](https://github.com/tecnomod-um/MEDIATA_project).
 - Open the tutorial page from the navigation bar in a new tab.
 - Keep this task sheet and the questionnaire available while working.
 
@@ -21,8 +21,9 @@ Before starting:
 
 ## 2. Evaluation Focus
 
-These tasks evaluate two parts of MEDIATA:
+These tasks evaluate three parts of MEDIATA:
 
+- **Node and Metadata:** initial user interaction with the interface.
 - **Discovery:** finding datasets, selecting several files, inspecting columns, values, data types, filters, aggregate statistics, and data-quality signals.
 - **Integration:** generating element metadata, loading those element files, using or creating mappings, reviewing suggested mappings, loading a schema or mapping specification, processing datasets, and checking the resulting files.
 
@@ -40,10 +41,11 @@ When a task asks you to "record" something, write it in the questionnaire.
 2. Select the `default` project.
 3. Open the `MEDIATA` Node.
 4. Open the Node metadata panel.
-5. Find the FAIR Data Point badge.
-6. Copy the FAIR Data Point URL and open it in another browser tab.
+5. Inspect the dataset descriptions shown in the metadata panel.
+6. Find the FAIR Data Point badge.
+7. Copy the FAIR Data Point URL and open it in another browser tab.
 
-Record whether the project, Node, metadata panel, and FAIR Data Point URL were easy to find.
+Record whether the project, Node, metadata panel, dataset descriptions, and FAIR Data Point URL were easy to find and understand.
 
 ---
 
@@ -55,8 +57,7 @@ Record whether the project, Node, metadata panel, and FAIR Data Point URL were e
 
 1. Open the Discovery tab. The File Explorer will open.
 2. Open `sample_dataset_1.csv` first.
-3. Reload the page.
-4. Then open all four sample datasets together.
+3. Reload the page, then open all four sample datasets together.
 
 Use multi-selection when needed: `Ctrl`-click or `Shift`-click on desktop, or long-press a file row to enter multiple-selection mode.
 
@@ -78,12 +79,13 @@ Record whether it was clear how to select files, search for a feature, hide it, 
 
 **Purpose:** Check whether users can inspect the information needed before integration.
 
-1. Find a sex or gender column.
-2. Find at least one functional score column, such as an eating, bathing, toileting, FIM, or Barthel field.
-3. Inspect the displayed type, examples, counts, charts, and missing-value information.
-4. If a feature seems to be shown in the wrong type table, use the selected feature type switch to view it as categorical or continuous.
+1. Find one sex field and one smoking-related field.
+2. Find one diagnosis field.
+3. Find at least one functional score column, such as an eating, bathing, toileting, FIM, or Barthel field.
+4. Inspect the displayed type, examples, counts, charts, and missing-value information.
+5. If a feature seems to be shown in the wrong type table, use the selected feature type switch to view it as categorical or continuous.
 
-Record whether column names, values, data types, and summaries were understandable.
+Record whether equivalent fields across files were easy to recognize, and whether column names, values, data types, and summaries were understandable.
 
 ### Task 4 - Filter One Dataset
 
@@ -106,21 +108,21 @@ Record whether the filter controls and the updated charts were clear.
 3. Change the metric to Pearson correlation.
 4. Change the metric to Spearman correlation.
 5. Resize the upper and lower panels.
-6. Inspect the omitted-features panel and note one reason why a feature was omitted, if any are listed.
+6. Inspect the omitted-features panel, if any omitted features are listed.
 
-Record whether the metric selector, resizing, and omitted-feature explanations were understandable.
+Record whether the metric selector, resizing, and omitted-feature UI were understandable.
 
 ### Task 6 - Detect and Clean a Planted Outlier
 
 **Purpose:** Check whether users can notice an obvious data-quality issue and apply a concrete cleaning step.
 
 1. In Discovery, inspect `sample_dataset_1.csv`.
-2. Select `systolic_bp` and use the outliers switch/chart to notice the planted value `999`.
+2. Select a continuous measurement field and use the integrity metrics or outlier indicators to identify an obvious outlier.
 3. Reload Discovery, in the File Explorer, select `sample_dataset_1.csv`, and open Data cleaning.
 4. Choose `Remove rows with pattern`.
-5. Configure it for column `systolic_bp` with a pattern that removes only the outlier row, for example `^999$`.
+5. Configure it for the column containing the outlier with a pattern that removes only the anomalous row you identified. For example, use an exact-match regular expression such as `^<value you saw>$` rather than a broad pattern that would remove normal rows.
 6. Apply the cleaning step.
-7. Open the cleaned output in Discovery and confirm that the `999` value is gone.
+7. Open the cleaned output in Discovery and confirm that the outlier is gone.
 
 Record whether the outlier was visible, whether the cleaning operation was understandable, and whether the cleaned output was easy to verify.
 
@@ -129,12 +131,15 @@ Record whether the outlier was visible, whether the cleaning operation was under
 **Purpose:** Check whether users can move from Discovery into Integration using the intended tool flow.
 
 1. Return to Discovery with all four sample datasets loaded.
-2. Use `Upload elements` to generate/upload the element metadata files.
-3. Note the generated element files and where they appear.
+2. In the Discovery file selector, make sure the sample datasets you want to use are enabled and visible in the current view.
+3. Use `Upload elements` to generate/upload element metadata for the datasets currently shown in Discovery.
+4. Note the generated element files and where they appear.
 
-Record whether it was clear that Integration uses generated element metadata rather than the raw datasets directly.
+Record whether it was clear that element generation depends on which datasets are enabled in Discovery, and whether Integration uses generated element metadata rather than the raw datasets directly.
 
 ---
+
+<!-- pagebreak -->
 
 ## 5. Integration Tasks
 
@@ -149,13 +154,13 @@ Record whether it was clear that Integration uses generated element metadata rat
 
 Record whether the feature list, selected feature area, mapping controls, and resulting mapping panel were clear.
 
-### Task 9 - Create a Simple Manual Sex/Gender Mapping
+### Task 9 - Create a Simple Manual Smoking-History Mapping
 
-**Purpose:** Check whether users can create a small categorical mapping by hand.
+**Purpose:** Check whether users can create a small categorical mapping by hand for a realistic harmonization case.
 
-1. Select the available sex or gender columns.
-2. Create a target mapping such as `sex`.
-3. Add normalized values such as `Female`, `Male`, and `Unknown` when applicable.
+1. Select the available smoking-related columns.
+2. Create a target mapping such as `smoking_history`.
+3. Add normalized values such as `Never`, `Former`, `Current`, and `Unknown`.
 4. Assign the source categories to the normalized output values.
 5. Add the mapping to the result.
 
@@ -170,25 +175,26 @@ Use `evaluation/sample_schemas/sample_schema.json`.
 1. Open the Schema tab.
 2. Upload the target schema.
 3. Inspect the target fields.
-4. Find or create/review the bathing-related mapping.
-5. Using the in-app mapping editor, rename the resulting bathing column to `bathing_status`.
-6. Confirm that the result panel shows the renamed mapping.
+4. Use the schema-guided suggestions to check whether the loaded fields now suggest the expected schema targets.
+5. Find or create/review the bathing-related mapping.
+6. Using the in-app mapping editor, rename the resulting bathing column to `bathing_status`.
+7. Confirm that the renamed mapping appears in the column name suggestions as expected.
 
-Record whether the schema loaded, whether target fields were visible, and whether renaming the bathing mapping in the editor was clear.
+Record whether the schema loaded, whether schema-guided suggestions pointed to expected target fields, and whether renaming the bathing mapping in the editor was clear.
 
 ### Task 11 - Run Suggested Mappings
 
 **Purpose:** Check whether users can generate, inspect, and correct automatic mapping suggestions.
 
 1. Click `Suggest mappings`.
-2. Use the option that lets you review or replace the current result, depending on what the UI offers.
+2. Use the option that replaces the current result.
 3. Inspect the suggested column groups.
-4. Inspect the values or numeric ranges inside at least three suggested mappings.
+4. Inspect suggested values or numeric ranges where they are shown.
 5. Correct one questionable mapping if you find one.
 
-Pay special attention to whether similar concepts are grouped sensibly, such as eating with eating, bathing with bathing, and toileting with toileting. Also check that different categories are not collapsed incorrectly.
+Pay special attention to whether similar concepts are grouped sensibly, such as sex with sex, smoking history with smoking history, eating with eating, bathing with bathing, and toileting with toileting.
 
-Record whether suggestions were useful, whether value assignments were understandable, and what you corrected, if anything.
+Record whether suggestions were useful, whether the grouped concepts made sense, and what you corrected, if anything.
 
 ### Task 12 - Upload the Sample Mapping Specification
 
@@ -208,11 +214,11 @@ Record whether upload, file resolution, and loaded mappings were understandable.
 
 Choose one mapping to inspect or modify. Suggested options:
 
-- `smoker`
+- `smoking_history`
 - `bmi`
 - an eating, bathing, toileting, FIM, or Barthel score mapping
 
-Record what you changed and whether the interface gave enough feedback.
+Record whether you could inspect or edit the mapping successfully, and whether the edit controls were clear.
 
 ### Task 14 - Process the Datasets
 
@@ -220,10 +226,10 @@ Record what you changed and whether the interface gave enough feedback.
 
 1. Click `Process datasets`.
 2. In the processing modal, select each source dataset that should be transformed.
-3. Apply the mapping.
-4. Observe progress and output feedback.
+3. Check that the modal and listed files make sense.
+4. Apply the mapping.
 
-Record whether it was clear that each file needed to be selected and whether the output was understandable.
+Record whether it was clear that each file needed to be selected and whether the processing modal was understandable.
 
 ### Task 15 - Save, Export, and Reopen the Results in Discovery
 
@@ -234,12 +240,10 @@ Record whether it was clear that each file needed to be selected and whether the
 3. Find the produced `parsed_` files.
 4. Rename the produced files if needed.
 5. Open the produced files in Discovery.
-6. Enable the relevant produced files.
-7. Inspect their shape, columns, and at least one value summary.
-8. Use the feature search/toggles to focus on one resulting score column and one resulting categorical column.
-9. If you notice a minor format issue, open the Data cleaning panel and inspect the available fix options.
+6. Inspect their shape, columns, and at least one value summary.
+7. Use the feature search/toggles to focus on one resulting score column and one resulting categorical column.
 
-Record whether the output files were easy to find, whether renaming was clear, and whether the parsed files looked usable in Discovery.
+Record whether the output files were easy to find and rename, and whether the parsed file shape, columns, and value summaries were expected.
 
 ---
 
