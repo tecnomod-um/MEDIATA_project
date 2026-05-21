@@ -6,36 +6,168 @@
     "title": "MEDIATA Evaluation Target Schema",
     "type": "object",
     "properties": {
-      "sex": {"type": ["string", "null"], "description": "Normalized sex or gender."},
-      "age": {"type": ["integer", "null"]},
-      "birth_year": {"type": ["integer", "null"]},
-      "admission_date": {"type": ["string", "null"], "description": "ISO date."},
-      "discharge_date": {"type": ["string", "null"], "description": "ISO date."},
-      "diagnosis_code": {"type": ["string", "null"]},
-      "diagnosis": {"type": ["string", "null"]},
-      "outcome": {"type": ["string", "null"]},
-      "discharge_status": {"type": ["string", "null"]},
-      "smoker": {"type": ["string", "null"]},
-      "systolic_bp": {"type": ["integer", "null"]},
-      "bmi": {"type": ["number", "null"]},
-      "height_cm": {"type": ["number", "null"]},
-      "weight_kg": {"type": ["number", "null"]},
-      "fim_eating": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
-      "fim_grooming": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
-      "fim_toileting": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
-      "fim_transfer": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
-      "fim_locomotion": {"type": ["integer", "null"], "minimum": 1, "maximum": 7},
-      "fim_total": {"type": ["integer", "null"]},
-      "barthel_feeding": {"type": ["integer", "null"], "enum": [0, 5, 10, 15, null]},
-      "barthel_bathing": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
-      "barthel_dressing": {"type": ["integer", "null"], "enum": [0, 5, 10, 15, null]},
-      "barthel_toiletuse": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
-      "barthel_bladder": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
-      "barthel_bowel": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
-      "barthel_transfers": {"type": ["integer", "null"], "enum": [0, 5, 10, 15, null]},
-      "barthel_mobility": {"type": ["integer", "null"], "enum": [0, 5, 10, 15, null]},
-      "barthel_stairs": {"type": ["integer", "null"], "enum": [0, 5, 10, null]},
-      "barthel_total": {"type": ["integer", "null"]}
+      "sex": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Normalized patient sex field."
+      },
+      "age": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "birth_year": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "admission_date": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "ISO date."
+      },
+      "discharge_date": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "ISO date."
+      },
+      "diagnosis_code": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "diagnosis": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "outcome": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "discharge_status": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "smoking_history": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "systolic_bp": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "bmi": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "height_cm": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "weight_kg": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "eating": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Eating or feeding activity score."
+      },
+      "grooming": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Grooming activity score."
+      },
+      "toileting": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Toileting or toilet-use activity score."
+      },
+      "transfers": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Transfer activity score."
+      },
+      "mobility": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Mobility, walking, or locomotion activity score."
+      },
+      "fim_total": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "bathing": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Bathing activity score."
+      },
+      "dressing": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Dressing activity score."
+      },
+      "bowel": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Bowel control score."
+      },
+      "stairs": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Stair-climbing activity score."
+      },
+      "barthel_total": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      }
     },
     "required": [],
     "additionalProperties": false
@@ -67,25 +199,33 @@
       "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
       "nodeId": "sample-local-node",
       "elementFileName": "sample_dataset_1_elements.csv",
-      "datasets": ["sample_dataset_1.csv"]
+      "datasets": [
+        "sample_dataset_1.csv"
+      ]
     },
     {
       "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
       "nodeId": "sample-local-node",
       "elementFileName": "sample_dataset_2_elements.csv",
-      "datasets": ["sample_dataset_2.csv"]
+      "datasets": [
+        "sample_dataset_2.csv"
+      ]
     },
     {
       "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
       "nodeId": "sample-local-node",
       "elementFileName": "sample_dataset_3_elements.csv",
-      "datasets": ["sample_dataset_3.csv"]
+      "datasets": [
+        "sample_dataset_3.csv"
+      ]
     },
     {
       "sourceId": "sample-local-node::sample_dataset_4_elements.csv",
       "nodeId": "sample-local-node",
       "elementFileName": "sample_dataset_4_elements.csv",
-      "datasets": ["sample_dataset_4.csv"]
+      "datasets": [
+        "sample_dataset_4.csv"
+      ]
     }
   ],
   "mappings": [
@@ -95,37 +235,142 @@
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "sex"},
-        {"sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "gender"},
-        {"sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "gender_code"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "sex"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "patient_sex"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+          "column": "sex_code"
+        }
       ],
       "rules": [
         {
           "id": "rule-sex-male",
           "logic": {
             "or": [
-              {"==": [{"var": "sample-local-node::sample_dataset_1_elements.csv::sex"}, "M"]},
-              {"==": [{"var": "sample-local-node::sample_dataset_2_elements.csv::gender"}, "Male"]},
-              {"==": [{"var": "sample-local-node::sample_dataset_3_elements.csv::gender_code"}, "1"]}
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_1_elements.csv::sex"
+                  },
+                  "M"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_2_elements.csv::patient_sex"
+                  },
+                  "Male"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_3_elements.csv::sex_code"
+                  },
+                  "1"
+                ]
+              }
             ]
           },
-          "then": {"kind": "constant", "value": "Male"},
-          "metadata": {"terminology": "", "description": "Normalize male encodings."}
+          "then": {
+            "kind": "constant",
+            "value": "Male"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Normalize male values."
+          }
         },
         {
           "id": "rule-sex-female",
           "logic": {
             "or": [
-              {"==": [{"var": "sample-local-node::sample_dataset_1_elements.csv::sex"}, "F"]},
-              {"==": [{"var": "sample-local-node::sample_dataset_2_elements.csv::gender"}, "Female"]},
-              {"==": [{"var": "sample-local-node::sample_dataset_3_elements.csv::gender_code"}, "0"]}
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_1_elements.csv::sex"
+                  },
+                  "F"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_2_elements.csv::patient_sex"
+                  },
+                  "Female"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_3_elements.csv::sex_code"
+                  },
+                  "2"
+                ]
+              }
             ]
           },
-          "then": {"kind": "constant", "value": "Female"},
-          "metadata": {"terminology": "", "description": "Normalize female encodings."}
+          "then": {
+            "kind": "constant",
+            "value": "Female"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Normalize female values."
+          }
+        },
+        {
+          "id": "rule-sex-unknown",
+          "logic": {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_1_elements.csv::sex"
+                  },
+                  "U"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_2_elements.csv::patient_sex"
+                  },
+                  "Unknown"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_3_elements.csv::sex_code"
+                  },
+                  "9"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "Unknown"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Normalize unknown values."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Example categorical value normalization."},
+      "metadata": {
+        "terminology": "",
+        "description": "Example demographic normalization across practical source variations."
+      },
       "removeSourceColumns": false
     },
     {
@@ -134,24 +379,59 @@
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "age"},
-        {"sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "years"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "age"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "years"
+        }
       ],
       "rules": [
         {
           "id": "rule-age-1",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_1_elements.csv::age"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "age"},
-          "metadata": {"terminology": "", "description": "Copy age from sample dataset 1."}
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_1_elements.csv::age"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+            "column": "age"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy age from dataset 1."
+          }
         },
         {
           "id": "rule-age-2",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_2_elements.csv::years"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "years"},
-          "metadata": {"terminology": "", "description": "Copy years from sample dataset 2."}
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_2_elements.csv::years"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+            "column": "years"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy years from dataset 2."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Example numeric passthrough mapping."},
+      "metadata": {
+        "terminology": "",
+        "description": "Example numeric passthrough mapping."
+      },
       "removeSourceColumns": false
     },
     {
@@ -160,17 +440,36 @@
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "birth_year"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+          "column": "birth_year"
+        }
       ],
       "rules": [
         {
           "id": "rule-birth-year-1",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_3_elements.csv::birth_year"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "birth_year"},
-          "metadata": {"terminology": "", "description": "Copy birth year from sample dataset 3."}
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_3_elements.csv::birth_year"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+            "column": "birth_year"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy birth year from dataset 3."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Example single-source passthrough mapping."},
+      "metadata": {
+        "terminology": "",
+        "description": "Example single-source passthrough mapping."
+      },
       "removeSourceColumns": false
     },
     {
@@ -179,31 +478,82 @@
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "admission_date"},
-        {"sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "admit_dt"},
-        {"sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "visit_date"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "admission_date"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "admit_dt"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+          "column": "visit_date"
+        }
       ],
       "rules": [
         {
           "id": "rule-admission-date-1",
-          "logic": {"is_date": [{"var": "sample-local-node::sample_dataset_1_elements.csv::admission_date"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "admission_date"},
-          "metadata": {"terminology": "", "description": "Copy ISO admission date."}
+          "logic": {
+            "is_date": [
+              {
+                "var": "sample-local-node::sample_dataset_1_elements.csv::admission_date"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+            "column": "admission_date"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy ISO admission date."
+          }
         },
         {
           "id": "rule-admission-date-2",
-          "logic": {"is_date": [{"var": "sample-local-node::sample_dataset_2_elements.csv::admit_dt"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "admit_dt"},
-          "metadata": {"terminology": "", "description": "Copy day/month/year admission date."}
+          "logic": {
+            "is_date": [
+              {
+                "var": "sample-local-node::sample_dataset_2_elements.csv::admit_dt"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+            "column": "admit_dt"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy day/month/year admission date."
+          }
         },
         {
           "id": "rule-admission-date-3",
-          "logic": {"is_date": [{"var": "sample-local-node::sample_dataset_3_elements.csv::visit_date"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "visit_date"},
-          "metadata": {"terminology": "", "description": "Copy visit date."}
+          "logic": {
+            "is_date": [
+              {
+                "var": "sample-local-node::sample_dataset_3_elements.csv::visit_date"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+            "column": "visit_date"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy visit date."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Example date passthrough mapping with multiple source formats."},
+      "metadata": {
+        "terminology": "",
+        "description": "Example date passthrough mapping."
+      },
       "removeSourceColumns": false
     },
     {
@@ -212,24 +562,97 @@
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "diagnosis_code"},
-        {"sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "diagnosis"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "diagnosis_code"
+        }
       ],
       "rules": [
         {
           "id": "rule-diagnosis-code-1",
-          "logic": {"==": [{"var": "sample-local-node::sample_dataset_1_elements.csv::diagnosis_code"}, "I10"]},
-          "then": {"kind": "constant", "value": "I10"},
-          "metadata": {"terminology": "", "description": "Example diagnosis code."}
-        },
-        {
-          "id": "rule-diagnosis-code-2",
-          "logic": {"==": [{"var": "sample-local-node::sample_dataset_3_elements.csv::diagnosis"}, "I10"]},
-          "then": {"kind": "constant", "value": "I10"},
-          "metadata": {"terminology": "", "description": "Example coded diagnosis field."}
+          "logic": {
+            "==": [
+              {
+                "var": "sample-local-node::sample_dataset_1_elements.csv::diagnosis_code"
+              },
+              "I10"
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "I10"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Example diagnosis code."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Example diagnosis-code mapping."},
+      "metadata": {
+        "terminology": "",
+        "description": "Example diagnosis-code mapping."
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-diagnosis",
+      "targetField": "diagnosis",
+      "mappingType": "standard",
+      "sourceConfigFile": "sample_mapping",
+      "inputs": [
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "diagnosis"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+          "column": "diagnosis"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-diagnosis-1",
+          "logic": {
+            "==": [
+              {
+                "var": "sample-local-node::sample_dataset_2_elements.csv::diagnosis"
+              },
+              "Hypertension"
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "Hypertension"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Example diagnosis text value."
+          }
+        },
+        {
+          "id": "rule-diagnosis-2",
+          "logic": {
+            "==": [
+              {
+                "var": "sample-local-node::sample_dataset_3_elements.csv::diagnosis"
+              },
+              "Hypertension"
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "Hypertension"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Example diagnosis text value."
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": "Example diagnosis text mapping."
+      },
       "removeSourceColumns": false
     },
     {
@@ -238,89 +661,435 @@
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "outcome"},
-        {"sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "outcome_status"},
-        {"sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "discharge_status"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "outcome"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "outcome"
+        }
       ],
       "rules": [
         {
-          "id": "rule-outcome-recovered",
+          "id": "rule-outcome-1",
           "logic": {
-            "or": [
-              {"==": [{"var": "sample-local-node::sample_dataset_1_elements.csv::outcome"}, "Recovered"]},
-              {"==": [{"var": "sample-local-node::sample_dataset_2_elements.csv::outcome_status"}, "Yes"]},
-              {"==": [{"var": "sample-local-node::sample_dataset_3_elements.csv::discharge_status"}, "home"]}
+            "==": [
+              {
+                "var": "sample-local-node::sample_dataset_1_elements.csv::outcome"
+              },
+              "Recovered"
             ]
           },
-          "then": {"kind": "constant", "value": "Recovered"},
-          "metadata": {"terminology": "", "description": "Normalize positive discharge outcomes."}
+          "then": {
+            "kind": "constant",
+            "value": "Recovered"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Example outcome value."
+          }
         },
         {
-          "id": "rule-outcome-deceased",
+          "id": "rule-outcome-2",
           "logic": {
-            "or": [
-              {"==": [{"var": "sample-local-node::sample_dataset_1_elements.csv::outcome"}, "Deceased"]},
-              {"==": [{"var": "sample-local-node::sample_dataset_2_elements.csv::outcome_status"}, "No"]},
-              {"==": [{"var": "sample-local-node::sample_dataset_3_elements.csv::discharge_status"}, "deceased"]}
+            "==": [
+              {
+                "var": "sample-local-node::sample_dataset_2_elements.csv::outcome"
+              },
+              "Improved"
             ]
           },
-          "then": {"kind": "constant", "value": "Deceased"},
-          "metadata": {"terminology": "", "description": "Normalize non-recovered or deceased outcomes for evaluation."}
+          "then": {
+            "kind": "constant",
+            "value": "Improved"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Example outcome value."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Example outcome value mapping for review."},
+      "metadata": {
+        "terminology": "",
+        "description": "Example care-outcome mapping."
+      },
       "removeSourceColumns": false
     },
     {
-      "id": "map-fim-eating",
-      "targetField": "fim_eating",
+      "id": "map-smoking-history",
+      "targetField": "smoking_history",
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "fim_eating"},
-        {"sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "fim_eat_score"},
-        {"sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "fim_eat"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "smoker"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "smoking_history"
+        }
       ],
       "rules": [
         {
-          "id": "rule-fim-eating-1",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_1_elements.csv::fim_eating"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "fim_eating"},
-          "metadata": {"terminology": "", "description": "Copy FIM eating score."}
+          "id": "rule-smoke-current",
+          "logic": {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_1_elements.csv::smoker"
+                  },
+                  "Yes"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_2_elements.csv::smoking_history"
+                  },
+                  "Current"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "Current"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Normalize current smoking history."
+          }
         },
         {
-          "id": "rule-fim-eating-2",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_2_elements.csv::fim_eat_score"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "fim_eat_score"},
-          "metadata": {"terminology": "", "description": "Copy FIM eat score."}
+          "id": "rule-smoke-former",
+          "logic": {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_1_elements.csv::smoker"
+                  },
+                  "Former"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_2_elements.csv::smoking_history"
+                  },
+                  "Former"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "Former"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Normalize former smoking history."
+          }
         },
         {
-          "id": "rule-fim-eating-3",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_3_elements.csv::fim_eat"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "fim_eat"},
-          "metadata": {"terminology": "", "description": "Copy FIM eat score."}
+          "id": "rule-smoke-never",
+          "logic": {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_1_elements.csv::smoker"
+                  },
+                  "No"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_2_elements.csv::smoking_history"
+                  },
+                  "Never"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "Never"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Normalize never-smoking history."
+          }
+        },
+        {
+          "id": "rule-smoke-unknown",
+          "logic": {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_1_elements.csv::smoker"
+                  },
+                  ""
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "sample-local-node::sample_dataset_2_elements.csv::smoking_history"
+                  },
+                  "Unknown"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "constant",
+            "value": "Unknown"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Normalize unknown smoking history."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Example functional-assessment item mapping."},
+      "metadata": {
+        "terminology": "",
+        "description": "Example manual categorical mapping users can review or edit."
+      },
       "removeSourceColumns": false
     },
     {
-      "id": "map-fim-transfer",
-      "targetField": "fim_transfer",
+      "id": "map-eating",
+      "targetField": "eating",
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_4_elements.csv", "column": "fim_transfer"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "fim_eating"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "fim_eat_score"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+          "column": "fim_eat"
+        }
       ],
       "rules": [
         {
-          "id": "rule-fim-transfer-1",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_4_elements.csv::fim_transfer"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_4_elements.csv", "column": "fim_transfer"},
-          "metadata": {"terminology": "", "description": "Copy rehabilitation-event FIM transfer score."}
+          "id": "rule-eating-1",
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_1_elements.csv::fim_eating"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+            "column": "fim_eating"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy eating score."
+          }
+        },
+        {
+          "id": "rule-eating-2",
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_2_elements.csv::fim_eat_score"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+            "column": "fim_eat_score"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy eating score."
+          }
+        },
+        {
+          "id": "rule-eating-3",
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_3_elements.csv::fim_eat"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+            "column": "fim_eat"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy eating score."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Example mapping from an additional assessment file."},
+      "metadata": {
+        "terminology": "",
+        "description": "Example functional-assessment item mapping."
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-bathing",
+      "targetField": "bathing",
+      "mappingType": "standard",
+      "sourceConfigFile": "sample_mapping",
+      "inputs": [
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "barthel_bathing"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "barthel_bath"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-bathing-1",
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_1_elements.csv::barthel_bathing"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+            "column": "barthel_bathing"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy bathing score."
+          }
+        },
+        {
+          "id": "rule-bathing-2",
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_2_elements.csv::barthel_bath"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+            "column": "barthel_bath"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy bathing score."
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": "Example Barthel item mapping."
+      },
+      "removeSourceColumns": false
+    },
+    {
+      "id": "map-fim-total",
+      "targetField": "fim_total",
+      "mappingType": "standard",
+      "sourceConfigFile": "sample_mapping",
+      "inputs": [
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "fim_total"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "fim_total"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+          "column": "fim_total"
+        }
+      ],
+      "rules": [
+        {
+          "id": "rule-fim-total-1",
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_1_elements.csv::fim_total"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+            "column": "fim_total"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy FIM total."
+          }
+        },
+        {
+          "id": "rule-fim-total-2",
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_2_elements.csv::fim_total"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+            "column": "fim_total"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy FIM total."
+          }
+        },
+        {
+          "id": "rule-fim-total-3",
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_3_elements.csv::fim_total"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+            "column": "fim_total"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy FIM total."
+          }
+        }
+      ],
+      "metadata": {
+        "terminology": "",
+        "description": "Example total-score mapping."
+      },
       "removeSourceColumns": false
     },
     {
@@ -329,31 +1098,82 @@
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "barthel_total"},
-        {"sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "barthel_total"},
-        {"sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "barthel_total"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+          "column": "barthel_total"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "barthel_total"
+        },
+        {
+          "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+          "column": "barthel_total"
+        }
       ],
       "rules": [
         {
           "id": "rule-barthel-total-1",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_1_elements.csv::barthel_total"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_1_elements.csv", "column": "barthel_total"},
-          "metadata": {"terminology": "", "description": "Copy Barthel total."}
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_1_elements.csv::barthel_total"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_1_elements.csv",
+            "column": "barthel_total"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy Barthel total."
+          }
         },
         {
           "id": "rule-barthel-total-2",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_2_elements.csv::barthel_total"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "barthel_total"},
-          "metadata": {"terminology": "", "description": "Copy Barthel total."}
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_2_elements.csv::barthel_total"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+            "column": "barthel_total"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy Barthel total."
+          }
         },
         {
           "id": "rule-barthel-total-3",
-          "logic": {"is_integer": [{"var": "sample-local-node::sample_dataset_3_elements.csv::barthel_total"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_3_elements.csv", "column": "barthel_total"},
-          "metadata": {"terminology": "", "description": "Copy Barthel total."}
+          "logic": {
+            "is_integer": [
+              {
+                "var": "sample-local-node::sample_dataset_3_elements.csv::barthel_total"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_3_elements.csv",
+            "column": "barthel_total"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy Barthel total."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Example total-score mapping."},
+      "metadata": {
+        "terminology": "",
+        "description": "Example total-score mapping."
+      },
       "removeSourceColumns": false
     },
     {
@@ -362,17 +1182,36 @@
       "mappingType": "standard",
       "sourceConfigFile": "sample_mapping",
       "inputs": [
-        {"sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "bmi"}
+        {
+          "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+          "column": "bmi"
+        }
       ],
       "rules": [
         {
           "id": "rule-bmi-1",
-          "logic": {"is_number": [{"var": "sample-local-node::sample_dataset_2_elements.csv::bmi"}]},
-          "then": {"kind": "source-value", "sourceId": "sample-local-node::sample_dataset_2_elements.csv", "column": "bmi"},
-          "metadata": {"terminology": "", "description": "Copy BMI where present."}
+          "logic": {
+            "is_number": [
+              {
+                "var": "sample-local-node::sample_dataset_2_elements.csv::bmi"
+              }
+            ]
+          },
+          "then": {
+            "kind": "source-value",
+            "sourceId": "sample-local-node::sample_dataset_2_elements.csv",
+            "column": "bmi"
+          },
+          "metadata": {
+            "terminology": "",
+            "description": "Copy BMI where present."
+          }
         }
       ],
-      "metadata": {"terminology": "", "description": "Small example mapping users can inspect or edit."},
+      "metadata": {
+        "terminology": "",
+        "description": "Small example mapping users can inspect or edit."
+      },
       "removeSourceColumns": false
     }
   ]

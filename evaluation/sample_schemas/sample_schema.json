@@ -3,34 +3,168 @@
   "title": "MEDIATA Evaluation Target Schema",
   "type": "object",
   "properties": {
-    "sex": {"type": ["string", "null"], "description": "Normalized sex or gender."},
-    "age": {"type": ["integer", "null"]},
-    "birth_year": {"type": ["integer", "null"]},
-    "admission_date": {"type": ["string", "null"], "description": "ISO date."},
-    "discharge_date": {"type": ["string", "null"], "description": "ISO date."},
-    "diagnosis_code": {"type": ["string", "null"]},
-    "diagnosis": {"type": ["string", "null"]},
-    "outcome": {"type": ["string", "null"]},
-    "discharge_status": {"type": ["string", "null"]},
-    "smoker": {"type": ["string", "null"]},
-    "systolic_bp": {"type": ["integer", "null"]},
-    "bmi": {"type": ["number", "null"]},
-    "height_cm": {"type": ["number", "null"]},
-    "weight_kg": {"type": ["number", "null"]},
-
-    "eating": {"type": ["integer", "null"], "description": "Eating or feeding activity score."},
-    "grooming": {"type": ["integer", "null"], "description": "Grooming activity score."},
-    "toileting": {"type": ["integer", "null"], "description": "Toileting or toilet-use activity score."},
-    "transfers": {"type": ["integer", "null"], "description": "Transfer activity score."},
-    "mobility": {"type": ["integer", "null"], "description": "Mobility, walking, or locomotion activity score."},
-    "fim_total": {"type": ["integer", "null"]},
-
-    "bathing": {"type": ["integer", "null"], "description": "Bathing activity score."},
-    "dressing": {"type": ["integer", "null"], "description": "Dressing activity score."},
-    "bladder": {"type": ["integer", "null"], "description": "Bladder control score."},
-    "bowel": {"type": ["integer", "null"], "description": "Bowel control score."},
-    "stairs": {"type": ["integer", "null"], "description": "Stair-climbing activity score."},
-    "barthel_total": {"type": ["integer", "null"]}
+    "sex": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Normalized patient sex field."
+    },
+    "age": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "birth_year": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "admission_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "ISO date."
+    },
+    "discharge_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "ISO date."
+    },
+    "diagnosis_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "diagnosis": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "outcome": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "discharge_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "smoking_history": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "systolic_bp": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "bmi": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "height_cm": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weight_kg": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "eating": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Eating or feeding activity score."
+    },
+    "grooming": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Grooming activity score."
+    },
+    "toileting": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Toileting or toilet-use activity score."
+    },
+    "transfers": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Transfer activity score."
+    },
+    "mobility": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Mobility, walking, or locomotion activity score."
+    },
+    "fim_total": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "bathing": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Bathing activity score."
+    },
+    "dressing": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Dressing activity score."
+    },
+    "bowel": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Bowel control score."
+    },
+    "stairs": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Stair-climbing activity score."
+    },
+    "barthel_total": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    }
   },
   "required": [],
   "additionalProperties": false
