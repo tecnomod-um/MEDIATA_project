@@ -28,6 +28,66 @@ run_bash_script() {
   bash "$f"
 }
 
+ensure_node_secrets_file() {
+  if [[ ! -f "${NODE_DIR}/node-secrets.env" ]]; then
+    if [[ -f "${NODE_DIR}/node-secrets.env.example" ]]; then
+      echo "No node-secrets.env found. Creating from node-secrets.env.example..."
+      cp "${NODE_DIR}/node-secrets.env.example" "${NODE_DIR}/node-secrets.env"
+      echo "✓ Created ${NODE_DIR}/node-secrets.env"
+      echo "IMPORTANT: Review ${NODE_DIR}/node-secrets.env and set real secret values before production."
+    else
+      echo "Missing: ${NODE_DIR}/node-secrets.env (and no ${NODE_DIR}/node-secrets.env.example to copy from)"
+      exit 1
+    fi
+  fi
+}
+
+read_env_var() {
+  local file="$1"
+  local key="$2"
+  [[ -f "$file" ]] || return 0
+  grep -E "^${key}=" "$file" | tail -n 1 | cut -d= -f2- || true
+}
+
+upsert_env_var() {
+  local file="$1"
+  local key="$2"
+  local value="$3"
+
+  if grep -qE "^${key}=" "$file"; then
+    sed -i "s|^${key}=.*|${key}=${value}|" "$file"
+  else
+    printf '\n%s=%s\n' "$key" "$value" >> "$file"
+  fi
+}
+
+generate_shared_secret() {
+  python3 - <<'PY'
+import secrets
+print(secrets.token_urlsafe(48))
+PY
+}
+
+configure_trusted_proxy_secret() {
+  local secret="${TRUSTED_PROXY_SHARED_SECRET:-}"
+
+  ensure_node_secrets_file
+  if [[ -z "$secret" ]]; then
+    secret="$(read_env_var "${NODE_DIR}/node-secrets.env" "TRUSTED_PROXY_SHARED_SECRET")"
+  fi
+  if [[ -z "$secret" ]]; then
+    secret="$(generate_shared_secret)"
+  fi
+
+  export TRUSTED_PROXY_SHARED_SECRET="$secret"
+  upsert_env_var "${NODE_DIR}/node-secrets.env" "TRUSTED_PROXY_SHARED_SECRET" "$secret"
+
+  cat > "${TRUSTED_NODE_CONFIG}" <<EOF
+# public HTTP node URL | upstream URL from orchestrator container | optional shared secret
+http://localhost:${NODE_HOST_PORT}|http://host.docker.internal:${NODE_HOST_PORT}|${TRUSTED_PROXY_SHARED_SECRET}
+EOF
+}
+
 wait_for_orchestrator() {
   local url="${ORCH_BASE_URL}/actuator/health"
   local timeout_s="${1:-300}"
@@ -187,7 +247,7 @@ sync_sample_fair_metadata() {
         -H "Authorization: Bearer ${central_jwt}" \
         -H 'Content-Type: application/json' \
         -d "{\"kerberosToken\":\"${service_ticket}\"}" \
-        "http://localhost:${NODE_HOST_PORT}/taniwha/node/validate" 2>/dev/null \
+        "${ORCH_BASE_URL}/nodes/proxy/${node_id}/taniwha/node/validate" 2>/dev/null \
       | { response="$(cat)"; json_field "${response}" "jwtNodeToken" || true; }
     )"
 
@@ -198,8 +258,9 @@ sync_sample_fair_metadata() {
 
     sync_response="$(curl -sS \
       -X POST \
-      -H "Authorization: Bearer ${node_jwt}" \
-      "http://localhost:${NODE_HOST_PORT}/taniwha/api/fairdatapoint/sync" 2>/dev/null || true)"
+      -H "Authorization: Bearer ${central_jwt}" \
+      -H "X-Node-Authorization: Bearer ${node_jwt}" \
+      "${ORCH_BASE_URL}/nodes/proxy/${node_id}/taniwha/api/fairdatapoint/sync" 2>/dev/null || true)"
 
     if [[ "${sync_response}" == *'"status":"COMPLETED"'* ]]; then
       break
@@ -233,10 +294,7 @@ fi
 [[ -d "$ORCH_DIR" ]] || { echo "Missing folder: $ORCH_DIR"; exit 1; }
 [[ -f "${ORCH_DIR}/build-and-deploy.sh" ]] || { echo "Missing: ${ORCH_DIR}/build-and-deploy.sh"; exit 1; }
 
-cat > "${TRUSTED_NODE_CONFIG}" <<EOF
-# public HTTP node URL | upstream URL from orchestrator container | optional shared secret
-http://localhost:${NODE_HOST_PORT}|http://host.docker.internal:${NODE_HOST_PORT}|
-EOF
+configure_trusted_proxy_secret
 
 ( cd "$ORCH_DIR" && run_bash_script "./build-and-deploy.sh" )
 wait_for_orchestrator 300
@@ -244,17 +302,7 @@ wait_for_orchestrator 300
 # ---------------- Node ----------------
 mkdir -p "${NODE_DATA_DIR}"
 [[ -d "$NODE_DIR" ]] || { echo "Missing folder: $NODE_DIR"; exit 1; }
-if [[ ! -f "${NODE_DIR}/node-secrets.env" ]]; then
-  if [[ -f "${NODE_DIR}/node-secrets.env.example" ]]; then
-    echo "No node-secrets.env found. Creating from node-secrets.env.example..."
-    cp "${NODE_DIR}/node-secrets.env.example" "${NODE_DIR}/node-secrets.env"
-    echo "✓ Created ${NODE_DIR}/node-secrets.env"
-    echo "IMPORTANT: Review ${NODE_DIR}/node-secrets.env and set real secret values before production."
-  else
-    echo "Missing: ${NODE_DIR}/node-secrets.env (and no ${NODE_DIR}/node-secrets.env.example to copy from)"
-    exit 1
-  fi
-fi
+ensure_node_secrets_file
 
 fix_crlf "${NODE_DIR}/entrypoint.sh"
 
