@@ -9,7 +9,7 @@ FE_DIR="${ROOT_DIR}/MEDIATA_frontend"
 ORCH_HOST_PORT="${ORCH_HOST_PORT:-18088}"
 NODE_HOST_PORT="${NODE_HOST_PORT:-18082}"
 FE_HOST_PORT="${FE_HOST_PORT:-3000}"
-export DOCKER_DEFAULT_PLATFORM="${DOCKER_DEFAULT_PLATFORM:-linux/amd64}"
+NODE_DOCKER_PLATFORM="${NODE_DOCKER_PLATFORM:-linux/amd64}"
 
 ORCH_BASE_URL="http://localhost:${ORCH_HOST_PORT}/taniwha"
 NODE_DATA_DIR="${ROOT_DIR}/node-data"
@@ -322,12 +322,13 @@ if [[ -f "${NODE_DIR}/target/TANIWHA_Backend_node.jar" ]]; then
 else
   NODE_DOCKERFILE="Dockerfile.build"
 fi
-docker build -f "${NODE_DIR}/${NODE_DOCKERFILE}" -t taniwha-backend-node "${NODE_DIR}"
+docker build --platform "${NODE_DOCKER_PLATFORM}" -f "${NODE_DIR}/${NODE_DOCKERFILE}" -t taniwha-backend-node "${NODE_DIR}"
 docker rm -f mediata-node >/dev/null 2>&1 || true
 
 NODE_IP="http://localhost:${NODE_HOST_PORT}"
 
 docker run -d \
+  --platform "${NODE_DOCKER_PLATFORM}" \
   --name mediata-node \
   --add-host=host.docker.internal:host-gateway \
   --env-file "${NODE_DIR}/node-secrets.env" \
