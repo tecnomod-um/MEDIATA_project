@@ -9,6 +9,7 @@ FE_DIR="${ROOT_DIR}/MEDIATA_frontend"
 ORCH_HOST_PORT="${ORCH_HOST_PORT:-18088}"
 NODE_HOST_PORT="${NODE_HOST_PORT:-18082}"
 FE_HOST_PORT="${FE_HOST_PORT:-3000}"
+export DOCKER_DEFAULT_PLATFORM="${DOCKER_DEFAULT_PLATFORM:-linux/amd64}"
 
 ORCH_BASE_URL="http://localhost:${ORCH_HOST_PORT}/taniwha"
 NODE_DATA_DIR="${ROOT_DIR}/node-data"
@@ -90,6 +91,7 @@ configure_trusted_proxy_secret() {
   export TRUSTED_PROXY_SHARED_SECRET="$secret"
   upsert_env_var "${NODE_DIR}/node-secrets.env" "TRUSTED_PROXY_SHARED_SECRET" "$secret"
 
+  mkdir -p "$(dirname "${TRUSTED_NODE_CONFIG}")"
   cat > "${TRUSTED_NODE_CONFIG}" <<EOF
 # public HTTP node URL | upstream URL from orchestrator container | optional shared secret
 http://localhost:${NODE_HOST_PORT}|http://host.docker.internal:${NODE_HOST_PORT}|${TRUSTED_PROXY_SHARED_SECRET}
