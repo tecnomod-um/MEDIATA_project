@@ -10,6 +10,7 @@ ORCH_HOST_PORT="${ORCH_HOST_PORT:-18088}"
 NODE_HOST_PORT="${NODE_HOST_PORT:-18082}"
 FE_HOST_PORT="${FE_HOST_PORT:-3000}"
 NODE_DOCKER_PLATFORM="${NODE_DOCKER_PLATFORM:-linux/amd64}"
+NODE_HEALTH_TIMEOUT_S="${NODE_HEALTH_TIMEOUT_S:-600}"
 
 ORCH_BASE_URL="http://localhost:${ORCH_HOST_PORT}/taniwha"
 NODE_DATA_DIR="${ROOT_DIR}/node-data"
@@ -343,7 +344,7 @@ docker run -d \
   -e HOST_SERVICE="/taniwha" \
   taniwha-backend-node
 
-wait_for_node 120
+wait_for_node "${NODE_HEALTH_TIMEOUT_S}"
 
 sh "${ROOT_DIR}/evaluation/scripts/load_sample_datasets.sh"
 sync_sample_fair_metadata
