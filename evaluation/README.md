@@ -4,6 +4,15 @@ This folder contains the assets and scripts used to generate the MEDIATA usabili
 
 The evaluation package is intended for an unsupervised usability test of the MEDIATA release. Running the project will generate the latest evaluation PDFs in this directory.
 
+## Preparing the repository
+
+To clone the repository and its submodules, use:
+
+```sh
+git clone --recurse-submodules https://github.com/tecnomod-um/MEDIATA_project.git
+cd MEDIATA_project
+```
+
 ## Running the evaluation
 
 Run the project from the repository root:
