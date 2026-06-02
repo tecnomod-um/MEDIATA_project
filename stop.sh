@@ -6,10 +6,18 @@ ORCH_DIR="${ROOT_DIR}/MEDIATA_orchestrator"
 NODE_DIR="${ROOT_DIR}/MEDIATA_node"
 FE_DIR="${ROOT_DIR}/MEDIATA_frontend"
 
+sed_in_place() {
+  if [[ "$(uname)" == "Darwin" ]]; then
+    sed -i '' "$@"
+  else
+    sed -i "$@"
+  fi
+}
+
 fix_crlf() {
   local f="$1"
   [[ -f "$f" ]] || return 0
-  sed -i 's/\r$//' "$f" || true
+  sed_in_place 's/\r$//' "$f" || true
 }
 
 compose_down_if_present() {

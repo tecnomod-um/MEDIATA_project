@@ -14,10 +14,18 @@ ORCH_BASE_URL="http://localhost:${ORCH_HOST_PORT}/taniwha"
 NODE_DATA_DIR="${ROOT_DIR}/node-data"
 TRUSTED_NODE_CONFIG="${ORCH_DIR}/trusted-servers.config"
 
+sed_in_place() {
+  if [[ "$(uname)" == "Darwin" ]]; then
+    sed -i '' "$@"
+  else
+    sed -i "$@"
+  fi
+}
+
 fix_crlf() {
   local f="$1"
   [[ -f "$f" ]] || return 0
-  sed -i 's/\r$//' "$f" 2>/dev/null || true
+  sed_in_place 's/\r$//' "$f" 2>/dev/null || true
 }
 
 run_bash_script() {
@@ -55,7 +63,7 @@ upsert_env_var() {
   local value="$3"
 
   if grep -qE "^${key}=" "$file"; then
-    sed -i "s|^${key}=.*|${key}=${value}|" "$file"
+    sed_in_place "s|^${key}=.*|${key}=${value}|" "$file"
   else
     printf '\n%s=%s\n' "$key" "$value" >> "$file"
   fi
