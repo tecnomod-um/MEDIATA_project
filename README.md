@@ -91,15 +91,16 @@ To deploy MEDIATA locally using Docker, follow these steps:
    git clone --recurse-submodules https://github.com/tecnomod-um/MEDIATA_project.git
    cd MEDIATA_project
    ```
-
-3. **Clone additional required repositories** inside the `MEDIATA_orchestrator` directory:
+   
+3. **Optionally, clone additional required repositories** inside the `MEDIATA_orchestrator` directory:
    ```bash
    cd MEDIATA_orchestrator
    git clone https://github.com/tecnomod-um/mediata-rdf-builder.git
    git clone https://github.com/alvumu/InteroperabilityFHIRAPI.git
    cd ..
    ```
-
+If these repositories are not cloned, their corresponding functionalities will be disabled within the tool. This step is not needed for the evaluation release.
+   
 ### Deployment Steps
 
 1. **Run the deployment script**:
