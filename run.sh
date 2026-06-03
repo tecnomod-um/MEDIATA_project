@@ -11,6 +11,7 @@ NODE_HOST_PORT="${NODE_HOST_PORT:-18082}"
 FE_HOST_PORT="${FE_HOST_PORT:-3000}"
 NODE_DOCKER_PLATFORM="${NODE_DOCKER_PLATFORM:-linux/amd64}"
 NODE_HEALTH_TIMEOUT_S="${NODE_HEALTH_TIMEOUT_S:-600}"
+LOCAL_FDP_TIMEOUT_S="${LOCAL_FDP_TIMEOUT_S:-300}"
 
 ORCH_BASE_URL="http://localhost:${ORCH_HOST_PORT}/taniwha"
 NODE_DATA_DIR="${ROOT_DIR}/node-data"
@@ -143,6 +144,32 @@ wait_for_node() {
       echo "Node is UP."
       return 0
     fi
+    sleep 2
+  done
+}
+
+wait_for_local_fdp() {
+  local timeout_s="${1:-300}"
+  local end=$(( $(date +%s) + timeout_s ))
+
+  echo "Waiting for bundled FAIR Data Point inside node container..."
+  while true; do
+    if (( $(date +%s) > end )); then
+      echo "ERROR: Bundled FAIR Data Point not ready in ${timeout_s}s"
+      docker logs --tail=200 mediata-node || true
+      docker exec mediata-node sh -lc \
+        'echo "--- /var/log/taniwha"; ls -la /var/log/taniwha 2>/dev/null || true; \
+         echo "--- fdp.log"; tail -n 200 /var/log/taniwha/fdp.log 2>/dev/null || true; \
+         echo "--- mongod.log"; tail -n 200 /var/log/taniwha/mongod.log 2>/dev/null || true' || true
+      exit 1
+    fi
+
+    if docker exec mediata-node sh -lc \
+      "curl -fsS http://127.0.0.1:18080/v3/api-docs >/dev/null" >/dev/null 2>&1; then
+      echo "Bundled FAIR Data Point is UP."
+      return 0
+    fi
+
     sleep 2
   done
 }
@@ -342,9 +369,11 @@ docker run -d \
   -e NODE_IP="${NODE_IP}" \
   -e HOST_URL="http://host.docker.internal:${ORCH_HOST_PORT}" \
   -e HOST_SERVICE="/taniwha" \
+  -e FAIRDATAPOINT_PUBLISH_ON_STARTUP=false \
   taniwha-backend-node
 
 wait_for_node "${NODE_HEALTH_TIMEOUT_S}"
+wait_for_local_fdp "${LOCAL_FDP_TIMEOUT_S}"
 
 sh "${ROOT_DIR}/evaluation/scripts/load_sample_datasets.sh"
 sync_sample_fair_metadata
