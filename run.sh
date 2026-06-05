@@ -393,18 +393,18 @@ if [[ -f "${NODE_DIR}/target/TANIWHA_Backend_node.jar" ]]; then
 else
   NODE_DOCKERFILE="Dockerfile.build"
 fi
-node_platform_args=()
+node_platform_args=""
 if [[ -n "${NODE_DOCKER_PLATFORM}" ]]; then
-  node_platform_args+=(--platform "${NODE_DOCKER_PLATFORM}")
+  node_platform_args="--platform ${NODE_DOCKER_PLATFORM}"
 fi
 
-docker build "${node_platform_args[@]}" -f "${NODE_DIR}/${NODE_DOCKERFILE}" -t taniwha-backend-node "${NODE_DIR}"
+docker build ${node_platform_args} -f "${NODE_DIR}/${NODE_DOCKERFILE}" -t taniwha-backend-node "${NODE_DIR}"
 remove_container_if_present mediata-node 45
 
 NODE_IP="http://localhost:${NODE_HOST_PORT}"
 
 docker run -d \
-  "${node_platform_args[@]}" \
+  ${node_platform_args} \
   --name mediata-node \
   --stop-timeout 45 \
   --add-host=host.docker.internal:host-gateway \
