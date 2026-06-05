@@ -268,9 +268,9 @@ sync_sample_fair_metadata() {
   local registration_timeout_s="${NODE_REGISTRATION_TIMEOUT_S:-60}"
   local registration_sleep_s="${NODE_REGISTRATION_SLEEP_S:-2}"
   local registration_deadline=$(( $(date +%s) + registration_timeout_s ))
-  local sync_timeout_s="${NODE_SYNC_TIMEOUT_S:-90}"
+  local sync_timeout_s="${NODE_SYNC_TIMEOUT_S:-300}"
   local sync_sleep_s="${NODE_SYNC_SLEEP_S:-3}"
-  local sync_deadline=$(( $(date +%s) + sync_timeout_s ))
+  local sync_started_at sync_deadline last_sync_step last_sync_response last_sync_log_at
 
   echo "Refreshing FAIR metadata for loaded sample datasets..."
 
@@ -306,9 +306,20 @@ sync_sample_fair_metadata() {
     fi
   done
 
+  sync_started_at="$(date +%s)"
+  sync_deadline=$(( sync_started_at + sync_timeout_s ))
+  last_sync_step="waiting for node proxy ticket"
+  last_sync_response=""
+  last_sync_log_at=0
+
   while true; do
     if (( $(date +%s) > sync_deadline )); then
       echo "ERROR: FAIR metadata sync did not become ready within ${sync_timeout_s}s."
+      echo "Last FAIR metadata sync step: ${last_sync_step}"
+      if [[ -n "${last_sync_response}" ]]; then
+        echo "Last FAIR metadata sync response:"
+        echo "${last_sync_response}"
+      fi
       exit 1
     fi
 
@@ -319,6 +330,12 @@ sync_sample_fair_metadata() {
     service_ticket="$(json_field "${node_info_response}" "token" || true)"
 
     if [[ -z "${service_ticket}" ]]; then
+      last_sync_step="waiting for node proxy ticket"
+      last_sync_response="${node_info_response}"
+      if (( $(date +%s) - last_sync_log_at >= 15 )); then
+        echo "  FAIR metadata refresh is waiting for node proxy access ($(( $(date +%s) - sync_started_at ))s elapsed)"
+        last_sync_log_at="$(date +%s)"
+      fi
       sleep "${sync_sleep_s}"
       continue
     fi
@@ -333,18 +350,31 @@ sync_sample_fair_metadata() {
     )"
 
     if [[ -z "${node_jwt}" || "${node_jwt}" == "Unauthorized" ]]; then
+      last_sync_step="waiting for node authorization"
+      last_sync_response="${node_jwt}"
+      if (( $(date +%s) - last_sync_log_at >= 15 )); then
+        echo "  FAIR metadata refresh is waiting for node authorization ($(( $(date +%s) - sync_started_at ))s elapsed)"
+        last_sync_log_at="$(date +%s)"
+      fi
       sleep "${sync_sleep_s}"
       continue
     fi
 
+    last_sync_step="publishing metadata to bundled FAIR Data Point"
     sync_response="$(curl -sS \
       -X POST \
       -H "Authorization: Bearer ${central_jwt}" \
       -H "X-Node-Authorization: Bearer ${node_jwt}" \
       "${ORCH_BASE_URL}/nodes/proxy/${node_id}/taniwha/api/fairdatapoint/sync" 2>/dev/null || true)"
+    last_sync_response="${sync_response}"
 
     if [[ "${sync_response}" == *'"status":"COMPLETED"'* ]]; then
       break
+    fi
+
+    if (( $(date +%s) - last_sync_log_at >= 15 )); then
+      echo "  FAIR metadata refresh is still publishing ($(( $(date +%s) - sync_started_at ))s elapsed)"
+      last_sync_log_at="$(date +%s)"
     fi
 
     sleep "${sync_sleep_s}"
