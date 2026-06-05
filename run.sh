@@ -9,7 +9,7 @@ FE_DIR="${ROOT_DIR}/MEDIATA_frontend"
 ORCH_HOST_PORT="${ORCH_HOST_PORT:-18088}"
 NODE_HOST_PORT="${NODE_HOST_PORT:-18082}"
 FE_HOST_PORT="${FE_HOST_PORT:-3000}"
-NODE_DOCKER_PLATFORM="${NODE_DOCKER_PLATFORM:-linux/amd64}"
+NODE_DOCKER_PLATFORM="${NODE_DOCKER_PLATFORM:-}"
 NODE_HEALTH_TIMEOUT_S="${NODE_HEALTH_TIMEOUT_S:-600}"
 LOCAL_FDP_TIMEOUT_S="${LOCAL_FDP_TIMEOUT_S:-300}"
 
@@ -37,6 +37,39 @@ run_bash_script() {
   fix_crlf "$f"
   chmod +x "$f" || true
   bash "$f"
+}
+
+remove_container_if_present() {
+  local name="$1"
+  local timeout_s="${2:-30}"
+
+  if ! docker ps -a --format '{{.Names}}' | grep -Fxq "$name"; then
+    return 0
+  fi
+
+  docker stop -t "${timeout_s}" "$name" >/dev/null 2>&1 || true
+  docker rm -f "$name" >/dev/null 2>&1 || true
+}
+
+dump_fdp_diagnostics() {
+  echo "Bundled FAIR Data Point diagnostics:"
+  docker logs --tail=120 mediata-node || true
+  docker exec mediata-node sh -lc '
+    echo "--- /var/log/taniwha"
+    ls -la /var/log/taniwha 2>/dev/null || true
+
+    for file in /var/log/taniwha/fdp.log /var/log/taniwha/mongod.log; do
+      name="${file##*/}"
+      echo "--- ${name}: recent warnings/errors"
+      if [ -f "$file" ]; then
+        grep -Ei "error|warn|exception|failed|failure|fatal|address already in use|permission denied|could not" "$file" | tail -n 120 || true
+        echo "--- ${name}: last 40 lines"
+        tail -n 40 "$file" || true
+      else
+        echo "missing"
+      fi
+    done
+  ' || true
 }
 
 ensure_node_secrets_file() {
@@ -104,12 +137,15 @@ wait_for_orchestrator() {
   local url="${ORCH_BASE_URL}/actuator/health"
   local timeout_s="${1:-300}"
   local end=$(( $(date +%s) + timeout_s ))
+  local attempts=0
+  local last_code=""
 
-  echo "Waiting for orchestrator health to be UP: ${url}"
+  echo "Waiting for orchestrator to report healthy: ${url}"
   while true; do
+    attempts=$((attempts + 1))
     if (( $(date +%s) > end )); then
-      echo "ERROR: Orchestrator did not become UP within ${timeout_s}s: ${url}"
-      echo "Try: (cd \"${ORCH_DIR}\" && docker compose ps && docker compose logs -n 200 orchestrator)"
+      echo "ERROR: Orchestrator did not report healthy within ${timeout_s}s: ${url}"
+      echo "Hint: (cd \"${ORCH_DIR}\" && docker compose ps && docker compose logs -n 200 orchestrator)"
       exit 1
     fi
 
@@ -118,10 +154,14 @@ wait_for_orchestrator() {
     code="$(curl -sS -m 3 -o /dev/null -w '%{http_code}' "${url}" 2>/dev/null || echo "000")"
 
     if [[ "${code}" == "200" && "${body}" == *'"status":"UP"'* ]]; then
-      echo "Orchestrator is UP."
+      echo "Orchestrator is ready."
       return 0
     fi
-    echo "  not ready yet (HTTP ${code})"
+
+    if [[ "${code}" != "${last_code}" || ${attempts} -eq 1 || $((attempts % 5)) -eq 0 ]]; then
+      echo "  orchestrator is still warming up (HTTP ${code})"
+      last_code="${code}"
+    fi
     sleep 2
   done
 }
@@ -131,17 +171,17 @@ wait_for_node() {
   local timeout_s="${1:-120}"
   local end=$(( $(date +%s) + timeout_s ))
 
-  echo "Waiting for node health: ${url}"
+  echo "Waiting for node API: ${url}"
   while true; do
     if (( $(date +%s) > end )); then
-      echo "ERROR: Node not reachable in ${timeout_s}s"
+      echo "ERROR: Node API did not become reachable within ${timeout_s}s"
       docker logs --tail=200 mediata-node || true
       exit 1
     fi
     local code
     code="$(curl -sS -m 2 -o /dev/null -w '%{http_code}' "${url}" 2>/dev/null || echo "000")"
     if [[ "${code}" == "200" ]]; then
-      echo "Node is UP."
+      echo "Node API is ready."
       return 0
     fi
     sleep 2
@@ -151,25 +191,28 @@ wait_for_node() {
 wait_for_local_fdp() {
   local timeout_s="${1:-300}"
   local end=$(( $(date +%s) + timeout_s ))
+  local attempts=0
+  local started_at
+  started_at="$(date +%s)"
 
-  echo "Waiting for bundled FAIR Data Point inside node container..."
+  echo "Waiting for bundled FAIR Data Point inside the node container..."
   while true; do
+    attempts=$((attempts + 1))
     if (( $(date +%s) > end )); then
-      echo "ERROR: Bundled FAIR Data Point not ready in ${timeout_s}s"
-      docker logs --tail=200 mediata-node || true
-      docker exec mediata-node sh -lc \
-        'echo "--- /var/log/taniwha"; ls -la /var/log/taniwha 2>/dev/null || true; \
-         echo "--- fdp.log"; tail -n 200 /var/log/taniwha/fdp.log 2>/dev/null || true; \
-         echo "--- mongod.log"; tail -n 200 /var/log/taniwha/mongod.log 2>/dev/null || true' || true
+      echo "ERROR: Bundled FAIR Data Point did not become ready within ${timeout_s}s"
+      dump_fdp_diagnostics
       exit 1
     fi
 
     if docker exec mediata-node sh -lc \
       "curl -fsS http://127.0.0.1:18080/v3/api-docs >/dev/null" >/dev/null 2>&1; then
-      echo "Bundled FAIR Data Point is UP."
+      echo "Bundled FAIR Data Point is ready."
       return 0
     fi
 
+    if (( attempts == 1 || attempts % 10 == 0 )); then
+      echo "  bundled FAIR Data Point is still starting ($(( $(date +%s) - started_at ))s elapsed)"
+    fi
     sleep 2
   done
 }
@@ -350,14 +393,20 @@ if [[ -f "${NODE_DIR}/target/TANIWHA_Backend_node.jar" ]]; then
 else
   NODE_DOCKERFILE="Dockerfile.build"
 fi
-docker build --platform "${NODE_DOCKER_PLATFORM}" -f "${NODE_DIR}/${NODE_DOCKERFILE}" -t taniwha-backend-node "${NODE_DIR}"
-docker rm -f mediata-node >/dev/null 2>&1 || true
+node_platform_args=()
+if [[ -n "${NODE_DOCKER_PLATFORM}" ]]; then
+  node_platform_args+=(--platform "${NODE_DOCKER_PLATFORM}")
+fi
+
+docker build "${node_platform_args[@]}" -f "${NODE_DIR}/${NODE_DOCKERFILE}" -t taniwha-backend-node "${NODE_DIR}"
+remove_container_if_present mediata-node 45
 
 NODE_IP="http://localhost:${NODE_HOST_PORT}"
 
 docker run -d \
-  --platform "${NODE_DOCKER_PLATFORM}" \
+  "${node_platform_args[@]}" \
   --name mediata-node \
+  --stop-timeout 45 \
   --add-host=host.docker.internal:host-gateway \
   --env-file "${NODE_DIR}/node-secrets.env" \
   -v "${NODE_DATA_DIR}:/taniwha" \

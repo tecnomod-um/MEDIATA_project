@@ -31,6 +31,18 @@ compose_down_if_present() {
   fi
 }
 
+remove_container_if_present() {
+  local name="$1"
+  local timeout_s="${2:-30}"
+
+  if ! docker ps -a --format '{{.Names}}' | grep -Fxq "$name"; then
+    return 0
+  fi
+
+  docker stop -t "${timeout_s}" "$name" >/dev/null 2>&1 || true
+  docker rm -f "$name" >/dev/null 2>&1 || true
+}
+
 echo "================================================"
 echo "MEDIATA - Teardown Script"
 echo "================================================"
@@ -44,7 +56,7 @@ echo "✓ Frontend stopped"
 
 # ---- Node ----
 echo "[2/3] Stopping node..."
-docker rm -f mediata-node >/dev/null 2>&1 || true
+remove_container_if_present mediata-node 45
 echo "✓ Node stopped"
 
 # ---- Orchestrator stack ----
