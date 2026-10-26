@@ -239,15 +239,19 @@ if isinstance(value, str):
 PY
 }
 
-json_first_array_field() {
+json_array_field_by_match() {
   local json="$1"
-  local field="$2"
-  JSON_PAYLOAD="${json}" python3 - "$field" <<'PY'
+  local match_field="$2"
+  local match_value="$3"
+  local result_field="$4"
+  JSON_PAYLOAD="${json}" python3 - "$match_field" "$match_value" "$result_field" <<'PY'
 import json
 import os
 import sys
 
-field = sys.argv[1]
+match_field = sys.argv[1]
+match_value = sys.argv[2].rstrip("/")
+result_field = sys.argv[3]
 payload = os.environ.get("JSON_PAYLOAD", "")
 
 try:
@@ -255,10 +259,14 @@ try:
 except json.JSONDecodeError:
     sys.exit(1)
 
-if isinstance(data, list) and data:
-    value = data[0].get(field, "")
-    if isinstance(value, str):
-        sys.stdout.write(value)
+if isinstance(data, list):
+    for item in data:
+        candidate = item.get(match_field, "")
+        if isinstance(candidate, str) and candidate.rstrip("/") == match_value:
+            value = item.get(result_field, "")
+            if isinstance(value, str):
+                sys.stdout.write(value)
+            break
 PY
 }
 
@@ -298,7 +306,8 @@ sync_sample_fair_metadata() {
       curl -sS -f \
         -H "Authorization: Bearer ${central_jwt}" \
         "${ORCH_BASE_URL}/nodes/connect/list" \
-      | { response="$(cat)"; json_first_array_field "${response}" "nodeId"; }
+      | { response="$(cat)"; json_array_field_by_match \
+          "${response}" "serviceUrl" "${NODE_IP}" "nodeId"; }
     )"
 
     if [[ -z "${node_id}" ]]; then
