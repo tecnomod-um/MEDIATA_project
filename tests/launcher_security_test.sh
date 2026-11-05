@@ -40,9 +40,9 @@ chmod +x "$FIXTURE/bin/docker"
 make_fixture() {
   local dest="$1"
   mkdir -p "$dest/MEDIATA_orchestrator" "$dest/MEDIATA_node" "$dest/evaluation"
-  cp "$ROOT/run.sh" "$dest/run.sh"
-  cp "$ROOT/MEDIATA_orchestrator/build-and-deploy.sh" "$dest/MEDIATA_orchestrator/build-and-deploy.sh"
-  cp "$ROOT/MEDIATA_orchestrator/.env.example" "$dest/MEDIATA_orchestrator/.env.example"
+  sed 's/\r$//' "$ROOT/run.sh" > "$dest/run.sh"
+  sed 's/\r$//' "$ROOT/MEDIATA_orchestrator/build-and-deploy.sh" > "$dest/MEDIATA_orchestrator/build-and-deploy.sh"
+  sed 's/\r$//' "$ROOT/MEDIATA_orchestrator/.env.example" > "$dest/MEDIATA_orchestrator/.env.example"
   printf 'TRUSTED_PROXY_SHARED_SECRET=fixture-only-shared-secret-at-least-32-characters\r\n' \
     > "$dest/MEDIATA_node/node-secrets.env.example"
   touch "$dest/evaluation/questionnaire.pdf" "$dest/evaluation/evaluation_tasks.pdf"
