@@ -8,10 +8,20 @@ FE_DIR="${ROOT_DIR}/MEDIATA_frontend"
 
 ORCH_HOST_PORT="${ORCH_HOST_PORT:-18088}"
 NODE_HOST_PORT="${NODE_HOST_PORT:-18082}"
+NODE_BIND_ADDRESS="${NODE_BIND_ADDRESS:-127.0.0.1}"
+NODE_PUBLIC_HOST="${NODE_PUBLIC_HOST:-localhost}"
+TRUSTED_PROXY_ALLOWED_UPSTREAM_HOSTS="${TRUSTED_PROXY_ALLOWED_UPSTREAM_HOSTS:-localhost,127.0.0.1,host.docker.internal,mediata-node}"
+TRUSTED_PROXY_ALLOW_HTTP_UPSTREAM="${TRUSTED_PROXY_ALLOW_HTTP_UPSTREAM:-true}"
 FE_HOST_PORT="${FE_HOST_PORT:-3000}"
 NODE_DOCKER_PLATFORM="${NODE_DOCKER_PLATFORM:-}"
 NODE_HEALTH_TIMEOUT_S="${NODE_HEALTH_TIMEOUT_S:-600}"
 LOCAL_FDP_TIMEOUT_S="${LOCAL_FDP_TIMEOUT_S:-300}"
+export TRUSTED_PROXY_ALLOWED_UPSTREAM_HOSTS
+export TRUSTED_PROXY_ALLOW_HTTP_UPSTREAM
+NODE_CONTAINER_NAME="${NODE_CONTAINER_NAME:-mediata-node}"
+ORCH_CONTAINER_NAME="${ORCH_CONTAINER_NAME:-mediata-orchestrator}"
+ORCH_INTERNAL_PORT="${ORCH_INTERNAL_PORT:-8088}"
+ORCH_NETWORK="${ORCH_NETWORK:-}"
 
 ORCH_BASE_URL="http://localhost:${ORCH_HOST_PORT}/taniwha"
 NODE_DATA_DIR="${ROOT_DIR}/node-data"
@@ -90,7 +100,7 @@ read_env_var() {
   local file="$1"
   local key="$2"
   [[ -f "$file" ]] || return 0
-  grep -E "^${key}=" "$file" | tail -n 1 | cut -d= -f2- || true
+  grep -E "^${key}=" "$file" | tail -n 1 | sed 's/\r$//' | cut -d= -f2- || true
 }
 
 upsert_env_var() {
@@ -122,14 +132,23 @@ configure_trusted_proxy_secret() {
   if [[ -z "$secret" ]]; then
     secret="$(generate_shared_secret)"
   fi
+  if (( ${#secret} < 32 )); then
+    echo "ERROR: The trusted proxy shared secret must contain at least 32 characters."
+    exit 1
+  fi
 
   export TRUSTED_PROXY_SHARED_SECRET="$secret"
   upsert_env_var "${NODE_DIR}/node-secrets.env" "TRUSTED_PROXY_SHARED_SECRET" "$secret"
 
   mkdir -p "$(dirname "${TRUSTED_NODE_CONFIG}")"
+  if [[ -d "${TRUSTED_NODE_CONFIG}" ]]; then
+    echo "ERROR: ${TRUSTED_NODE_CONFIG} must be a file, not a directory."
+    exit 1
+  fi
+  local upstream_url="${1:-${NODE_UPSTREAM_URL:-http://host.docker.internal:${NODE_HOST_PORT}}}"
   cat > "${TRUSTED_NODE_CONFIG}" <<EOF
-# public HTTP node URL | upstream URL from orchestrator container | optional shared secret
-http://localhost:${NODE_HOST_PORT}|http://host.docker.internal:${NODE_HOST_PORT}|${TRUSTED_PROXY_SHARED_SECRET}
+# public HTTP node URL | upstream URL from orchestrator container | required strong shared secret
+http://${NODE_PUBLIC_HOST}:${NODE_HOST_PORT}|${upstream_url}|${TRUSTED_PROXY_SHARED_SECRET}
 EOF
 }
 
@@ -414,10 +433,26 @@ fi
 [[ -d "$ORCH_DIR" ]] || { echo "Missing folder: $ORCH_DIR"; exit 1; }
 [[ -f "${ORCH_DIR}/build-and-deploy.sh" ]] || { echo "Missing: ${ORCH_DIR}/build-and-deploy.sh"; exit 1; }
 
-configure_trusted_proxy_secret
-
+# Pre-create the bind-mounted file; Compose otherwise creates a directory.
+configure_trusted_proxy_secret "${NODE_UPSTREAM_URL:-http://${NODE_CONTAINER_NAME}:8080}"
 ( cd "$ORCH_DIR" && run_bash_script "./build-and-deploy.sh" )
 wait_for_orchestrator 300
+
+# Put the node on the orchestrator's private Docker network. This keeps the
+# host binding loopback-only while allowing native Linux Docker bridges to
+# reach the node without exposing it on all interfaces.
+if [[ -z "${ORCH_NETWORK}" ]]; then
+  ORCH_NETWORK="$(docker inspect -f '{{range $name, $_ := .NetworkSettings.Networks}}{{$name}}{{end}}' "${ORCH_CONTAINER_NAME}" 2>/dev/null || true)"
+fi
+if [[ -n "${ORCH_NETWORK}" ]]; then
+  NODE_UPSTREAM_URL="${NODE_UPSTREAM_URL:-http://${NODE_CONTAINER_NAME}:8080}"
+  export NODE_UPSTREAM_URL
+  NODE_ORCHESTRATOR_URL="${NODE_ORCHESTRATOR_URL:-http://${ORCH_CONTAINER_NAME}:${ORCH_INTERNAL_PORT}}"
+else
+  NODE_ORCHESTRATOR_URL="${NODE_ORCHESTRATOR_URL:-http://host.docker.internal:${ORCH_HOST_PORT}}"
+fi
+export NODE_ORCHESTRATOR_URL
+configure_trusted_proxy_secret
 
 # ---------------- Node ----------------
 mkdir -p "${NODE_DATA_DIR}"
@@ -426,36 +461,37 @@ ensure_node_secrets_file
 
 fix_crlf "${NODE_DIR}/entrypoint.sh"
 
-# Build node image
-if [[ -f "${NODE_DIR}/target/TANIWHA_Backend_node.jar" ]]; then
-  NODE_DOCKERFILE="Dockerfile"
-else
-  NODE_DOCKERFILE="Dockerfile.build"
-fi
+# Source builds are the default. Prebuilt-JAR deployments must opt in explicitly.
+NODE_DOCKERFILE="${NODE_DOCKERFILE:-Dockerfile.build}"
 node_platform_args=""
 if [[ -n "${NODE_DOCKER_PLATFORM}" ]]; then
   node_platform_args="--platform ${NODE_DOCKER_PLATFORM}"
+fi
+node_network_args=()
+if [[ -n "${ORCH_NETWORK}" ]]; then
+  node_network_args+=(--network "${ORCH_NETWORK}")
 fi
 
 docker build ${node_platform_args} -f "${NODE_DIR}/${NODE_DOCKERFILE}" -t taniwha-backend-node "${NODE_DIR}"
 remove_container_if_present mediata-node 45
 
-NODE_IP="http://localhost:${NODE_HOST_PORT}"
+NODE_IP="http://${NODE_PUBLIC_HOST}:${NODE_HOST_PORT}"
 
 docker run -d \
   ${node_platform_args} \
   --name mediata-node \
   --stop-timeout 45 \
+  "${node_network_args[@]}" \
   --add-host=host.docker.internal:host-gateway \
   --env-file "${NODE_DIR}/node-secrets.env" \
   -v "${NODE_DATA_DIR}:/taniwha" \
-  -p "0.0.0.0:${NODE_HOST_PORT}:8080" \
+  -p "${NODE_BIND_ADDRESS}:${NODE_HOST_PORT}:8080" \
   -e PORT=8080 \
   -e NAME="MEDIATA" \
   -e DESC="Your MEDIATA server" \
   -e COLOR="#2596be" \
   -e NODE_IP="${NODE_IP}" \
-  -e HOST_URL="http://host.docker.internal:${ORCH_HOST_PORT}" \
+  -e HOST_URL="${NODE_ORCHESTRATOR_URL}" \
   -e HOST_SERVICE="/taniwha" \
   -e FAIRDATAPOINT_PUBLISH_ON_STARTUP=false \
   taniwha-backend-node
@@ -466,10 +502,13 @@ wait_for_local_fdp "${LOCAL_FDP_TIMEOUT_S}"
 sh "${ROOT_DIR}/evaluation/scripts/load_sample_datasets.sh"
 sync_sample_fair_metadata
 
-echo "Node (host): http://localhost:${NODE_HOST_PORT}/taniwha"
-echo "Node registered as: http://localhost:${NODE_HOST_PORT}"
+echo "Node (host): http://${NODE_PUBLIC_HOST}:${NODE_HOST_PORT}/taniwha"
+echo "Node registered as: http://${NODE_PUBLIC_HOST}:${NODE_HOST_PORT}"
+if [[ "${NODE_BIND_ADDRESS}" != "127.0.0.1" && "${NODE_BIND_ADDRESS}" != "localhost" ]]; then
+  echo "WARNING: Node HTTP is exposed on ${NODE_BIND_ADDRESS}; use a VPN or tunnel for sensitive traffic."
+fi
 docker exec mediata-orchestrator sh -lc \
-  "curl -fsS http://host.docker.internal:${NODE_HOST_PORT}/taniwha/node/health"
+  "curl -fsS ${NODE_UPSTREAM_URL:-http://host.docker.internal:${NODE_HOST_PORT}}/taniwha/node/health"
 
 # ---------------- Frontend ----------------
 [[ -d "$FE_DIR" ]] || { echo "Missing folder: $FE_DIR"; exit 1; }
@@ -480,7 +519,6 @@ BACKEND_URL="${BACKEND_URL:-${ORCH_BASE_URL}}"
 echo "Building frontend with REACT_APP_BACKEND_URL=${BACKEND_URL}"
 
 docker build \
-  --no-cache \
   --build-arg VITE_BACKEND_URL="${BACKEND_URL}" \
   --build-arg VITE_BASE_PATH="/" \
   -t mediata-frontend \
